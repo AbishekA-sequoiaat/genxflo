@@ -1,0 +1,12 @@
+{
+  "name": "genxflo-site",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./styles.css -o ./tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./styles.css -o ./tailwind.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.3.0",
+    "tailwindcss": "4.3.0"
+  }
+}
