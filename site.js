@@ -8,19 +8,60 @@ const pageLinks = [
   ['Comparison', 'pages/comparison.html'],
   ['Use Cases', 'pages/use-cases.html']
 ];
+const navigationGroups = [
+  ['Platform', ['AI Features', 'WML Integration', 'GenXflo Export']],
+  ['Explore', ['Use Cases', 'Comparison', 'Learn']]
+].map(([label, linkLabels]) => [label, pageLinks.filter(([linkLabel]) => linkLabels.includes(linkLabel))]);
 const localLink = (path) => `${pageBase}${path}`;
 
 const header = document.querySelector('#site-header');
 if (header) {
   if (document.body.classList.contains('home-page')) {
-    const siteNavigation = [['Home', 'index.html'], ...pageLinks];
-    header.innerHTML = `<header class="dashboard-rail"><div class="rail-top"><a class="brand" href="${localLink('index.html')}"><span class="brand-mark" aria-hidden="true">G</span><span>GenXflo</span></a><button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button></div><nav class="site-nav" id="primary-nav" aria-label="Site navigation">${siteNavigation.map(([label, path], index) => `<a href="${localLink(path)}"${index === 0 ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav><details class="home-toc"><summary>On this page</summary><nav aria-label="Homepage sections"><a href="#whats-new">What's New in GenXflo</a><a href="#ai-workflow">We integrated AI to ease the workflow</a><a href="#workflow-steps">Create Visual Nextflow Pipelines in 3 Easy Steps</a><a href="#why-genxflo">Why GenXflo?</a><a href="#research-teams">Built for Modern Research Teams</a><a href="#contact">Contact Us</a><a href="#faqs">Frequently Asked Questions</a></nav></details><div class="rail-actions"><a class="button" href="https://genxflo.com/app/register">Start Building</a><a href="https://genxflo.com/app/login">Login</a></div></header>`;
+    const navItemClass = 'inline-flex min-w-[94px] items-center justify-center rounded-full border border-transparent px-[.8rem] py-[.52rem] text-[.92rem] text-home-muted no-underline transition hover:border-[rgba(61,199,139,.4)] hover:bg-[rgba(31,186,118,.12)] hover:text-home-ink hover:shadow-[0_8px_18px_rgba(6,160,101,.18)] aria-[current=page]:border-[rgba(91,228,163,.55)] aria-[current=page]:bg-[rgba(6,160,101,.18)] aria-[current=page]:text-home-lime';
+    const groupedNavigation = navigationGroups.map(([label, links]) => `<details class="nav-group group relative border-0 p-0 max-[900px]:w-full"><summary class="inline-flex min-w-[94px] cursor-pointer list-none items-center justify-center gap-[.45rem] rounded-full border border-transparent px-[.8rem] py-[.52rem] text-[.92rem] text-home-muted hover:text-home-ink max-[900px]:w-full max-[900px]:justify-start">${label}<span class="text-home-green text-[.8rem]" aria-hidden="true">⌄</span></summary><div class="nav-submenu absolute left-0 top-[calc(100%+.45rem)] z-30 grid min-w-[230px] gap-[.15rem] rounded bg-[#050505] p-[.4rem] shadow-[0_12px_32px_rgba(0,0,0,.38)] max-[900px]:static max-[900px]:min-w-0 max-[900px]:bg-transparent max-[900px]:py-1 max-[900px]:pl-3 max-[900px]:shadow-none">${links.map(([linkLabel, path]) => `<a class="block min-w-0 rounded-[3px] px-[.8rem] py-[.65rem] text-home-muted no-underline hover:bg-[rgba(6,160,101,.16)] hover:text-home-ink" href="${localLink(path)}">${linkLabel}</a>`).join('')}</div></details>`).join('');
+    header.innerHTML = `<header class="dashboard-rail mx-auto grid w-[min(1500px,calc(100%-60px))] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-[1.2rem] px-0 py-[.45rem] max-[1000px]:grid-rows-[auto_auto] max-[1000px]:gap-y-1 max-[900px]:flex max-[900px]:flex-wrap max-[900px]:justify-between max-[900px]:gap-3"><div class="rail-top col-start-1 flex min-w-[160px] items-center max-[1000px]:row-start-1 max-[900px]:flex-none"><a class="brand inline-flex items-center gap-[.7rem] font-display text-[1.3rem] font-bold text-home-ink no-underline" href="${localLink('index.html')}"><span class="brand-mark grid size-[30px] place-items-center rounded-[3px] border border-[rgba(6,160,101,.7)] text-home-lime text-[.9rem] font-semibold leading-none" aria-hidden="true">G</span><span>GenXflo</span></a><button class="nav-toggle hidden cursor-pointer rounded-[3px] border border-home-line bg-[#14231e] px-[.65rem] py-[.48rem] text-[.84rem] font-medium text-home-ink max-[900px]:inline-flex" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button></div><nav class="site-nav col-start-2 flex w-max items-center justify-center gap-[.45rem] border-0 bg-transparent p-[.2rem] max-[1000px]:col-span-3 max-[1000px]:row-start-2 max-[1000px]:justify-self-center max-[900px]:static max-[900px]:w-full max-[900px]:flex-col max-[900px]:items-stretch max-[900px]:justify-start max-[900px]:gap-1 max-[900px]:py-1 max-[900px]:hidden" id="primary-nav" aria-label="Site navigation"><a class="${navItemClass}" href="${localLink('index.html')}" aria-current="page">Home</a><a class="${navItemClass}" href="${localLink('pages/product-overview.html')}">Product Overview</a>${groupedNavigation}</nav><div class="rail-actions col-start-3 ml-0 flex items-center justify-self-end gap-[.8rem] max-[1000px]:row-start-1 max-[900px]:m-0 max-[900px]:gap-[.7rem]"><a class="button inline-block cursor-pointer rounded-[3px] border-0 bg-[#4ce3a3] px-[.9rem] py-[.6rem] font-sans font-bold text-[#172014] no-underline hover:bg-[#24bd7d] max-[900px]:px-[.65rem] max-[900px]:py-[.55rem] max-[900px]:text-[.85rem]" href="https://genxflo.com/app/register">Start Building</a><a class="text-[.9rem] text-home-muted no-underline hover:text-home-ink" href="https://genxflo.com/app/login">Login</a></div></header>`;
     const menuButton = header.querySelector('.nav-toggle');
     const siteNav = header.querySelector('.site-nav');
+    const navGroups = [...siteNav.querySelectorAll('.nav-group')];
+    const desktopNavigation = window.matchMedia('(min-width: 901px)');
+    const closeOtherGroups = (activeGroup) => navGroups.forEach((group) => {
+      if (group !== activeGroup) group.open = false;
+    });
+
     menuButton.addEventListener('click', () => {
       const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
       menuButton.setAttribute('aria-expanded', String(!isExpanded));
-      siteNav.classList.toggle('is-open', !isExpanded);
+      siteNav.classList.toggle('max-[900px]:hidden', isExpanded);
+    });
+
+    navGroups.forEach((group) => {
+      group.querySelector('summary').addEventListener('click', (event) => {
+        if (desktopNavigation.matches && event.detail > 0 && group.open) event.preventDefault();
+      });
+      group.addEventListener('pointerenter', () => {
+        if (!desktopNavigation.matches) return;
+        closeOtherGroups(group);
+        group.open = true;
+      });
+      group.addEventListener('pointerleave', () => {
+        if (desktopNavigation.matches && !group.contains(document.activeElement)) group.open = false;
+      });
+      group.addEventListener('focusout', (event) => {
+        if (!group.contains(event.relatedTarget) && !group.matches(':hover')) group.open = false;
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      const openGroup = navGroups.find((group) => group.open);
+      if (!openGroup) return;
+      openGroup.open = false;
+      openGroup.querySelector('summary').focus();
+      event.preventDefault();
+    });
+
+    document.addEventListener('pointerdown', (event) => {
+      if (!siteNav.contains(event.target)) navGroups.forEach((group) => { group.open = false; });
     });
   } else {
     header.innerHTML = `<header class="site-header-inner"><a class="brand" href="${localLink('index.html')}">GenXflo</a><nav class="site-nav" aria-label="Main navigation"><a href="${localLink('index.html')}">Home</a><a href="${localLink('pages/product-overview.html')}">Product Overview</a><a href="${localLink('pages/learn.html')}">Learn</a><a href="${localLink('index.html#contact')}">Contact Us</a></nav><div class="header-actions"><a href="https://genxflo.com/app/register">Register</a><a href="https://genxflo.com/app/login">Login</a></div></header>`;
@@ -29,7 +70,11 @@ if (header) {
 
 const footer = document.querySelector('#site-footer');
 if (footer) {
-  footer.innerHTML = `<footer class="site-footer"><div class="footer-grid"><div><h2>GenXflo</h2><nav aria-label="Social links"><a href="https://www.instagram.com/sequoia.at/?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw%3D%3D#">Instagram</a> · <a href="https://www.facebook.com/sequoiaAT">Facebook</a> · <a href="https://in.linkedin.com/company/sequoiaat">LinkedIn</a></nav><p class="powered">© Powered by</p><img src="https://genxflo.com/images/SAT-Logo.png" alt="SAT Logo"></div><div><h2>Quick links</h2><nav class="footer-links" aria-label="Quick links">${pageLinks.map(([label, path]) => `<a href="${localLink(path)}">${label}</a>`).join('')}</nav></div><div class="footer-contact"><p>2727 Walsh Ave, Ste 206, Santa Clara, CA 95051</p><p><a href="tel:+12248305575">+1 224 830 5575</a></p><p><a href="mailto:admin@genxflo.com">admin@genxflo.com</a></p><p><a href="https://genxflo.com/app/resources">Documentation</a></p></div></div></footer>`;
+  if (document.body.classList.contains('home-page')) {
+    footer.innerHTML = `<footer class="site-footer border-t border-home-line bg-transparent py-10"><div class="footer-grid mx-auto grid w-[min(1500px,calc(100%-60px))] grid-cols-[1fr_2fr_1.2fr] gap-8 max-[850px]:grid-cols-[1fr_1.4fr] max-[600px]:w-[calc(100%-32px)] max-[600px]:grid-cols-1"><div><h2 class="mb-4 font-display text-base font-bold text-home-ink">GenXflo</h2><nav class="flex flex-wrap items-center gap-2 text-[.9rem] text-home-muted" aria-label="Social links"><a class="text-home-green underline-offset-4" href="https://www.instagram.com/sequoia.at/?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw%3D%3D#">Instagram</a><span aria-hidden="true">·</span><a class="text-home-green underline-offset-4" href="https://www.facebook.com/sequoiaAT">Facebook</a><span aria-hidden="true">·</span><a class="text-home-green underline-offset-4" href="https://in.linkedin.com/company/sequoiaat">LinkedIn</a></nav><p class="mt-5 text-[.85rem] text-home-muted">© Powered by</p><img class="mt-3 block max-h-[45px] max-w-[110px] object-contain" src="https://genxflo.com/images/SAT-Logo.png" alt="SAT Logo"></div><div><h2 class="mb-4 font-display text-base font-bold text-home-ink">Quick links</h2><nav class="footer-links grid grid-cols-2 gap-x-5 gap-y-2" aria-label="Quick links">${pageLinks.map(([label, path]) => `<a class="text-[.94rem] text-home-green underline-offset-4" href="${localLink(path)}">${label}</a>`).join('')}</nav></div><div class="footer-contact max-[850px]:col-span-2 max-[600px]:col-span-1"><p class="mb-2 text-home-muted">2727 Walsh Ave, Ste 206, Santa Clara, CA 95051</p><p class="mb-2 text-home-muted"><a class="text-home-green underline-offset-4" href="tel:+12248305575">+1 224 830 5575</a></p><p class="mb-2 text-home-muted"><a class="text-home-green underline-offset-4" href="mailto:admin@genxflo.com">admin@genxflo.com</a></p><p class="mb-2 text-home-muted"><a class="text-home-green underline-offset-4" href="https://genxflo.com/app/resources">Documentation</a></p></div></div></footer>`;
+  } else {
+    footer.innerHTML = `<footer class="site-footer"><div class="footer-grid"><div><h2>GenXflo</h2><nav aria-label="Social links"><a href="https://www.instagram.com/sequoia.at/?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw%3D%3D#">Instagram</a> · <a href="https://www.facebook.com/sequoiaAT">Facebook</a> · <a href="https://in.linkedin.com/company/sequoiaat">LinkedIn</a></nav><p class="powered">© Powered by</p><img src="https://genxflo.com/images/SAT-Logo.png" alt="SAT Logo"></div><div><h2>Quick links</h2><nav class="footer-links" aria-label="Quick links">${pageLinks.map(([label, path]) => `<a href="${localLink(path)}">${label}</a>`).join('')}</nav></div><div class="footer-contact"><p>2727 Walsh Ave, Ste 206, Santa Clara, CA 95051</p><p><a href="tel:+12248305575">+1 224 830 5575</a></p><p><a href="mailto:admin@genxflo.com">admin@genxflo.com</a></p><p><a href="https://genxflo.com/app/resources">Documentation</a></p></div></div></footer>`;
+  }
 }
 
 const message = document.querySelector('textarea[name="Message"]');
