@@ -17,9 +17,9 @@ const localLink = (path) => `${pageBase}${path}`;
 const header = document.querySelector('#site-header');
 if (header) {
   if (document.body.classList.contains('home-page')) {
-    const navItemClass = 'inline-flex min-w-[94px] items-center justify-center rounded-full border border-transparent px-[.8rem] py-[.52rem] text-[.92rem] text-home-muted no-underline transition hover:border-[rgba(61,199,139,.4)] hover:bg-[rgba(31,186,118,.12)] hover:text-home-ink hover:shadow-[0_8px_18px_rgba(6,160,101,.18)] aria-[current=page]:border-[rgba(91,228,163,.55)] aria-[current=page]:bg-[rgba(6,160,101,.18)] aria-[current=page]:text-home-lime';
-    const groupedNavigation = navigationGroups.map(([label, links]) => `<details class="nav-group group relative border-0 p-0 max-[900px]:w-full"><summary class="inline-flex min-w-[94px] cursor-pointer list-none items-center justify-center gap-[.45rem] rounded-full border border-transparent px-[.8rem] py-[.52rem] text-[.92rem] text-home-muted hover:text-home-ink max-[900px]:w-full max-[900px]:justify-start">${label}<span class="text-home-green text-[.8rem]" aria-hidden="true">⌄</span></summary><div class="nav-submenu absolute left-0 top-[calc(100%+.45rem)] z-30 grid min-w-[230px] gap-[.15rem] rounded bg-[#050505] p-[.4rem] shadow-[0_12px_32px_rgba(0,0,0,.38)] max-[900px]:static max-[900px]:min-w-0 max-[900px]:bg-transparent max-[900px]:py-1 max-[900px]:pl-3 max-[900px]:shadow-none">${links.map(([linkLabel, path]) => `<a class="block min-w-0 rounded-[3px] px-[.8rem] py-[.65rem] text-home-muted no-underline hover:bg-[rgba(6,160,101,.16)] hover:text-home-ink" href="${localLink(path)}">${linkLabel}</a>`).join('')}</div></details>`).join('');
-    header.innerHTML = `<header class="dashboard-rail mx-auto grid w-[min(1500px,calc(100%-60px))] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-[1.2rem] px-0 py-[.45rem] max-[1000px]:grid-rows-[auto_auto] max-[1000px]:gap-y-1 max-[900px]:flex max-[900px]:flex-wrap max-[900px]:justify-between max-[900px]:gap-3"><div class="rail-top col-start-1 flex min-w-[160px] items-center max-[1000px]:row-start-1 max-[900px]:flex-none"><a class="brand inline-flex items-center gap-[.7rem] font-display text-[1.3rem] font-bold text-home-ink no-underline" href="${localLink('index.html')}"><span class="brand-mark grid size-[30px] place-items-center rounded-[3px] border border-[rgba(6,160,101,.7)] text-home-lime text-[.9rem] font-semibold leading-none" aria-hidden="true">G</span><span>GenXflo</span></a><button class="nav-toggle hidden cursor-pointer rounded-[3px] border border-home-line bg-[#14231e] px-[.65rem] py-[.48rem] text-[.84rem] font-medium text-home-ink max-[900px]:inline-flex" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button></div><nav class="site-nav col-start-2 flex w-max items-center justify-center gap-[.45rem] border-0 bg-transparent p-[.2rem] max-[1000px]:col-span-3 max-[1000px]:row-start-2 max-[1000px]:justify-self-center max-[900px]:static max-[900px]:w-full max-[900px]:flex-col max-[900px]:items-stretch max-[900px]:justify-start max-[900px]:gap-1 max-[900px]:py-1 max-[900px]:hidden" id="primary-nav" aria-label="Site navigation"><a class="${navItemClass}" href="${localLink('index.html')}" aria-current="page">Home</a><a class="${navItemClass}" href="${localLink('pages/product-overview.html')}">Product Overview</a>${groupedNavigation}</nav><div class="rail-actions col-start-3 ml-0 flex items-center justify-self-end gap-[.8rem] max-[1000px]:row-start-1 max-[900px]:m-0 max-[900px]:gap-[.7rem]"><a class="button inline-block cursor-pointer rounded-[3px] border-0 bg-[#4ce3a3] px-[.9rem] py-[.6rem] font-sans font-bold text-[#172014] no-underline hover:bg-[#24bd7d] max-[900px]:px-[.65rem] max-[900px]:py-[.55rem] max-[900px]:text-[.85rem]" href="https://genxflo.com/app/register">Start Building</a><a class="text-[.9rem] text-home-muted no-underline hover:text-home-ink" href="https://genxflo.com/app/login">Login</a></div></header>`;
+    const navItemClass = 'inline-flex min-w-[94px] items-center justify-center rounded-full border border-transparent px-[.8rem] py-[.52rem] text-[.92rem] leading-none text-home-muted no-underline transition hover:border-[rgba(61,199,139,.4)] hover:bg-[rgba(31,186,118,.12)] hover:text-home-ink hover:shadow-[0_8px_18px_rgba(6,160,101,.18)]';
+    const groupedNavigation = navigationGroups.map(([label, links]) => `<details class="nav-group group relative border-0 p-0 max-[900px]:w-full"><summary class="inline-flex min-w-[94px] cursor-pointer list-none items-center justify-center gap-[.45rem] rounded-full border border-transparent px-[.8rem] py-[.52rem] text-[.92rem] leading-none text-home-muted hover:text-home-ink max-[900px]:w-full max-[900px]:justify-start">${label}<svg class="size-3.5 shrink-0 text-home-green transition-transform duration-200 group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div class="nav-submenu absolute left-0 top-[calc(100%+.45rem)] z-30 grid min-w-[230px] gap-[.15rem] rounded-md bg-[#050505] p-[.4rem] shadow-[0_12px_32px_rgba(0,0,0,.38)] max-[900px]:static max-[900px]:min-w-0 max-[900px]:bg-transparent max-[900px]:py-1 max-[900px]:pl-3 max-[900px]:shadow-none">${links.map(([linkLabel, path]) => `<a class="block min-w-0 rounded-md px-[.8rem] py-[.65rem] text-home-muted no-underline hover:bg-[rgba(6,160,101,.16)] hover:text-home-ink" href="${localLink(path)}">${linkLabel}</a>`).join('')}</div></details>`).join('');
+    header.innerHTML = `<header class="dashboard-rail mx-auto grid w-[min(1500px,calc(100%-60px))] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-[1.2rem] px-0 py-[.45rem] max-[1000px]:grid-rows-[auto_auto] max-[1000px]:gap-y-1 max-[900px]:flex max-[900px]:flex-wrap max-[900px]:justify-between max-[900px]:gap-3"><div class="rail-top col-start-1 flex min-w-[160px] items-center max-[1000px]:row-start-1 max-[900px]:flex-none"><a class="brand inline-flex items-center" href="${localLink('index.html')}" aria-label="GenXflo home"><img class="block h-9 w-auto max-[600px]:h-8" src="${localLink('genxflo-logo.svg')}" alt="GenXflo" width="1682" height="553"></a><button class="nav-toggle hidden cursor-pointer rounded-md border border-home-line bg-[#14231e] px-[.65rem] py-[.48rem] text-[.84rem] font-medium text-home-ink max-[900px]:inline-flex" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button></div><nav class="site-nav col-start-2 flex w-max items-center justify-center gap-[.45rem] border-0 bg-transparent p-[.2rem] max-[1000px]:col-span-3 max-[1000px]:row-start-2 max-[1000px]:justify-self-center max-[900px]:static max-[900px]:w-full max-[900px]:flex-col max-[900px]:items-stretch max-[900px]:justify-start max-[900px]:gap-1 max-[900px]:py-1 max-[900px]:hidden" id="primary-nav" aria-label="Site navigation"><a class="${navItemClass}" href="${localLink('index.html')}" aria-current="page">Home</a><a class="${navItemClass}" href="${localLink('pages/product-overview.html')}">Product Overview</a>${groupedNavigation}</nav><div class="rail-actions col-start-3 ml-0 flex items-center justify-self-end gap-[.8rem] max-[1000px]:row-start-1 max-[900px]:m-0 max-[900px]:gap-[.7rem]"><a class="button inline-block cursor-pointer rounded-md border-0 bg-[#4ce3a3] px-[.9rem] py-[.6rem] font-sans font-bold text-[#172014] no-underline hover:bg-[#24bd7d] max-[900px]:px-[.65rem] max-[900px]:py-[.55rem] max-[900px]:text-[.85rem]" href="https://genxflo.com/app/register">Register</a><a class="inline-block cursor-pointer rounded-md border border-white/15 bg-white/[.08] px-[.9rem] py-[.6rem] font-sans font-bold text-home-ink no-underline transition-[background-color,border-color] hover:border-[#4ce3a3]/50 hover:bg-white/[.14] max-[900px]:px-[.65rem] max-[900px]:py-[.55rem] max-[900px]:text-[.85rem]" href="https://genxflo.com/app/login">Login</a></div></header>`;
     const menuButton = header.querySelector('.nav-toggle');
     const siteNav = header.querySelector('.site-nav');
     const navGroups = [...siteNav.querySelectorAll('.nav-group')];
@@ -64,16 +64,16 @@ if (header) {
       if (!siteNav.contains(event.target)) navGroups.forEach((group) => { group.open = false; });
     });
   } else {
-    header.innerHTML = `<header class="site-header-inner"><a class="brand" href="${localLink('index.html')}">GenXflo</a><nav class="site-nav" aria-label="Main navigation"><a href="${localLink('index.html')}">Home</a><a href="${localLink('pages/product-overview.html')}">Product Overview</a><a href="${localLink('pages/learn.html')}">Learn</a><a href="${localLink('index.html#contact')}">Contact Us</a></nav><div class="header-actions"><a href="https://genxflo.com/app/register">Register</a><a href="https://genxflo.com/app/login">Login</a></div></header>`;
+    header.innerHTML = `<header class="site-header-inner"><a class="brand" href="${localLink('index.html')}" aria-label="GenXflo home"><img src="${localLink('genxflo-logo.svg')}" alt="GenXflo" width="1682" height="553" style="display:block;height:2.2rem;width:auto"></a><nav class="site-nav" aria-label="Main navigation"><a href="${localLink('index.html')}">Home</a><a href="${localLink('pages/product-overview.html')}">Product Overview</a><a href="${localLink('pages/learn.html')}">Learn</a><a href="${localLink('index.html#contact')}">Contact Us</a></nav><div class="header-actions"><a href="https://genxflo.com/app/register">Register</a><a href="https://genxflo.com/app/login">Login</a></div></header>`;
   }
 }
 
 const footer = document.querySelector('#site-footer');
 if (footer) {
   if (document.body.classList.contains('home-page')) {
-    footer.innerHTML = `<footer class="site-footer border-t border-home-line bg-transparent py-10"><div class="footer-grid mx-auto grid w-[min(1500px,calc(100%-60px))] grid-cols-[1fr_2fr_1.2fr] gap-8 max-[850px]:grid-cols-[1fr_1.4fr] max-[600px]:w-[calc(100%-32px)] max-[600px]:grid-cols-1"><div><h2 class="mb-4 font-display text-base font-bold text-home-ink">GenXflo</h2><nav class="flex flex-wrap items-center gap-2 text-[.9rem] text-home-muted" aria-label="Social links"><a class="text-home-green underline-offset-4" href="https://www.instagram.com/sequoia.at/?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw%3D%3D#">Instagram</a><span aria-hidden="true">·</span><a class="text-home-green underline-offset-4" href="https://www.facebook.com/sequoiaAT">Facebook</a><span aria-hidden="true">·</span><a class="text-home-green underline-offset-4" href="https://in.linkedin.com/company/sequoiaat">LinkedIn</a></nav><p class="mt-5 text-[.85rem] text-home-muted">© Powered by</p><img class="mt-3 block max-h-[45px] max-w-[110px] object-contain" src="https://genxflo.com/images/SAT-Logo.png" alt="SAT Logo"></div><div><h2 class="mb-4 font-display text-base font-bold text-home-ink">Quick links</h2><nav class="footer-links grid grid-cols-2 gap-x-5 gap-y-2" aria-label="Quick links">${pageLinks.map(([label, path]) => `<a class="text-[.94rem] text-home-green underline-offset-4" href="${localLink(path)}">${label}</a>`).join('')}</nav></div><div class="footer-contact max-[850px]:col-span-2 max-[600px]:col-span-1"><p class="mb-2 text-home-muted">2727 Walsh Ave, Ste 206, Santa Clara, CA 95051</p><p class="mb-2 text-home-muted"><a class="text-home-green underline-offset-4" href="tel:+12248305575">+1 224 830 5575</a></p><p class="mb-2 text-home-muted"><a class="text-home-green underline-offset-4" href="mailto:admin@genxflo.com">admin@genxflo.com</a></p><p class="mb-2 text-home-muted"><a class="text-home-green underline-offset-4" href="https://genxflo.com/app/resources">Documentation</a></p></div></div></footer>`;
+    footer.innerHTML = `<footer class="site-footer border-t border-home-line bg-transparent py-10"><div class="footer-grid mx-auto grid w-[min(1500px,calc(100%-60px))] grid-cols-[1fr_2fr_1.2fr] gap-8 max-[850px]:grid-cols-[1fr_1.4fr] max-[600px]:w-[calc(100%-32px)] max-[600px]:grid-cols-1"><div><a class="mb-4 inline-block" href="${localLink('index.html')}" aria-label="GenXflo home"><img class="block h-9 w-auto" src="${localLink('genxflo-logo.svg')}" alt="GenXflo" width="1682" height="553" loading="lazy"></a><nav class="flex flex-wrap items-center gap-2 text-[.9rem] text-home-muted" aria-label="Social links"><a class="text-home-green underline-offset-4" href="https://www.instagram.com/sequoia.at/?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw%3D%3D#">Instagram</a><span aria-hidden="true">·</span><a class="text-home-green underline-offset-4" href="https://www.facebook.com/sequoiaAT">Facebook</a><span aria-hidden="true">·</span><a class="text-home-green underline-offset-4" href="https://in.linkedin.com/company/sequoiaat">LinkedIn</a></nav><p class="mt-5 text-[.85rem] text-home-muted">© Powered by</p><img class="mt-3 block max-h-[45px] max-w-[110px] object-contain" src="https://genxflo.com/images/SAT-Logo.png" alt="SAT Logo"></div><div><h2 class="mb-4 font-display text-base font-bold text-home-ink">Quick links</h2><nav class="footer-links grid grid-cols-2 gap-x-5 gap-y-2" aria-label="Quick links">${pageLinks.map(([label, path]) => `<a class="text-[.94rem] text-home-green underline-offset-4" href="${localLink(path)}">${label}</a>`).join('')}</nav></div><div class="footer-contact max-[850px]:col-span-2 max-[600px]:col-span-1"><p class="mb-2 text-home-muted">2727 Walsh Ave, Ste 206, Santa Clara, CA 95051</p><p class="mb-2 text-home-muted"><a class="text-home-green underline-offset-4" href="tel:+12248305575">+1 224 830 5575</a></p><p class="mb-2 text-home-muted"><a class="text-home-green underline-offset-4" href="mailto:admin@genxflo.com">admin@genxflo.com</a></p><p class="mb-2 text-home-muted"><a class="text-home-green underline-offset-4" href="https://genxflo.com/app/resources">Documentation</a></p></div></div></footer>`;
   } else {
-    footer.innerHTML = `<footer class="site-footer"><div class="footer-grid"><div><h2>GenXflo</h2><nav aria-label="Social links"><a href="https://www.instagram.com/sequoia.at/?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw%3D%3D#">Instagram</a> · <a href="https://www.facebook.com/sequoiaAT">Facebook</a> · <a href="https://in.linkedin.com/company/sequoiaat">LinkedIn</a></nav><p class="powered">© Powered by</p><img src="https://genxflo.com/images/SAT-Logo.png" alt="SAT Logo"></div><div><h2>Quick links</h2><nav class="footer-links" aria-label="Quick links">${pageLinks.map(([label, path]) => `<a href="${localLink(path)}">${label}</a>`).join('')}</nav></div><div class="footer-contact"><p>2727 Walsh Ave, Ste 206, Santa Clara, CA 95051</p><p><a href="tel:+12248305575">+1 224 830 5575</a></p><p><a href="mailto:admin@genxflo.com">admin@genxflo.com</a></p><p><a href="https://genxflo.com/app/resources">Documentation</a></p></div></div></footer>`;
+    footer.innerHTML = `<footer class="site-footer"><div class="footer-grid"><div><a href="${localLink('index.html')}" aria-label="GenXflo home"><img src="${localLink('genxflo-logo.svg')}" alt="GenXflo" width="1682" height="553" loading="lazy" style="display:block;height:2.2rem;width:auto;margin-bottom:1rem"></a><nav aria-label="Social links"><a href="https://www.instagram.com/sequoia.at/?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw%3D%3D#">Instagram</a> · <a href="https://www.facebook.com/sequoiaAT">Facebook</a> · <a href="https://in.linkedin.com/company/sequoiaat">LinkedIn</a></nav><p class="powered">© Powered by</p><img src="https://genxflo.com/images/SAT-Logo.png" alt="SAT Logo"></div><div><h2>Quick links</h2><nav class="footer-links" aria-label="Quick links">${pageLinks.map(([label, path]) => `<a href="${localLink(path)}">${label}</a>`).join('')}</nav></div><div class="footer-contact"><p>2727 Walsh Ave, Ste 206, Santa Clara, CA 95051</p><p><a href="tel:+12248305575">+1 224 830 5575</a></p><p><a href="mailto:admin@genxflo.com">admin@genxflo.com</a></p><p><a href="https://genxflo.com/app/resources">Documentation</a></p></div></div></footer>`;
   }
 }
 
@@ -93,4 +93,69 @@ if (marquee && marqueeToggle) {
     marqueeToggle.setAttribute('aria-pressed', String(isPaused));
     marqueeToggle.textContent = isPaused ? 'Resume' : 'Pause';
   });
+}
+
+const releaseWindow = document.querySelector('.release-window');
+if (marquee && releaseWindow && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const SECONDS_PER_LOOP = 34;
+  let offset = 0;
+  let velocity = 0;
+  let hovering = false;
+  let dragging = false;
+  let lastY = 0;
+  let lastTime = performance.now();
+  let lastMoveTime = 0;
+  const loopHeight = () => marquee.scrollHeight / 2;
+  const render = () => {
+    const h = loopHeight();
+    if (h > 0) offset = ((offset % h) + h) % h;
+    marquee.style.transform = `translate3d(0, ${-offset}px, 0)`;
+  };
+  const tick = (now) => {
+    const dt = Math.min((now - lastTime) / 1000, .05);
+    lastTime = now;
+    if (!dragging) {
+      if (Math.abs(velocity) > 1) {
+        offset -= velocity * dt;
+        velocity *= Math.pow(.04, dt);
+      } else {
+        velocity = 0;
+        const paused = hovering || marquee.classList.contains('is-paused');
+        if (!paused) offset += (loopHeight() / SECONDS_PER_LOOP) * dt;
+      }
+    }
+    render();
+    requestAnimationFrame(tick);
+  };
+  releaseWindow.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    lastY = e.clientY;
+    velocity = 0;
+    lastMoveTime = e.timeStamp;
+    releaseWindow.setPointerCapture(e.pointerId);
+  });
+  releaseWindow.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dy = e.clientY - lastY;
+    const dt = Math.max((e.timeStamp - lastMoveTime) / 1000, .016);
+    lastY = e.clientY;
+    offset -= dy;
+    velocity = dy / dt;
+    lastMoveTime = e.timeStamp;
+    render();
+  });
+  const endDrag = () => { dragging = false; };
+  releaseWindow.addEventListener('pointerup', endDrag);
+  releaseWindow.addEventListener('pointercancel', endDrag);
+  releaseWindow.addEventListener('mouseenter', () => { hovering = true; });
+  releaseWindow.addEventListener('mouseleave', () => { hovering = false; });
+  releaseWindow.addEventListener('dragstart', (e) => e.preventDefault());
+  requestAnimationFrame(tick);
+}
+
+const stickyHeader = document.querySelector('#site-header');
+if (stickyHeader) {
+  const syncHeaderBackground = () => stickyHeader.classList.toggle('is-scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', syncHeaderBackground, { passive: true });
+  syncHeaderBackground();
 }
