@@ -223,16 +223,17 @@ void main() {
   float baseline = exp(-sq(130.0 / 150.0));
   float strengthR = exp(-sq(reachR / (150.0 * uShape.z))) * (1.0 - smoothstep(0.8 * spread, 1.25 * spread, reachR)) / baseline * pour;
   float strengthL = exp(-sq(reachL / (150.0 * uShape.z))) * (1.0 - smoothstep(0.8 * spread, 1.25 * spread, reachL)) / baseline * pour;
-  float fallY = p.y - sy - 0.3 * radius;
+  float fallY = (p.y - sy - 0.3 * radius) * (120.0 / max(sb - sy, 120.0));
   float rightHalf = smoothstep(center.x - 4.0, center.x + 4.0, p.x);
   float haloR = exp(-length(p - vec2(sr - 0.3 * radius, sy + 0.3 * radius)) / 40.0) * sqrt(strengthR);
   float haloL = exp(-length(p - vec2(sl + 0.3 * radius, sy + 0.3 * radius)) / 40.0) * sqrt(strengthL);
   vec3 glowR;
   vec3 glowL;
-  col += spill(sd, fallY, strengthR, uPour.y, t, glowR) * rightHalf;
-  col += spill(sd, fallY, strengthL, uPour.x, t, glowL) * (1.0 - rightHalf);
-  col += easeLight(glowR * rightHalf + NAVY * 0.9 * haloR, uPour.w);
-  col += easeLight(glowL * (1.0 - rightHalf) + NAVY * 0.9 * haloL, uPour.z);
+  float belowCut = 1.0 - smoothstep(sb - 14.0, sb, p.y);
+  col += spill(sd, fallY, strengthR, uPour.y, t, glowR) * rightHalf * belowCut;
+  col += spill(sd, fallY, strengthL, uPour.x, t, glowL) * (1.0 - rightHalf) * belowCut;
+  col += easeLight(glowR * rightHalf + NAVY * 0.9 * haloR, uPour.w) * belowCut;
+  col += easeLight(glowL * (1.0 - rightHalf) + NAVY * 0.9 * haloL, uPour.z) * belowCut;
 
   vec2 toLens = frag - uLens.xy;
   float lens = exp(-dot(toLens, toLens) / sq(uLens.z)) * uLens.w;
