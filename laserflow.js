@@ -714,7 +714,7 @@ void main() {
       var moving = !s.paused && !reduce;
       if (moving) state.time += dt * s.speed;
       var introducing = state.introTime < INTRO_END;
-      if (introducing) state.introTime = Math.min(INTRO_END, state.introTime + dt);
+      if (introducing) state.introTime = Math.min(INTRO_END, state.introTime + dt * 1.7);
 
       var pointer = state.pointer;
       var lens = state.lens;
