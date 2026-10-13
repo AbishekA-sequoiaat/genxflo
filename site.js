@@ -111,6 +111,8 @@ if (marquee && releaseWindow && !window.matchMedia('(prefers-reduced-motion: red
   let velocity = 0;
   let hovering = false;
   let started = false;
+  let running = false;
+  let inView = true;
   let dragging = false;
   let lastY = 0;
   let lastTime = performance.now();
@@ -125,7 +127,7 @@ if (marquee && releaseWindow && !window.matchMedia('(prefers-reduced-motion: red
     if (!started) { started = true; offset = Math.max(loopHeight() - 56, 0); }
     const dt = Math.min((now - lastTime) / 1000, .05);
     lastTime = now;
-    if (listMode.matches) { velocity = 0; dragging = false; render(); requestAnimationFrame(tick); return; }
+    if (listMode.matches) { velocity = 0; dragging = false; render(); running = false; return; }
     if (!dragging) {
       if (Math.abs(velocity) > 1) {
         offset -= velocity * dt;
@@ -137,8 +139,9 @@ if (marquee && releaseWindow && !window.matchMedia('(prefers-reduced-motion: red
       }
     }
     render();
-    requestAnimationFrame(tick);
+    if (inView) requestAnimationFrame(tick); else running = false;
   };
+  const wake = () => { if (running || !inView || listMode.matches) return; running = true; lastTime = performance.now(); requestAnimationFrame(tick); };
   releaseWindow.addEventListener('pointerdown', (e) => {
     if (listMode.matches) return;
     dragging = true;
@@ -180,7 +183,11 @@ if (marquee && releaseWindow && !window.matchMedia('(prefers-reduced-motion: red
   releaseWindow.addEventListener('pointermove', moveBadge);
   releaseWindow.addEventListener('pointerleave', () => { dragBadge.style.opacity = '0'; });
   releaseWindow.addEventListener('dragstart', (e) => e.preventDefault());
-  requestAnimationFrame(tick);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; wake(); }, { rootMargin: '120px' }).observe(releaseWindow);
+  }
+  listMode.addEventListener('change', wake);
+  wake();
 }
 
 const stickyHeader = document.querySelector('#site-header');
@@ -252,6 +259,15 @@ if (heroVideo && videoToggle) {
   });
 }
 
+// hero video: pause while off-screen
+if (heroVideo && 'IntersectionObserver' in window) {
+  let autoPaused = false;
+  new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting && !heroVideo.paused) { heroVideo.pause(); autoPaused = true; }
+    else if (entry.isIntersecting && autoPaused) { autoPaused = false; heroVideo.play().catch(() => {}); }
+  }, { threshold: .05 }).observe(heroVideo);
+}
+
 // hero video: full screen
 const videoFull = document.querySelector('.video-fullscreen');
 if (heroVideo && videoFull) {
@@ -314,7 +330,7 @@ if (footerWord) {
 // hero: laser beam landing on the video card
 const heroLaser = document.querySelector('#hero-laser');
 const heroSurface = document.querySelector('#hero-video');
-if (heroLaser && heroSurface && window.LaserFlow) {
+if (heroLaser && heroSurface) {
   const wide = window.matchMedia('(min-width: 851px)');
   let laser = null;
   const beamAt = (width) => {
@@ -322,8 +338,19 @@ if (heroLaser && heroSurface && window.LaserFlow) {
     const rect = heroSurface.getBoundingClientRect();
     return (rect.left - box.left + rect.width * .86) / (width || box.width || 1);
   };
+  let loading = null;
+  const loadLaser = () => loading || (loading = new Promise((resolve) => {
+    if (window.LaserFlow) return resolve();
+    const tag = document.createElement('script');
+    tag.src = 'laserflow.js';
+    tag.onload = resolve;
+    tag.onerror = resolve;
+    document.head.appendChild(tag);
+  }));
   const syncLaser = () => {
     if (wide.matches && !laser) {
+      loadLaser().then(() => {
+      if (!wide.matches || laser || !window.LaserFlow) return;
       laser = window.LaserFlow(heroLaser, {
         surface: heroSurface,
         beamPosition: beamAt,
@@ -343,6 +370,7 @@ if (heroLaser && heroSurface && window.LaserFlow) {
         mouseInteraction: true,
         intro: true,
         dpr: 1.25
+      });
       });
     } else if (!wide.matches && laser) {
       laser.destroy();
