@@ -154,3 +154,9 @@ details p { padding: .8rem 0 0; color: var(--muted); }
 
 #doc-modal-body .grid > *, #doc-modal-body article, #doc-modal-body section { min-width: 0; }
 #doc-modal-body { scroll-behavior: smooth; }
+
+.footer-word {
+  background-image:
+    radial-gradient(circle var(--r, 0px) at var(--mx, 50%) var(--my, 50%), #e6fff3 0%, rgba(120, 245, 190, .95) 30%, rgba(76, 227, 163, 0) 100%),
+    linear-gradient(90deg, transparent 0%, rgba(76, 227, 163, .55) 22%, rgba(76, 227, 163, .55) 78%, transparent 100%);
+}
