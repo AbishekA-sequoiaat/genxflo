@@ -35,6 +35,7 @@ uniform vec4 uAmount;
 uniform vec4 uShape;
 uniform vec4 uExtra;
 uniform float uTheme;
+uniform float uSpillLen;
 uniform vec3 uTint[16];
 
 #define BEAM uTint[0]
@@ -223,7 +224,7 @@ void main() {
   float baseline = exp(-sq(130.0 / 150.0));
   float strengthR = exp(-sq(reachR / (150.0 * uShape.z))) * (1.0 - smoothstep(0.8 * spread, 1.25 * spread, reachR)) / baseline * pour;
   float strengthL = exp(-sq(reachL / (150.0 * uShape.z))) * (1.0 - smoothstep(0.8 * spread, 1.25 * spread, reachL)) / baseline * pour;
-  float fallY = (p.y - sy - 0.3 * radius) * (120.0 / max(sb - sy, 120.0));
+  float fallY = (p.y - sy - 0.3 * radius) * (120.0 / max(sb - sy, 120.0)) / uSpillLen;
   float rightHalf = smoothstep(center.x - 4.0, center.x + 4.0, p.x);
   float haloR = exp(-length(p - vec2(sr - 0.3 * radius, sy + 0.3 * radius)) / 40.0) * sqrt(strengthR);
   float haloL = exp(-length(p - vec2(sl + 0.3 * radius, sy + 0.3 * radius)) / 40.0) * sqrt(strengthL);
@@ -413,6 +414,7 @@ void main() {
     flare: 1.5,
     spread: 1.5,
     spill: 1,
+    spillHeight: 1,        // 0.1..1 share of the surface height the spill runs down
     fog: 0.2,
     dust: 1.6,
     streaks: 1.5,
@@ -442,6 +444,7 @@ void main() {
       flare: clamp(o.flare, 0.2, 4),
       spread: clamp(o.spread, 0.1, 4),
       spill: Math.max(0, o.spill),
+      spillHeight: clamp(o.spillHeight, 0.1, 1),
       fog: Math.max(0, o.fog),
       dust: Math.max(0, o.dust),
       streaks: Math.max(0, o.streaks),
@@ -478,7 +481,7 @@ void main() {
     }
 
     var names = ['uResolution', 'uDpr', 'uScale', 'uTime', 'uBeamX', 'uSurface', 'uRadius', 'uIntro', 'uPour', 'uRun',
-      'uLens', 'uReveal', 'uRevealMap', 'uRevealInfo', 'uAtmosphere', 'uAmount', 'uShape', 'uExtra', 'uTheme', 'uTint'];
+      'uLens', 'uReveal', 'uRevealMap', 'uRevealInfo', 'uAtmosphere', 'uAmount', 'uShape', 'uExtra', 'uTheme', 'uSpillLen', 'uTint'];
     var uniforms = {};
     names.forEach(function (n) { uniforms[n] = gl.getUniformLocation(program, n); });
 
@@ -680,6 +683,7 @@ void main() {
       gl.uniform4f(uniforms.uShape, s.beamWidth, s.flare, s.spread, s.spill);
       gl.uniform4f(uniforms.uExtra, s.pulse, s.dots, 34.34 + seedValue * 7.31, 11.58 + seedValue * 3.17);
       gl.uniform1f(uniforms.uTheme, s.theme === 'light' ? 1 : 0);
+      gl.uniform1f(uniforms.uSpillLen, s.spillHeight);
       gl.uniform3fv(uniforms.uTint, state.tints);
       gl.bindVertexArray(vao);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
