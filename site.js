@@ -13,14 +13,14 @@ const navigationGroups = [
   ['Platform', ['AI Features', 'WML Integration', 'GenXflo Export']],
   ['Explore', ['Use Cases', 'Comparison', 'Learn', 'Documentation']]
 ].map(([label, linkLabels]) => [label, pageLinks.filter(([linkLabel]) => linkLabels.includes(linkLabel))]);
-const homeGroup = ['Home', [['Default (Light)', 'index.html'], ['Version 1 (Dark)', 'pages/home-v1.html'], ['Version 2', 'pages/home-v2.html'], ['Version 3', 'pages/home-v3.html']]];
+const homeGroup = ['Home', [['Default (Light)', 'index.html'], ['Version 1 (Dark)', 'pages/home-v1.html'], ['Version 2', 'pages/home-v2.html']]];
 const logoFile = document.body.classList.contains('theme-light') ? 'genxflo-logo-dark.svg' : 'genxflo-logo.svg';
 const localLink = (path) => `${pageBase}${path}`;
 
 const header = document.querySelector('#site-header');
 if (header) {
   if (document.body.classList.contains('home-page')) {
-    const navItemClass = 'inline-flex min-w-[94px] items-center justify-center max-[900px]:w-full max-[900px]:justify-start rounded-full border border-transparent px-[.8rem] py-[.52rem] text-[.92rem] leading-none text-white no-underline transition hover:border-[rgba(61,199,139,.4)] hover:bg-[rgba(31,186,118,.12)] hover:text-white hover:shadow-[0_8px_18px_rgba(6,160,101,.18)]';
+    const navItemClass = 'inline-flex min-w-[94px] items-center justify-center max-[900px]:w-full max-[900px]:justify-start rounded-full border border-transparent px-[.8rem] py-[.52rem] text-[.92rem] font-[680] leading-none text-white no-underline transition hover:border-[rgba(61,199,139,.4)] hover:bg-[rgba(31,186,118,.12)] hover:text-white hover:shadow-[0_8px_18px_rgba(6,160,101,.18)]';
     const groupedNavItems = [homeGroup, ...navigationGroups].map(([label, links]) => `<details class="nav-group group relative border-0 p-0 max-[900px]:w-full"><summary class="inline-flex min-w-[94px] cursor-pointer list-none items-center justify-center gap-[.45rem] rounded-full border border-transparent px-[.8rem] py-[.52rem] text-[.92rem] leading-none text-white hover:text-white max-[900px]:w-full max-[900px]:justify-start">${label}<i class="ph-bold ph-caret-down shrink-0 text-[.875rem] text-home-green transition-transform duration-200 group-open:rotate-180"></i></summary><div class="nav-submenu absolute left-0 top-[calc(100%+.45rem)] z-30 grid before:absolute before:inset-x-0 before:-top-3 before:h-3 before:content-[''] max-[900px]:before:hidden min-w-[230px] gap-[.15rem] rounded-md bg-[#050505] p-[.4rem] shadow-[0_12px_32px_rgba(0,0,0,.38)] max-[900px]:static max-[900px]:min-w-0 max-[900px]:bg-transparent max-[900px]:py-1 max-[900px]:pl-3 max-[900px]:shadow-none">${links.map(([linkLabel, path]) => `<a class="block min-w-0 rounded-md px-[.8rem] py-[.65rem] text-white no-underline hover:bg-[rgba(6,160,101,.16)] hover:text-white" href="${localLink(path)}">${linkLabel}</a>`).join('')}</div></details>`);
     const groupedNavigation = groupedNavItems.slice(1).join('');
     header.innerHTML = `<header class="dashboard-rail mx-auto flex w-[min(1500px,calc(100%-60px))] max-[600px]:w-[calc(100%-32px)] items-center justify-between max-[1000px]:grid max-[1000px]:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-[1.2rem] px-0 py-[.45rem] max-[1000px]:grid-rows-[auto_auto] max-[1000px]:gap-y-1 max-[900px]:flex max-[900px]:flex-wrap max-[900px]:justify-between max-[900px]:gap-3"><div class="rail-top col-start-1 flex items-center max-[900px]:min-w-0 max-[1000px]:row-start-1 max-[900px]:flex-none"><a class="brand inline-flex items-center" href="${localLink('index.html')}" aria-label="GenXflo home"><img class="block h-9 w-auto max-[600px]:h-8" src="${localLink(logoFile)}" alt="GenXflo" width="1682" height="553"></a></div><nav class="site-nav col-start-2 flex w-max max-[900px]:order-3 items-center justify-center gap-[.45rem] border-0 bg-transparent p-[.2rem] max-[1000px]:col-span-3 max-[1000px]:row-start-2 max-[1000px]:justify-self-center max-[900px]:static max-[900px]:w-full max-[900px]:flex-col max-[900px]:items-stretch max-[900px]:justify-start max-[900px]:gap-1 max-[900px]:py-1 max-[900px]:hidden" id="primary-nav" aria-label="Site navigation">${groupedNavItems[0]}<a class="${navItemClass}" href="${localLink('pages/product-overview.html')}">Product Overview</a>${groupedNavigation}<a class="hidden rounded-md px-[.8rem] py-[.65rem] text-[.92rem] font-semibold text-white no-underline hover:bg-[rgba(6,160,101,.16)] max-[900px]:block" href="https://genxflo.com/app/login">Login</a></nav><div class="rail-actions col-start-3 ml-0 flex max-[900px]:ml-auto items-center justify-self-end gap-[.8rem] max-[1000px]:row-start-1 max-[900px]:m-0 max-[900px]:gap-[.7rem]"><a class="inline-block cursor-pointer rounded-md border border-white/15 bg-white/[.08] px-[.9rem] py-[.6rem] font-sans font-bold text-white no-underline transition-[background-color,border-color] hover:border-[#4ce3a3]/50 hover:bg-white/[.14] max-[900px]:px-[.65rem] max-[900px]:py-[.55rem] max-[900px]:text-[.85rem]" href="https://genxflo.com/app/register">Register</a><a class="button inline-block cursor-pointer rounded-md border-0 bg-[#4ce3a3] max-[900px]:hidden px-[.9rem] py-[.6rem] font-sans font-bold text-[#172014] no-underline hover:bg-[#24bd7d] max-[900px]:px-[.65rem] max-[900px]:py-[.55rem] max-[900px]:text-[.85rem]" href="https://genxflo.com/app/login">Login</a><button class="nav-toggle hidden size-10 cursor-pointer place-items-center rounded-md border border-home-line bg-[#14231e] text-home-ink max-[900px]:grid" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Menu"><i class="ph-bold ph-list text-[1.25rem]"></i></button></div></header>`;
@@ -358,7 +358,7 @@ if (heroLaser && heroSurface) {
       laser = window.LaserFlow(heroLaser, {
         surface: heroSurface,
         beamPosition: beamAt,
-        color: '#10B981',
+        color: heroLaser.dataset.color || '#10B981',
         intensity: 1.8,
         beamWidth: 1.5,
         flare: 1.5,
@@ -374,7 +374,8 @@ if (heroLaser && heroSurface) {
         seed: 3,
         mouseInteraction: true,
         intro: true,
-        theme: document.body.classList.contains('theme-light') ? 'light' : 'dark',
+        theme: heroLaser.dataset.theme || (document.body.classList.contains('theme-light') ? 'light' : 'dark'),
+        shade: Number(heroLaser.dataset.shade) || 1,
         dpr: 1.25
       });
       });
@@ -392,9 +393,42 @@ document.querySelectorAll("[data-steps]").forEach((root) => {
   const tabs = [...root.querySelectorAll("[data-step-tab]")];
   const panels = [...root.querySelectorAll("[data-step-panel]")];
   const line = root.querySelector("[data-step-line]");
+  const lines = root.querySelector("[data-step-lines]");
+  const NS = "http://www.w3.org/2000/svg";
+  const mk = (name, attrs) => { const n = document.createElementNS(NS, name); Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v)); return n; };
+  const drawLines = () => {
+    lines.replaceChildren();
+    if (window.innerWidth <= 850) return;
+    const box = root.getBoundingClientRect();
+    const panel = panels.find((p) => !p.hidden);
+    if (!box.width || !panel) return;
+    const pr = panel.getBoundingClientRect();
+    const ex = pr.left - box.left;
+    const ey = pr.top - box.top + pr.height / 2;
+    lines.setAttribute("viewBox", "0 0 " + box.width + " " + box.height);
+    tabs.forEach((tab, i) => {
+      const r = tab.getBoundingClientRect();
+      const sx = r.right - box.left;
+      const sy = r.top - box.top + r.height / 2;
+      const dx = (ex - sx) * 0.55;
+      const d = "M" + sx + "," + sy + " C" + (sx + dx) + "," + sy + " " + (ex - dx) + "," + ey + " " + ex + "," + ey;
+      const on = tab.getAttribute("aria-selected") === "true";
+      const path = mk("path", { d, fill: "none", stroke: on ? "#06a065" : "rgba(6,160,101,.28)", "stroke-width": on ? 2 : 1.4, "stroke-dasharray": "6 6" });
+      if (on) path.setAttribute("class", "steps-flow");
+      lines.appendChild(path);
+      lines.appendChild(mk("circle", { cx: sx, cy: sy, r: on ? 5 : 3.5, fill: on ? "#4ce3a3" : "rgba(6,160,101,.4)" }));
+      if (on) {
+        const dot = mk("circle", { r: 3.2, fill: "#06a065" });
+        dot.appendChild(mk("animateMotion", { dur: "2.4s", repeatCount: "indefinite", path: d }));
+        lines.appendChild(dot);
+      }
+    });
+    lines.appendChild(mk("circle", { cx: ex, cy: ey, r: 5, fill: "#4ce3a3" }));
+  };
   const place = () => {
     const tab = tabs.find((t) => t.getAttribute("aria-selected") === "true");
     if (tab && line) line.style.left = (tab.offsetLeft + tab.offsetWidth / 2) + "px";
+    if (lines) requestAnimationFrame(drawLines);
   };
   const select = (index, focus) => {
     tabs.forEach((tab, i) => {
@@ -410,10 +444,12 @@ document.querySelectorAll("[data-steps]").forEach((root) => {
   tabs.forEach((tab, i) => {
     tab.addEventListener("click", () => select(i));
     tab.addEventListener("keydown", (e) => {
-      const step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      const step = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? -1 : 0;
       if (step) { e.preventDefault(); select((i + step + tabs.length) % tabs.length, true); }
     });
   });
   window.addEventListener("resize", place);
+  if (lines && window.ResizeObserver) new ResizeObserver(place).observe(root);
+  window.addEventListener("load", place);
   place();
 });

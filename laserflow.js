@@ -36,6 +36,7 @@ uniform vec4 uShape;
 uniform vec4 uExtra;
 uniform float uTheme;
 uniform float uSpillLen;
+uniform float uShade;
 uniform vec3 uTint[16];
 
 #define BEAM uTint[0]
@@ -321,7 +322,7 @@ void main() {
     float chroma = peak - low;
     vec3 hue = (emit - low) / max(chroma, 0.0001);
     float alpha = clamp(pow(chroma, 1.35) * 1.3, 0.0, 1.0) * 0.9;
-    outColor = vec4((hue * 0.82 + 0.06) * alpha, alpha);
+    outColor = vec4((hue * 0.82 + 0.06) * uShade * alpha, alpha);
   } else {
     outColor = vec4(emit, peak);
   }
@@ -428,6 +429,7 @@ void main() {
     revealOpacity: 0.6,
     intro: true,
     theme: 'dark',
+    shade: 1,               // light theme only: 1 = full colour, lower = darker beam
     paused: false,
     dpr: 0
   };
@@ -458,6 +460,7 @@ void main() {
       revealOpacity: clamp(o.revealOpacity, 0, 1),
       intro: o.intro,
       theme: o.theme,
+      shade: clamp(o.shade, 0.05, 1),
       paused: o.paused,
       dpr: o.dpr
     };
@@ -481,7 +484,7 @@ void main() {
     }
 
     var names = ['uResolution', 'uDpr', 'uScale', 'uTime', 'uBeamX', 'uSurface', 'uRadius', 'uIntro', 'uPour', 'uRun',
-      'uLens', 'uReveal', 'uRevealMap', 'uRevealInfo', 'uAtmosphere', 'uAmount', 'uShape', 'uExtra', 'uTheme', 'uSpillLen', 'uTint'];
+      'uLens', 'uReveal', 'uRevealMap', 'uRevealInfo', 'uAtmosphere', 'uAmount', 'uShape', 'uExtra', 'uTheme', 'uSpillLen', 'uShade', 'uTint'];
     var uniforms = {};
     names.forEach(function (n) { uniforms[n] = gl.getUniformLocation(program, n); });
 
@@ -684,6 +687,7 @@ void main() {
       gl.uniform4f(uniforms.uExtra, s.pulse, s.dots, 34.34 + seedValue * 7.31, 11.58 + seedValue * 3.17);
       gl.uniform1f(uniforms.uTheme, s.theme === 'light' ? 1 : 0);
       gl.uniform1f(uniforms.uSpillLen, s.spillHeight);
+      gl.uniform1f(uniforms.uShade, s.shade);
       gl.uniform3fv(uniforms.uTint, state.tints);
       gl.bindVertexArray(vao);
       gl.drawArrays(gl.TRIANGLES, 0, 3);

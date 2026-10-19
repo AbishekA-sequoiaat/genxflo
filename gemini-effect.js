@@ -23,14 +23,12 @@
 
   function GeminiEffect(container, options) {
     var o = Object.assign({ duration: 5, length: 0.62, track: 0.18, to: 1.2, strokeWidth: 2, blur: 5, viewBox: '0 340 1440 340' }, options || {});
-    var filterId = 'gem-blur-' + (++uid);
 
     var svg = document.createElementNS(NS, 'svg');
     svg.setAttribute('viewBox', o.viewBox);
     svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
     svg.setAttribute('aria-hidden', 'true');
     svg.setAttribute('class', 'block h-full w-full');
-    svg.innerHTML = '<defs><filter id="' + filterId + '" x="-5%" y="-30%" width="110%" height="160%"><feGaussianBlur in="SourceGraphic" stdDeviation="' + o.blur + '"/></filter></defs>';
 
     function make(path, blurred) {
       var p = document.createElementNS(NS, 'path');
@@ -39,7 +37,7 @@
       p.setAttribute('stroke-width', o.strokeWidth);
       p.setAttribute('fill', 'none');
       p.setAttribute('pathLength', '1');
-      if (blurred) p.setAttribute('filter', 'url(#' + filterId + ')');
+      if (blurred) { p.setAttribute('stroke-opacity', '0.2'); p.setAttribute('stroke-linecap', 'round'); }
       p.style.strokeDasharray = '0 1';
       return p;
     }
@@ -61,7 +59,8 @@
     function fit() {
       svg.setAttribute('preserveAspectRatio', narrow.matches ? 'none' : 'xMidYMid slice');
       var w = narrow.matches ? o.strokeWidth * 1.6 : o.strokeWidth;
-      base.concat(live, live2, glow, glow2).forEach(function (p) { p.setAttribute('stroke-width', w); });
+      base.concat(live, live2).forEach(function (p) { p.setAttribute('stroke-width', w); });
+      glow.concat(glow2).forEach(function (p) { p.setAttribute('stroke-width', w * 6); });
     }
     if (narrow.addEventListener) narrow.addEventListener('change', fit);
     fit();
@@ -105,8 +104,12 @@
 
     // one segment per line orbits a closed loop: the part that leaves the right edge
     // re-enters on the left at the same moment, so it reads as the same segment going round
+    var lastDraw = 0;
+    var minGap = window.GX_LOW ? 33 : 0;
     function render(now) {
       raf = 0;
+      if (minGap && lastDraw && now - lastDraw < minGap) { if (visible && !reduce) raf = requestAnimationFrame(render); return; }
+      lastDraw = now;
       if (!maps) buildMaps();
       var phase = reduce ? 0.5 : ((now - start) / 1000 / o.duration) % 1;
       var widest = o.length * WIDTH;

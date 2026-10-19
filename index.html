@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Design, validate, and export bioinformatics workflows with GenXflo.">
   <title>GenXflo – Visual Nextflow Pipeline Builder for Bioinformatics</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="tailwind.css?v=18"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=50"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="perf.js" defer></script>
   <script src="site.js" defer></script>
   <script src="gradient-ascii.js" defer></script>
-  <script src="light-tunnel.js" defer></script>
-  <script src="dashboard-demo.js" defer></script>
   <script src="gemini-effect.js" defer></script>
 </head>
 <body class="home-page theme-light relative isolate m-0 block min-h-screen bg-home-canvas bg-[radial-gradient(ellipse_52%_34%_at_78%_4%,rgba(6,160,101,.14),transparent_76%),radial-gradient(ellipse_36%_26%_at_12%_34%,rgba(6,160,101,.07),transparent_78%)] p-[18px] font-sans text-home-ink leading-[1.65] max-[900px]:p-0">
@@ -279,16 +278,40 @@
     var gemEl = document.getElementById('hero-gemini');
     if (gemEl && window.GeminiEffect) window.GeminiEffect(gemEl, { duration: 5 });
 
-    var tunnelEl = document.getElementById('hero-tunnel');
-    if (tunnelEl && window.LightTunnel) {
-      window.LightTunnel(tunnelEl, {
-        cableColor: '#4ce3a3', pulseColor: '#06a065', tunnelColor: '#4ce3a3', tunnelOpacity: 0,
-        cableCount: 56, pulseDensity: 0.12, flowDirection: 'inward', speed: 0.1, pulseSpeed: 2,
-        pulseLength: 0.28, pulseBlend: 0.6, pulseWidth: 0.6, thickness: 0.3, rimWidth: 0.21,
-        waviness: 0.3, sway: 0.5, bend: 0.4, glow: 1, size: 1, fadeNear: 0.5, fadeFar: 2,
-        brightness: 1, colorVariance: true, grain: false, mouseInteraction: true, mouseStrength: 0.1,
-        clickSurge: true, intro: true, lightMode: true
-      });
+    var videoBg = document.getElementById('hero-tunnel');
+    if (videoBg && window.GradientASCII) {
+      var asciiVideo = null;
+      var wideVideo = window.matchMedia('(min-width: 701px)');
+      var syncVideo = function () {
+        if (wideVideo.matches && !asciiVideo) {
+          asciiVideo = window.GradientASCII(videoBg, {
+            colors: ['#06a065', '#c9ffe4', '#6fe8b0', '#19d28c'],
+            shape: 'horizon',
+            characters: ' =+xX0S8#@',
+            cellSize: 16,
+            density: 0.8,
+            glyphOpacity: 0.7,
+            glow: 0.2,
+            depthOfField: 0,
+            flicker: 0.2,
+            softness: 0.5,
+            scale: 1,
+            flow: 0.5,
+            speed: 1,
+            gradientOpacity: 0.7,
+            grain: 0.08,
+            variation: 0,
+            mouseInteraction: true,
+            scrambleRadius: 0.1,
+            clickEffect: 'wave',
+            intro: true,
+            lightMode: true,
+            dpr: window.GX_LOW ? 0.9 : 1
+          });
+        } else if (!wideVideo.matches && asciiVideo) { asciiVideo.destroy(); asciiVideo = null; }
+      };
+      wideVideo.addEventListener('change', syncVideo);
+      syncVideo();
     }
 
   });
