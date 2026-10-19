@@ -56,6 +56,16 @@
     live.concat(live2).forEach(function (p) { svg.appendChild(p); });
     container.appendChild(svg);
 
+    // on phones show the full width of the lines (stretched) instead of cropping to the centre
+    var narrow = window.matchMedia ? window.matchMedia('(max-width: 700px)') : { matches: false };
+    function fit() {
+      svg.setAttribute('preserveAspectRatio', narrow.matches ? 'none' : 'xMidYMid slice');
+      var w = narrow.matches ? o.strokeWidth * 1.6 : o.strokeWidth;
+      base.concat(live, live2, glow, glow2).forEach(function (p) { p.setAttribute('stroke-width', w); });
+    }
+    if (narrow.addEventListener) narrow.addEventListener('change', fit);
+    fit();
+
     var raf = 0;
     var visible = true;
     var start = performance.now();
@@ -120,6 +130,7 @@
     return {
       destroy: function () {
         io.disconnect();
+        if (narrow.removeEventListener) narrow.removeEventListener('change', fit);
         cancelAnimationFrame(raf);
         svg.remove();
       }
