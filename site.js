@@ -13,7 +13,7 @@ const navigationGroups = [
   ['Platform', ['AI Features', 'WML Integration', 'GenXflo Export']],
   ['Explore', ['Use Cases', 'Comparison', 'Learn', 'Documentation']]
 ].map(([label, linkLabels]) => [label, pageLinks.filter(([linkLabel]) => linkLabels.includes(linkLabel))]);
-const homeGroup = ['Home', [['Version 1', 'pages/home-v1.html'], ['Version 2', 'pages/home-v2.html'], ['Version 3', 'pages/home-v3.html']]];
+const homeGroup = ['Home', [['Default (Light)', 'index.html'], ['Version 1 (Dark)', 'pages/home-v1.html'], ['Version 2', 'pages/home-v2.html'], ['Version 3', 'pages/home-v3.html']]];
 const logoFile = document.body.classList.contains('theme-light') ? 'genxflo-logo-dark.svg' : 'genxflo-logo.svg';
 const localLink = (path) => `${pageBase}${path}`;
 
