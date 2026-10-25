@@ -212,48 +212,56 @@ function buildWeaveTexture() {
 }
 
 // the front of the badge: a green gradient panel the video sits on
-function paintFront(canvas) {
+function paintFront(canvas, mark) {
   var ctx = canvas.getContext('2d');
   if (!ctx) return;
   var w = canvas.width, h = canvas.height;
   var g = ctx.createLinearGradient(0, 0, w, h);
-  g.addColorStop(0, '#7df2bd');
-  g.addColorStop(0.5, '#19c98a');
-  g.addColorStop(1, '#06814f');
+  g.addColorStop(0, '#343c38');
+  g.addColorStop(0.5, '#2b322f');
+  g.addColorStop(1, '#262c29');
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, w, h);
   var glow = ctx.createRadialGradient(w * 0.15, 0, 0, w * 0.15, 0, w * 0.6);
-  glow.addColorStop(0, 'rgba(255,255,255,0.35)');
+  glow.addColorStop(0, 'rgba(255,255,255,0.16)');
   glow.addColorStop(1, 'rgba(255,255,255,0)');
   ctx.fillStyle = glow;
   ctx.fillRect(0, 0, w, h);
   ctx.fillStyle = 'rgba(255,255,255,0.16)';
   for (var y = 14; y < h; y += 28) for (var x = 14; x < w; x += 28) { ctx.beginPath(); ctx.arc(x, y, 1.6, 0, 6.3); ctx.fill(); }
+  if (mark) {                         // the X of the GenXflo logo, in the top band beside the slot
+    var unit = w / CARD_WIDTH, mh = 0.2 * unit, mw = mh * (mark.width / mark.height);
+    ctx.drawImage(mark, 0.12 * unit, 0.04 * unit, mw, mh);
+  }
 }
 
 // the back of the badge: dark panel with the brand mark
-function paintBack(canvas, color) {
+function paintBack(canvas, color, mark) {
   var ctx = canvas.getContext('2d');
   if (!ctx) return;
   var w = canvas.width, h = canvas.height;
   var g = ctx.createLinearGradient(0, 0, w, h);
-  g.addColorStop(0, '#0f2a1f');
-  g.addColorStop(1, '#06120d');
+  g.addColorStop(0, '#343c38');
+  g.addColorStop(1, '#262c29');
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, w, h);
   ctx.fillStyle = 'rgba(76, 227, 163, 0.08)';
   for (var y = 14; y < h; y += 28) for (var x = 14; x < w; x += 28) { ctx.beginPath(); ctx.arc(x, y, 1.6, 0, 6.3); ctx.fill(); }
+  if (mark) {
+    var mh = h * 0.3, mw = mh * (mark.width / mark.height);
+    ctx.drawImage(mark, (w - mw) / 2, h * 0.16, mw, mh);
+  }
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.font = '600 ' + Math.round(h * 0.2) + 'px Manrope, Inter, system-ui, sans-serif';
   ctx.fillStyle = '#ffffff';
-  ctx.fillText('GenXflo', w / 2, h * 0.46);
+  ctx.fillText('GenXflo', w / 2, h * 0.62);
   ctx.font = '500 ' + Math.round(h * 0.06) + 'px Inter, system-ui, sans-serif';
   ctx.fillStyle = '#4ce3a3';
-  ctx.fillText('Design, validate and export Nextflow pipelines', w / 2, h * 0.62);
+  ctx.fillText('Design, validate and export Nextflow pipelines', w / 2, h * 0.78);
 }
 
-function paintStrap(canvas, color) {
+function paintStrap(canvas, color, mark) {
   var across = 192, along = across * 2;
   canvas.width = across;
   canvas.height = along;
@@ -268,6 +276,10 @@ function paintStrap(canvas, color) {
   for (var y2 = 0; y2 < along; y2 += 14) {
     ctx.fillRect(across * 0.075, y2, 2, 8);
     ctx.fillRect(across * 0.925 - 2, y2, 2, 8);
+  }
+  if (mark) {                         // the X of the GenXflo logo, printed once per repeat of the strap
+    var mw = across * 0.44, mh = mw * (mark.height / mark.width);
+    ctx.drawImage(mark, (across - mw) / 2, (along - mh) / 2, mw, mh);
   }
   return along / across;
 }
@@ -519,6 +531,15 @@ function mount(container, opts) {
   backCanvas.height = Math.round(FACE_WIDTH * layout.height / layout.width);
   paintBack(backCanvas, parseColor(o.cardColor, [1, 1, 1]));
   var backTexture = makeCanvasTexture(backCanvas, anisotropy);
+  var markImage = new Image();
+  markImage.onload = function () {
+    paintFront(frontCanvas); frontTexture.needsUpdate = true;
+    tileRatio = paintStrap(strapCanvas, parseColor(o.strapColor, [0.05, 0.1, 0.08]), markImage);
+    weave.repeat.set(2, 2 * tileRatio);
+    strapTexture.needsUpdate = true;
+    paintBack(backCanvas, parseColor(o.cardColor, [1, 1, 1]), markImage); backTexture.needsUpdate = true;
+  };
+  markImage.src = new URL('./genxflo-x.svg', import.meta.url).href;
   var strapCanvas = document.createElement('canvas');
   var tileRatio = paintStrap(strapCanvas, parseColor(o.strapColor, [0.05, 0.1, 0.08]));
   var strapTexture = makeCanvasTexture(strapCanvas, anisotropy);
