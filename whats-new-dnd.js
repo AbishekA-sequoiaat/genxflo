@@ -7,6 +7,7 @@
   'use strict';
   var root = document.querySelector('[data-dd]');
   if (!root) return;
+  var INTERACTIVE = false;   // dragging, keyboard moves, Reset and the cursor "Drag" badge are switched off for now (set to true to bring them back)
   var NS = 'http://www.w3.org/2000/svg';
   var svg = root.querySelector('.dd-lines');
   var nodes = [].slice.call(root.querySelectorAll('[data-dd-node]'));
@@ -54,6 +55,7 @@
 
   var z = 2;
   nodes.forEach(function (n, i) {
+    if (!INTERACTIVE) return;
     var drag = null;
     n.addEventListener('pointerdown', function (e) {
       if (list.matches || (e.button !== undefined && e.button !== 0)) return;
@@ -79,7 +81,7 @@
   });
 
   var reset = root.querySelector('[data-dd-reset]');
-  if (reset) reset.addEventListener('click', function () {
+  if (reset && INTERACTIVE) reset.addEventListener('click', function () {
     pos = start.map(function (p) { return { x: p.x, y: p.y }; });
     root.classList.add('is-reset'); place();
     setTimeout(function () { root.classList.remove('is-reset'); }, 500);
@@ -92,7 +94,7 @@
   place();
 
   // cursor-following "Drag" badge (mouse only)
-  if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  if (INTERACTIVE && window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     var badge = document.createElement('div');
     badge.className = 'dd-cursor'; badge.setAttribute('aria-hidden', 'true');
     badge.innerHTML = '<i class="ph-bold ph-arrows-left-right"></i>Drag';

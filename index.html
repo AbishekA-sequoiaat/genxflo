@@ -5,11 +5,18 @@
   <script>document.documentElement.classList.add("is-loading")</script>
   <noscript><style>#gx-loader{display:none!important}</style></noscript>
   <style id="gxl-css">
-    @property --gxl-r { syntax: "<length>"; inherits: false; initial-value: -90px; }
+
     html.is-loading { overflow: hidden; scrollbar-gutter: stable; }
     #gx-loader { position: fixed; inset: 0; z-index: 9999; pointer-events: all; color: #eaf2ee; font-family: "Inter", system-ui, sans-serif; }
-    #gx-loader .gxl-sheet { position: absolute; inset: 0; overflow: hidden; --gxl-r: -90px; background: #1d1f1d; -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent var(--gxl-r), #000 calc(var(--gxl-r) + 90px)); mask-image: radial-gradient(circle at 50% 50%, transparent var(--gxl-r), #000 calc(var(--gxl-r) + 90px)); transition: --gxl-r 1.3s cubic-bezier(.72, 0, .18, 1); }
-    #gx-loader.is-open .gxl-sheet { --gxl-r: 160vmax; }
+    #gx-loader .gxl-sheet { position: absolute; inset: 0; z-index: 2; overflow: hidden; transition: opacity .35s ease; }
+    .gxl-half { position: absolute; left: 0; right: 0; height: 50.3%; z-index: 1; background: #1d1f1d; will-change: transform; transition: transform 1s cubic-bezier(.76, 0, .24, 1); }
+    .gxl-half.t { top: 0; } .gxl-half.b { bottom: 0; }
+    #gx-loader.is-open .gxl-half.t { transform: translate3d(0, -101%, 0); }
+    #gx-loader.is-open .gxl-half.b { transform: translate3d(0, 101%, 0); }
+    .gxl-seam { position: absolute; left: 0; right: 0; top: 50%; z-index: 3; height: 2px; margin-top: -1px; background: linear-gradient(90deg, transparent, #4ce3a3 30%, #4ce3a3 70%, transparent); box-shadow: 0 0 22px rgba(76,227,163,.7); transform: scaleX(0); opacity: 0; transition: transform .55s cubic-bezier(.3, 0, .2, 1), opacity .3s; }
+    #gx-loader.is-done .gxl-seam { transform: scaleX(1); opacity: 1; }
+    #gx-loader.is-open .gxl-seam { opacity: 0; }
+    #gx-loader.is-open .gxl-sheet { opacity: 0; }
     .gxl-grid { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.07) 1.2px, transparent 1.5px); background-size: 26px 26px; -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, #000, transparent 85%); mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, #000, transparent 85%); }
     .gxl-glow { position: absolute; left: 50%; top: 50%; width: min(70vmin, 640px); aspect-ratio: 1; margin: calc(min(70vmin, 640px) / -2) 0 0 calc(min(70vmin, 640px) / -2); border-radius: 50%; background: radial-gradient(circle, rgba(76,227,163,.16), transparent 66%); transition: opacity .6s; }
     .gxl-mark { position: absolute; left: 50%; top: 50%; width: min(26vmin, 190px); height: auto; transform: translate(-50%, -50%); overflow: visible; transition: transform .7s cubic-bezier(.3, 0, .2, 1), opacity .5s; }
@@ -29,12 +36,12 @@
     @keyframes gxl-blink { 50% { opacity: .25; } }
     .gxl-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.07); }
     .gxl-bar i { display: block; height: 100%; background: linear-gradient(90deg, #62bbd2, #4ce3a3 55%, #dca98b); transform-origin: 0 50%; transform: scaleX(0); }
-    .gxl-ring { position: absolute; left: 50%; top: 50%; width: 320vmax; height: 320vmax; margin: -160vmax 0 0 -160vmax; border-radius: 50%; border: 2px solid rgba(76,227,163,.95); box-shadow: 0 0 46px rgba(76,227,163,.65), inset 0 0 60px rgba(76,227,163,.32); transform: scale(0); opacity: 0; pointer-events: none; transition: transform 1.3s cubic-bezier(.72, 0, .18, 1), opacity .25s; }
-    #gx-loader.is-open .gxl-ring { transform: scale(1); opacity: 1; }
+
+
     #gx-loader.is-gone { visibility: hidden; pointer-events: none; }
-    #gx-loader.rm .gxl-sheet { transition: opacity .5s; mask-image: none; -webkit-mask-image: none; }
-    #gx-loader.rm.is-open .gxl-sheet { opacity: 0; }
-    #gx-loader.rm .gxl-ring { display: none; }
+    #gx-loader.rm .gxl-half { transition: opacity .4s; }
+    #gx-loader.rm.is-open .gxl-half { opacity: 0; transform: none; }
+    #gx-loader.rm .gxl-seam { display: none; }
     /* entrance of the page once the loader opens */
     html.is-loading:not(.is-revealed) #site-header, html.is-loading:not(.is-revealed) .hero-v1__copy, html.is-loading:not(.is-revealed) .hero-v1__side, html.is-loading:not(.is-revealed) #hero-tunnel { opacity: 0; }
     html.is-revealed #site-header { animation: gxr-drop 1s cubic-bezier(.2, .8, .2, 1) both; }
@@ -42,14 +49,14 @@
     html.is-revealed .hero-v1__side { animation: gxr-rise 1.1s cubic-bezier(.2, .8, .2, 1) .3s both; }
     html.is-revealed #hero-tunnel { animation: gxr-fade 1.2s ease .2s both; }
     @keyframes gxr-drop { from { opacity: 0; transform: translateY(-28px); } to { opacity: 1; transform: none; } }
-    @keyframes gxr-rise { from { opacity: 0; transform: translateY(34px); filter: blur(8px); } to { opacity: 1; transform: none; filter: blur(0); } }
+    @keyframes gxr-rise { from { opacity: 0; transform: translate3d(0, 34px, 0); } to { opacity: 1; transform: none; } }
     @keyframes gxr-fade { from { opacity: 0; } to { opacity: 1; } }
     @media (prefers-reduced-motion: reduce) { html.is-revealed #site-header, html.is-revealed .hero-v1__copy, html.is-revealed .hero-v1__side, html.is-revealed #hero-tunnel { animation: gxr-fade .5s ease both; } }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Design, validate, and export bioinformatics workflows with GenXflo.">
   <title>GenXflo – Visual Nextflow Pipeline Builder for Bioinformatics</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=148"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=169"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <script src="perf.js" defer></script>
   <script src="vendor/lenis.min.js" defer></script>
   <script src="smooth-scroll.js" defer></script>
@@ -58,15 +65,17 @@
   <script src="gradient-ascii.js" defer></script>
   <script src="team-graph.js" defer></script>
   <script src="ai-scroll.js" defer></script>
-  <script src="whats-new-dnd.js" defer></script>
+  <script src="whats-new-dnd.js?v=2" defer></script>
   <!-- <script src="ghost-fibers.js" defer></script> -->
-  <link rel="modulepreload" href="vendor/three/three.module.min.js">
+  <!-- <link rel="modulepreload" href="vendor/three/three.module.min.js"> -->
   <script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js"}}</script>
-  <script type="module" src="lanyard.js?v=10"></script>
+  <!-- <script type="module" src="lanyard.js?v=10"></script> -->
+  <script src="macbook-scroll.js?v=29" defer></script>
   <script src="lazy-modules.js" defer></script>
 </head>
 <body class="home-page theme-light bg-solid-f4 relative isolate m-0 block min-h-screen bg-home-canvas bg-[radial-gradient(ellipse_52%_34%_at_78%_4%,rgba(6,160,101,.14),transparent_76%),radial-gradient(ellipse_36%_26%_at_12%_34%,rgba(6,160,101,.07),transparent_78%)] p-[18px] font-sans text-home-ink leading-[1.65] max-[900px]:p-0">
   <div id="gx-loader" role="status" aria-live="polite" aria-label="Loading GenXflo">
+    <div class="gxl-half t"></div><div class="gxl-half b"></div><div class="gxl-seam"></div>
     <div class="gxl-sheet">
       <div class="gxl-grid"></div>
       <svg class="gxl-mark" viewBox="740 30 382 505" aria-hidden="true">
@@ -79,7 +88,6 @@
       <div class="gxl-bottom"><div class="gxl-count"><span id="gxl-num">00</span><small>%</small></div><div class="gxl-status" id="gxl-status">Preparing the page</div></div>
       <div class="gxl-bar"><i id="gxl-bar"></i></div>
     </div>
-    <div class="gxl-ring"></div>
   </div>
   <script>
   /* Loader driven by real loading: HTML parsed, images, product video, fonts, the 3D badge and the window load event.
@@ -157,14 +165,23 @@
       if (shown >= 1 && !finished) { finish(); return; }
       requestAnimationFrame(frame);
     }
+    function settle(cb) {
+      var done = false;
+      function go() { if (done) return; done = true; requestAnimationFrame(function () { requestAnimationFrame(cb); }); }
+      if (window.requestIdleCallback) window.requestIdleCallback(go, { timeout: 700 }); else setTimeout(go, 120);
+      setTimeout(go, 800);
+    }
     function finish() {
       finished = true;
       el.classList.add('is-done');
       setTimeout(function () {
-        el.classList.add('is-open');                       // the iris opens from the X mark
-        setTimeout(function () { root.classList.add('is-revealed'); }, reduce ? 0 : 520);   // header, headline and video arrive
-        setTimeout(cleanup, reduce ? 700 : 2600);
-      }, reduce ? 0 : 620);
+        // let the heavy start-up work (3D, video, fonts) finish first, so the curtain animation never drops frames
+        settle(function () {
+          el.classList.add('is-open');                     // the curtain splits along the glowing seam
+          setTimeout(function () { root.classList.add('is-revealed'); }, reduce ? 0 : 380);   // header, headline and video arrive
+          setTimeout(cleanup, reduce ? 700 : 2000);
+        });
+      }, reduce ? 0 : 560);
     }
     function cleanup() {
       root.classList.remove('is-loading', 'is-revealed');
@@ -194,7 +211,25 @@
       </div>
 <!-- <div id="hero-dna" class="hero-v1__dna max-[820px]:hidden" data-dna data-src="dna_vr_interactive_animation.glb" aria-hidden="true"></div> -->
     </div>
+      <!-- lanyard tag video section (commented for now; replaced by the MacBook scroll below)
       <div id="hero-tunnel" class="hero-v1__box"><div id="hero-lanyard" class="hero-v1__lanyard max-[820px]:hidden" data-lanyard data-video="hero-video"></div><figure class="hero-v1__video"><video id="hero-video" class="hero-v1__vid" aria-label="GenXflo workflow builder overview" autoplay muted loop playsinline preload="metadata" poster="images/Connect.webp"><source src="Genxflo-video.mp4" type="video/mp4">Your browser does not support the video tag.</video><button class="video-toggle absolute bottom-3 right-3 grid size-10 cursor-pointer place-items-center rounded-md border border-white/20 bg-black/60 text-white backdrop-blur transition-colors hover:border-[#4ce3a3] hover:text-[#4ce3a3]" type="button" aria-label="Pause video" aria-pressed="false"><i class="ph-bold ph-pause"></i></button><button class="video-fullscreen absolute bottom-3 right-16 grid size-10 cursor-pointer place-items-center rounded-md border border-white/20 bg-black/60 text-white backdrop-blur transition-colors hover:border-[#4ce3a3] hover:text-[#4ce3a3]" type="button" aria-label="View video in full screen"><i class="ph-bold ph-corners-out"></i></button></figure></div>
+      -->
+      <div class="mbs-outer">
+        <div class="mbs" data-mbs>
+          <!-- <h2 class="mbs-title" data-mbs-title>Optional title (fades up while scrolling)</h2> -->
+          <div class="mbs-lidwrap">
+            <div class="mbs-lidback" aria-hidden="true"><div><img src="genxflo-x.svg" alt=""></div></div>
+            <div class="mbs-lid" data-mbs-lid><div class="mbs-lid-bg"></div><video id="hero-video" class="hero-v1__vid" aria-label="GenXflo workflow builder overview" autoplay muted loop playsinline preload="metadata" poster="images/Connect.webp"><source src="Genxflo-video.mp4" type="video/mp4">Your browser does not support the video tag.</video></div>
+          </div>
+          <div class="mbs-base" aria-hidden="true">
+            <div class="mbs-bar"><i></i></div>
+            <div class="mbs-deck"><div class="mbs-spk"><i></i></div><div class="mbs-pad"><div class="mbs-keypad" data-mbs-keys></div></div><div class="mbs-spk"><i></i></div></div>
+            <div class="mbs-trackpad"></div>
+            <div class="mbs-notch"></div>
+            <span class="mbs-badge"><img src="genxflo-x.svg" alt=""></span>
+          </div>
+        </div>
+      </div>
     </section>
 
     
@@ -207,7 +242,9 @@
       <div class="hero-v1__news"><aside class="group relative m-0 flex min-h-0 min-w-0 flex-col justify-start border-0 bg-transparent p-0 shadow-none ">
           <div class="news-head mb-5 flex items-center justify-center"><h2 class="m-0 text-center font-display text-[clamp(1.9rem,3vw,2.6rem)] font-semibold leading-tight text-[#f1f1f1] uppercase tracking-normal">What's New in GenXflo</h2></div>
           <div class="dd" data-dd data-edges="0-1,0-2,1-3,2-3,3-4,3-5,3-6">
+            <!-- interactive board (hint + Reset) switched off for now:
             <div class="dd-bar"><span class="dd-hint"><i class="ph-bold ph-arrows-left-right" aria-hidden="true"></i>Drag the nodes, the connections follow</span><button class="dd-reset" type="button" data-dd-reset><i class="ph-bold ph-arrow-counter-clockwise" aria-hidden="true"></i>Reset</button></div>
+            -->
             <svg class="dd-lines" aria-hidden="true"></svg>
           <article class="dd-node" data-dd-node data-x="2" data-y="235" tabindex="0" aria-label="MCP Server: Generate and validate pipelines programmatically, without a browser."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-target"></i></span><h3>MCP Server</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">Generate and validate pipelines programmatically, without a browser.</p></article>
           <article class="dd-node" data-dd-node data-x="26" data-y="72" tabindex="0" aria-label="Pipeline Versioning: Review history, download prior outputs, and restore earlier configurations."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-arrow-counter-clockwise"></i></span><h3>Pipeline Versioning</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">Review history, download prior outputs, and restore earlier configurations.</p></article>
