@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Design, validate, and export bioinformatics workflows with GenXflo.">
   <title>GenXflo – Visual Nextflow Pipeline Builder for Bioinformatics</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=144"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=148"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <script src="perf.js" defer></script>
   <script src="vendor/lenis.min.js" defer></script>
   <script src="smooth-scroll.js" defer></script>
@@ -16,14 +16,13 @@
   <script src="ai-scroll.js" defer></script>
   <script src="whats-new-dnd.js" defer></script>
   <!-- <script src="ghost-fibers.js" defer></script> -->
+  <link rel="modulepreload" href="vendor/three/three.module.min.js">
   <script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js"}}</script>
-  <script type="module" src="dna.js?v=2"></script>
-  <script type="module" src="lanyard.js"></script>
-  <script type="module" src="why-cube.js"></script>
-  <script type="module" src="crystal-ball.js"></script>
+  <script type="module" src="lanyard.js?v=10"></script>
+  <script src="lazy-modules.js" defer></script>
 </head>
 <body class="home-page theme-light bg-solid-f4 relative isolate m-0 block min-h-screen bg-home-canvas bg-[radial-gradient(ellipse_52%_34%_at_78%_4%,rgba(6,160,101,.14),transparent_76%),radial-gradient(ellipse_36%_26%_at_12%_34%,rgba(6,160,101,.07),transparent_78%)] p-[18px] font-sans text-home-ink leading-[1.65] max-[900px]:p-0">
-  <script>document.documentElement.classList.add("wy-js");setTimeout(function(){if(!window.__wyReady)document.documentElement.classList.remove("wy-js")},5000)</script>
+  <script>document.documentElement.classList.add("wy-js");</script>
   <div id="site-header" class="sticky top-0 z-20 w-full border-0 bg-transparent shadow-none backdrop-blur-none"></div>
   <main class="relative z-[1]">
     <section class="hero-v1__stage2" aria-label="GenXflo product video">
@@ -53,7 +52,7 @@
     <section class="hero-v1 hero-v1--after">
       <!-- <div class="hero-v1__tools" aria-label="Bioinformatics tools supported"><span><i class="ph-bold ph-dna"></i>FastQC</span><span><i class="ph-bold ph-flask"></i>STAR</span><span><i class="ph-bold ph-test-tube"></i>Salmon</span><span><i class="ph-bold ph-chart-bar"></i>MultiQC</span><span><i class="ph-bold ph-graph"></i>DESeq2</span><span><i class="ph-bold ph-package"></i>Hisat2</span><span><i class="ph-bold ph-gear"></i>BWA</span><span><i class="ph-bold ph-plugs-connected"></i>Samtools</span></div> -->
       <div class="hero-v1__news"><aside class="group relative m-0 flex min-h-0 min-w-0 flex-col justify-start border-0 bg-transparent p-0 shadow-none ">
-          <div class="news-head mb-5 flex items-center justify-center"><h2 class="m-0 text-center font-display text-[clamp(1.9rem,3vw,2.6rem)] font-semibold leading-tight text-[#f1f1f1] uppercase tracking-wide">What's New in GenXflo</h2></div>
+          <div class="news-head mb-5 flex items-center justify-center"><h2 class="m-0 text-center font-display text-[clamp(1.9rem,3vw,2.6rem)] font-semibold leading-tight text-[#f1f1f1] uppercase tracking-normal">What's New in GenXflo</h2></div>
           <div class="dd" data-dd data-edges="0-1,0-2,1-3,2-3,3-4,3-5,3-6">
             <div class="dd-bar"><span class="dd-hint"><i class="ph-bold ph-arrows-left-right" aria-hidden="true"></i>Drag the nodes, the connections follow</span><button class="dd-reset" type="button" data-dd-reset><i class="ph-bold ph-arrow-counter-clockwise" aria-hidden="true"></i>Reset</button></div>
             <svg class="dd-lines" aria-hidden="true"></svg>

@@ -228,7 +228,7 @@ function paintFront(canvas, mark) {
   ctx.fillStyle = glow;
   ctx.fillRect(0, 0, w, h);
   ctx.fillStyle = 'rgba(255,255,255,0.16)';
-  for (var y = 14; y < h; y += 28) for (var x = 14; x < w; x += 28) { ctx.beginPath(); ctx.arc(x, y, 1.6, 0, 6.3); ctx.fill(); }
+  // (dotted pattern removed)
   if (mark) {                         // the X of the GenXflo logo, in the top band beside the slot
     var unit = w / CARD_WIDTH, mh = 0.2 * unit, mw = mh * (mark.width / mark.height);
     ctx.drawImage(mark, 0.12 * unit, 0.04 * unit, mw, mh);
@@ -246,7 +246,7 @@ function paintBack(canvas, color, mark) {
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, w, h);
   ctx.fillStyle = 'rgba(76, 227, 163, 0.08)';
-  for (var y = 14; y < h; y += 28) for (var x = 14; x < w; x += 28) { ctx.beginPath(); ctx.arc(x, y, 1.6, 0, 6.3); ctx.fill(); }
+  // (dotted pattern removed)
   if (mark) {
     var mh = h * 0.3, mw = mh * (mark.width / mark.height);
     ctx.drawImage(mark, (w - mw) / 2, h * 0.16, mw, mh);
@@ -486,7 +486,7 @@ function stepSimulation(sim, dt, physics, time) {
 // ---- mount ----------------------------------------------------------------------------------------
 function mount(container, opts) {
   var o = Object.assign({
-    box: null, video: null, cardColor: '#ffffff', cornerRadius: 0.05, strapColor: '#0d1a14', strapWidth: 0.9, strapLength: 0.46,
+    box: null, video: null, cardColor: '#ffffff', cornerRadius: 0.01, strapColor: '#0d1a14', strapWidth: 0.9, strapLength: 0.36,
     gravity: 1, damping: 0.7, elasticity: 0.5, breeze: 0.4, interactive: true, intro: true, fill: 0.9
   }, opts || {});
   var low = !!window.GX_LOW;
@@ -576,7 +576,7 @@ function mount(container, opts) {
   backMesh.rotation.y = Math.PI;
   backMesh.position.z = -(THICKNESS / 2 + BEVEL + 0.0006);
   var videoShape = new THREE.Shape();
-  traceRoundedRect(videoShape, -VIDEO_W / 2, -VIDEO_H / 2, VIDEO_W, VIDEO_H, 0.035);
+  traceRoundedRect(videoShape, -VIDEO_W / 2, -VIDEO_H / 2, VIDEO_W, VIDEO_H, 0.008);
   var videoGeometry = new THREE.ShapeGeometry(videoShape, 12);
   var vpos = videoGeometry.getAttribute('position'), vuv = videoGeometry.getAttribute('uv');
   for (var vi = 0; vi < vpos.count; vi++) vuv.setXY(vi, (vpos.getX(vi) + VIDEO_W / 2) / VIDEO_W, (vpos.getY(vi) + VIDEO_H / 2) / VIDEO_H);
@@ -831,7 +831,7 @@ function mount(container, opts) {
   function resize() {
     view.width = Math.max(1, container.clientWidth);
     view.height = Math.max(1, container.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, low ? 1 : 1.75));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, low ? 1 : 1.5));
     renderer.setSize(view.width, view.height, false);
     var resized = placed && (Math.abs(view.height - lastH) > 2 || Math.abs(view.width - lastW) > 2);
     lastW = view.width; lastH = view.height;

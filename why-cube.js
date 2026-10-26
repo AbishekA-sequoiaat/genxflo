@@ -104,7 +104,7 @@ function mount(host) {
   var renderer;
   try { renderer = new THREE.WebGLRenderer({ antialias: !low, alpha: true, powerPreference: 'high-performance' }); }
   catch (e) { return; }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, low ? 1 : 1.75));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, low ? 1 : 1.5));
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -129,6 +129,7 @@ function mount(host) {
     model = buildCube();
     scene.add(model.group);
     host.setAttribute('data-cube-ready', 'procedural');
+    dirty = true;
   }
 
   if (src) {
@@ -149,6 +150,7 @@ function mount(host) {
       }
       model = { group: wrap, update: function (p) { if (mixer) mixer.setTime(p * duration); } };
       host.setAttribute('data-cube-ready', 'model');
+      dirty = true;
     }, undefined, useProcedural);
   } else useProcedural();
 
@@ -157,6 +159,7 @@ function mount(host) {
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    dirty = true;
   }
   resize();
   if ('ResizeObserver' in window) new ResizeObserver(resize).observe(host);
@@ -170,7 +173,7 @@ function mount(host) {
   }
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var shown = 0, target = 0, visible = true, raf = 0, last = 0;
+  var shown = 0, target = 0, visible = true, raf = 0, last = 0, drawn = -1, dirty = true;
   function frame(now) {
     raf = 0;
     if (!visible || document.hidden) return;
@@ -179,8 +182,11 @@ function mount(host) {
     last = now;
     target = progress();
     shown += (target - shown) * (reduce ? 1 : 1 - Math.exp(-dt / 0.16));   // smoothing like scrub: 0.5
-    if (model) model.update(shown);
+    // scroll-driven only: nothing moves while the scroll position is still, so skip redrawing the same frame
+    if (!model || (!dirty && Math.abs(shown - drawn) < 0.0004)) return;
+    model.update(shown);
     renderer.render(scene, camera);
+    drawn = shown; dirty = false;
   }
   new IntersectionObserver(function (entries) {
     visible = entries.some(function (e) { return e.isIntersecting; });

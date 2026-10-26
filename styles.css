@@ -791,8 +791,8 @@ body.bg-solid-f4 { background: #f4f4f4 !important; }
 .mn-logo img { display: block; height: 34px; width: auto; }
 .mn-actions { justify-self: end; display: flex; gap: .6rem; align-items: center; }
 .mn-login, .mn-join { display: inline-flex; align-items: center; height: 46px; padding: 0 1.3rem; border-radius: 6px; font: 600 1.05rem/1 var(--font-display, inherit); text-decoration: none; transition: background-color .2s, transform .2s; }
-.mn-login { background: #4a4b49; color: #fff; }
-.mn-login:hover { background: #5b5c5a; }
+.mn-login { background: #fff; color: #0a0f0d; }
+.mn-login:hover { background: #e8ece9; }
 .mn-join { background: #4ce3a3; color: #0d1a14; border-radius: 6px; }
 .mn-join:hover { background: #7af0bd; }
 .mn-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s cubic-bezier(.22, 1, .36, 1); }
@@ -1084,7 +1084,8 @@ body.bg-solid-f4 #contact > div { background-image: radial-gradient(ellipse 65% 
 #ai-workflow.ai-pinned { height: 520vh; padding: 0 !important; overflow: visible !important; }
 #ai-workflow.ai-pinned .ai-sticky { position: sticky; top: 0; width: 100% !important; max-width: none !important; height: 100vh; margin: 0 !important; overflow: hidden; }
 #ai-workflow.ai-pinned .ai-layout { display: block; position: relative; height: 100%; }
-#ai-workflow.ai-pinned .ai-ballwrap { position: absolute; left: 50%; top: 50%; width: min(62vh, 600px); max-width: none; margin: 0; transform: translate(-50%, -50%) translate3d(var(--bx, 0px), 0, 0) scale(var(--bs, 1.5)); will-change: transform; filter: drop-shadow(0 0 46px rgba(76, 227, 163, .28)); }
+#ai-workflow.ai-pinned .ai-ballwrap { position: absolute; left: 50%; top: 50%; width: min(62vh, 600px); max-width: none; margin: 0; transform: translate(-50%, -50%) translate3d(var(--bx, 0px), 0, 0) scale(var(--bs, 1.5)); will-change: transform; }
+#ai-workflow.ai-pinned .ai-ballwrap::before { content: ""; position: absolute; inset: -12%; border-radius: 50%; background: radial-gradient(circle, rgba(76, 227, 163, .2) 0%, rgba(76, 227, 163, .07) 45%, transparent 68%); pointer-events: none; }
 #ai-workflow.ai-pinned .ai-side { position: absolute; top: 50%; right: 4vw; left: max(42vw, calc(9vw + min(62vh, 600px) * .8)); transform: translateY(-50%); gap: 1.4rem; opacity: 0; transition: opacity .5s ease; }
 #ai-workflow.ai-pinned .ai-side.is-in { opacity: 1; }
 #ai-workflow.ai-pinned .ai-tabs { position: relative; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.2rem; align-items: center; padding: .6rem 0; }
@@ -1099,7 +1100,7 @@ body.bg-solid-f4 #contact > div { background-image: radial-gradient(ellipse 65% 
 #ai-workflow.ai-pinned .ai-cta.is-in { opacity: 1; transform: none; pointer-events: auto; }
 .ai-conn { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; }
 .ai-conn__base { transition: opacity .3s; fill: none; stroke: rgba(76, 227, 163, .14); stroke-width: 2; }
-.ai-conn__draw { fill: none; stroke: #4ce3a3; stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; filter: drop-shadow(0 0 6px rgba(76, 227, 163, .8)); }
+.ai-conn__draw { fill: none; stroke: #4ce3a3; stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; }
 .ai-conn__dot { fill: #20231f; stroke: #4ce3a3; stroke-width: 2.5; opacity: 0; transition: opacity .25s; }
 
 /* What's New canvas: vibrant green board */
@@ -1133,3 +1134,6 @@ body.bg-solid-f4 #contact > div { background-image: radial-gradient(ellipse 65% 
 /* hero + DNA section descriptions in black */
 .hero-v1__side .hero-v1__sub, .hero-v1__overlay .hero-v1__side .hero-v1__sub { color: #0a0f0d; }
 .dna-stage__copy p { color: #0a0f0d; }
+
+#ai-workflow.ai-pinned .ai-tab, #ai-workflow.ai-pinned .ai-details, #ai-workflow.ai-pinned .ai-side { will-change: transform, opacity; }
+#ai-workflow:not(.ai-pinned) .ai-tab, #ai-workflow:not(.ai-pinned) .ai-details { will-change: auto; }

@@ -47,12 +47,23 @@
     return clamp(-r.top / Math.max(section.offsetHeight - window.innerHeight, 1), 0, 1);
   }
 
+  var geo = null;   // layout measurements, refreshed only when the size changes (not on every scroll tick)
+  function measure() {
+    var sr = sticky.getBoundingClientRect(), tr = tabsEl.getBoundingClientRect();
+    geo = {
+      vw: sr.width, vh: sr.height, S: ballwrap.offsetWidth,
+      box: tabs.map(function (t) { return { l: tr.left - sr.left + t.offsetLeft, r: tr.left - sr.left + t.offsetLeft + t.offsetWidth, y: tr.top - sr.top + t.offsetTop + t.offsetHeight / 2 }; })
+    };
+    svg.setAttribute('width', geo.vw); svg.setAttribute('height', geo.vh); svg.setAttribute('viewBox', '0 0 ' + geo.vw + ' ' + geo.vh);
+  }
+  function onResize() { geo = null; schedule(); }
+
   function update() {
     raf = 0;
     if (!pinned) return;
     var p = progress();
-    var sr = sticky.getBoundingClientRect(), vw = sr.width, vh = sr.height;
-    var S = ballwrap.offsetWidth;
+    if (!geo) measure();
+    var vw = geo.vw, vh = geo.vh, S = geo.S;
 
     // 1. the ball slides left and settles a little smaller
     var e = ease(span(p, T.move[0], T.move[1]));
@@ -72,9 +83,7 @@
     lastStep = step;
 
     // 3. the connecting lines
-    var tr = tabsEl.getBoundingClientRect();
-    var box = tabs.map(function (t) { return { l: tr.left - sr.left + t.offsetLeft, r: tr.left - sr.left + t.offsetLeft + t.offsetWidth, y: tr.top - sr.top + t.offsetTop + t.offsetHeight / 2 }; });
-    svg.setAttribute('width', vw); svg.setAttribute('height', vh); svg.setAttribute('viewBox', '0 0 ' + vw + ' ' + vh);
+    var box = geo.box;
     var cx = vw / 2 + dx, cy = vh / 2, rad = S * scale * 0.34;
     var a = { x: cx + rad, y: cy }, b = { x: box[0].l - 8, y: box[0].y };
     var k = Math.max(60, (b.x - a.x) * 0.5);
@@ -103,8 +112,8 @@
     if (!svg) makeLines();
     svg.style.display = '';
     window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule);
-    schedule();
+    window.addEventListener('resize', onResize);
+    geo = null; schedule();
   }
   function disable() {
     if (!pinned) return;
@@ -114,10 +123,11 @@
     ballwrap.style.removeProperty('--bx'); ballwrap.style.removeProperty('--bs');
     if (svg) svg.style.display = 'none';
     window.removeEventListener('scroll', schedule);
-    window.removeEventListener('resize', schedule);
+    window.removeEventListener('resize', onResize);
   }
   function check() { (mq.matches && !reduce.matches) ? enable() : disable(); }
   if (mq.addEventListener) { mq.addEventListener('change', check); reduce.addEventListener('change', check); }
   check();
-  window.addEventListener('load', schedule);
+  window.addEventListener('load', onResize);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(onResize);
 })();
