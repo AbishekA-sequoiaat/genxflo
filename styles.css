@@ -1058,3 +1058,78 @@ body.bg-solid-f4 #contact > div { background-image: radial-gradient(ellipse 65% 
   .dd-node { position: static; width: auto; min-width: 0; max-width: none; cursor: default; touch-action: auto; }
   .dd-port, .dd-grip, .dd-hint, .dd-reset { display: none; }
 }
+
+/* What's New nodes: white cards on the dark canvas */
+.dd-node { background: #fff; border-color: rgba(0,0,0,.08); color: #1b2420; box-shadow: 0 10px 26px rgba(0,0,0,.3); }
+.dd-node:hover, .dd-node:focus-visible { border-color: #4ce3a3; }
+.dd-node.is-drag { border-color: #4ce3a3; box-shadow: 0 18px 40px rgba(0,0,0,.45), 0 0 0 3px rgba(76,227,163,.25); }
+.dd-head h3 { color: #101613; }
+.dd-ico { background: #e3f8ee; color: #078a58; }
+.dd-grip { background-image: radial-gradient(circle, #8a948f 1.3px, transparent 1.6px); opacity: .7; }
+.dd-label { border-top-color: rgba(0,0,0,.1); color: #078a58; }
+.dd-text { color: #4a554f; }
+.dd-port { background: #fff; }
+
+/* "Drag" label that follows the cursor over the What's New canvas */
+.dd-cursor { position: fixed; left: 0; top: 0; z-index: 60; display: inline-flex; align-items: center; gap: .4rem; padding: .4rem .65rem; border-radius: 4px; background: #4ce3a3; color: #06170f; font: 700 .72rem/1 "Inter", sans-serif; pointer-events: none; opacity: 0; transition: opacity .15s; box-shadow: 0 8px 22px rgba(0,0,0,.3); }
+.dd-cursor.is-on { opacity: 1; }
+
+/* research teams panel: no drop shadow */
+#research-teams .tg-panel { box-shadow: none; }
+
+/* footer "Powered by" logo: no black box, bigger */
+.theme-light .dark-zone img[alt="SAT Logo"] { background: none; padding: 0; border-radius: 0; max-height: 58px; max-width: 170px; }
+
+/* ---- AI section: pinned, scroll-driven horizontal sequence (desktop; ai-scroll.js adds .ai-pinned) ---- */
+#ai-workflow.ai-pinned { height: 520vh; padding: 0 !important; overflow: visible !important; }
+#ai-workflow.ai-pinned .ai-sticky { position: sticky; top: 0; width: 100% !important; max-width: none !important; height: 100vh; margin: 0 !important; overflow: hidden; }
+#ai-workflow.ai-pinned .ai-layout { display: block; position: relative; height: 100%; }
+#ai-workflow.ai-pinned .ai-ballwrap { position: absolute; left: 50%; top: 50%; width: min(62vh, 600px); max-width: none; margin: 0; transform: translate(-50%, -50%) translate3d(var(--bx, 0px), 0, 0) scale(var(--bs, 1.5)); will-change: transform; filter: drop-shadow(0 0 46px rgba(76, 227, 163, .28)); }
+#ai-workflow.ai-pinned .ai-side { position: absolute; top: 50%; right: 4vw; left: max(42vw, calc(9vw + min(62vh, 600px) * .8)); transform: translateY(-50%); gap: 1.4rem; opacity: 0; transition: opacity .5s ease; }
+#ai-workflow.ai-pinned .ai-side.is-in { opacity: 1; }
+#ai-workflow.ai-pinned .ai-tabs { position: relative; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.2rem; align-items: center; padding: .6rem 0; }
+#ai-workflow.ai-pinned .ai-tab { grid-template-columns: auto 1fr; padding: .85rem .9rem; opacity: 0; transform: translateX(90px) scale(.94); transition: opacity .5s ease, transform .55s cubic-bezier(.2, .8, .2, 1), box-shadow .3s, border-color .3s; }
+#ai-workflow.ai-pinned .ai-tab.is-in { opacity: .72; transform: none; }
+#ai-workflow.ai-pinned .ai-tab.is-in.is-active { opacity: 1; transform: scale(1.1); z-index: 2; border-color: #4ce3a3; box-shadow: 0 0 0 2px rgba(76, 227, 163, .7), 0 18px 40px rgba(6, 160, 101, .4); }
+#ai-workflow.ai-pinned .ai-tab.is-active .ai-tab__text b { font-size: 1.12rem; }
+#ai-workflow.ai-pinned .ai-details { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .55s cubic-bezier(.2, .8, .2, 1); }
+#ai-workflow.ai-pinned .ai-details.is-in { opacity: 1; transform: none; }
+#ai-workflow.ai-pinned .ai-detail .sv { min-height: 230px; }
+#ai-workflow.ai-pinned .ai-cta { position: absolute; left: 0; right: 0; bottom: 3vh; margin: 0 !important; opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; pointer-events: none; }
+#ai-workflow.ai-pinned .ai-cta.is-in { opacity: 1; transform: none; pointer-events: auto; }
+.ai-conn { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; }
+.ai-conn__base { transition: opacity .3s; fill: none; stroke: rgba(76, 227, 163, .14); stroke-width: 2; }
+.ai-conn__draw { fill: none; stroke: #4ce3a3; stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; filter: drop-shadow(0 0 6px rgba(76, 227, 163, .8)); }
+.ai-conn__dot { fill: #20231f; stroke: #4ce3a3; stroke-width: 2.5; opacity: 0; transition: opacity .25s; }
+
+/* What's New canvas: vibrant green board */
+.dd { background-color: #12c27a; background-image: radial-gradient(rgba(255,255,255,.34) 1.3px, transparent 1.6px), radial-gradient(ellipse 70% 60% at 20% 0%, #5df0b0 0%, transparent 65%), linear-gradient(135deg, #19d28c 0%, #0aa968 55%, #078a58 100%); background-size: 20px 20px, auto, auto; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18), 0 24px 60px rgba(6,120,80,.25); }
+.dd-hint { color: #04281a; } .dd-hint i { color: #04281a; }
+.dd-reset { border-color: rgba(4,40,26,.35); background: rgba(255,255,255,.2); color: #04281a; }
+.dd-reset:hover { background: rgba(255,255,255,.4); }
+.dd-edge { stroke: rgba(255,255,255,.75); stroke-width: 2.5; }
+.dd-flow { stroke: #fff; }
+.dd-node { box-shadow: 0 12px 28px rgba(3,70,45,.35); }
+.dd-node:hover, .dd-node:focus-visible, .dd-node.is-drag { border-color: #04281a; }
+.dd-port { border-color: #04281a; }
+
+/* hero: sub heading + buttons pushed to the right end of the page container */
+@media (min-width: 821px) {
+  .hero-v1__overlay .hero-v1__side { left: auto; right: max(30px, calc((100% - 1500px) / 2)); width: min(500px, calc(50% - 112px - 30px)); text-align: right; }
+  .hero-v1__overlay .hero-v1__side #hero-gemini > div { justify-items: end; place-items: end; }
+  .hero-v1__overlay .hero-v1__side .hero-v1__cta { justify-content: flex-end; }
+}
+
+/* hero sub heading on two lines */
+@media (min-width: 821px) {
+  .hero-v1__overlay .hero-v1__side { width: min(640px, calc(50% - 60px)); }
+  .hero-v1__overlay .hero-v1__side .hero-v1__sub { font-size: clamp(.92rem, 1.2vw, 1.15rem); text-wrap: balance; }
+}
+@media (min-width: 821px) {
+  .hero-v1__overlay .hero-v1__side { width: min(640px, calc(50% - 142px)); }
+  .hero-v1__overlay .hero-v1__side .hero-v1__sub { font-size: clamp(.8rem, calc((50vw - 142px) / 29), 1.15rem); }
+}
+
+/* hero + DNA section descriptions in black */
+.hero-v1__side .hero-v1__sub, .hero-v1__overlay .hero-v1__side .hero-v1__sub { color: #0a0f0d; }
+.dna-stage__copy p { color: #0a0f0d; }

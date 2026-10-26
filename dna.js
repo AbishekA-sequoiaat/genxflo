@@ -16,7 +16,7 @@ var TILT = [-0.12, 0, -0.62];   // the capsule stands slanted, like a pill propp
 
 function helix(height) {
   var group = new THREE.Group();
-  var turns = 2, steps = 40, radius = height * 0.14;
+  var turns = 1, steps = 22, radius = height * 0.14;
   var matA = new THREE.MeshPhysicalMaterial({ color: STRAND, metalness: 0.2, roughness: 0.1 });
   var matB = new THREE.MeshPhysicalMaterial({ color: STRAND_B, metalness: 0.2, roughness: 0.1 });
   var rung = new THREE.MeshPhysicalMaterial({ color: '#d9fbe9', metalness: 0, roughness: 0.25 });

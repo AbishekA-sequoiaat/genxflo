@@ -91,6 +91,21 @@
   window.addEventListener('load', place);
   place();
 
+  // cursor-following "Drag" badge (mouse only)
+  if (window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    var badge = document.createElement('div');
+    badge.className = 'dd-cursor'; badge.setAttribute('aria-hidden', 'true');
+    badge.innerHTML = '<i class="ph-bold ph-arrows-left-right"></i>Drag';
+    document.body.appendChild(badge);
+    function show(on) { badge.classList.toggle('is-on', on); }
+    root.addEventListener('pointermove', function (e) {
+      if (list.matches) return;
+      badge.style.transform = 'translate3d(' + (e.clientX + 16) + 'px,' + (e.clientY + 16) + 'px,0)';
+      show(!e.target.closest('.dd-reset'));
+    });
+    root.addEventListener('pointerleave', function () { show(false); });
+  }
+
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (en) { root.classList.toggle('is-idle', !en.some(function (e) { return e.isIntersecting; })); }).observe(root);
   }

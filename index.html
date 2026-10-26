@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Design, validate, and export bioinformatics workflows with GenXflo.">
   <title>GenXflo – Visual Nextflow Pipeline Builder for Bioinformatics</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=130"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=144"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <script src="perf.js" defer></script>
   <script src="vendor/lenis.min.js" defer></script>
   <script src="smooth-scroll.js" defer></script>
@@ -13,10 +13,11 @@
   <script src="menu-nav.js" defer></script>
   <script src="gradient-ascii.js" defer></script>
   <script src="team-graph.js" defer></script>
+  <script src="ai-scroll.js" defer></script>
   <script src="whats-new-dnd.js" defer></script>
   <!-- <script src="ghost-fibers.js" defer></script> -->
   <script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js"}}</script>
-  <script type="module" src="dna.js"></script>
+  <script type="module" src="dna.js?v=2"></script>
   <script type="module" src="lanyard.js"></script>
   <script type="module" src="why-cube.js"></script>
   <script type="module" src="crystal-ball.js"></script>
@@ -54,7 +55,7 @@
       <div class="hero-v1__news"><aside class="group relative m-0 flex min-h-0 min-w-0 flex-col justify-start border-0 bg-transparent p-0 shadow-none ">
           <div class="news-head mb-5 flex items-center justify-center"><h2 class="m-0 text-center font-display text-[clamp(1.9rem,3vw,2.6rem)] font-semibold leading-tight text-[#f1f1f1] uppercase tracking-wide">What's New in GenXflo</h2></div>
           <div class="dd" data-dd data-edges="0-1,0-2,1-3,2-3,3-4,3-5,3-6">
-            <div class="dd-bar"><span class="dd-hint"><i class="ph-bold ph-arrows-left-right" aria-hidden="true"></i>Drag the nodes — the connections follow</span><button class="dd-reset" type="button" data-dd-reset><i class="ph-bold ph-arrow-counter-clockwise" aria-hidden="true"></i>Reset</button></div>
+            <div class="dd-bar"><span class="dd-hint"><i class="ph-bold ph-arrows-left-right" aria-hidden="true"></i>Drag the nodes, the connections follow</span><button class="dd-reset" type="button" data-dd-reset><i class="ph-bold ph-arrow-counter-clockwise" aria-hidden="true"></i>Reset</button></div>
             <svg class="dd-lines" aria-hidden="true"></svg>
           <article class="dd-node" data-dd-node data-x="2" data-y="235" tabindex="0" aria-label="MCP Server: Generate and validate pipelines programmatically, without a browser."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-target"></i></span><h3>MCP Server</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">Generate and validate pipelines programmatically, without a browser.</p></article>
           <article class="dd-node" data-dd-node data-x="26" data-y="72" tabindex="0" aria-label="Pipeline Versioning: Review history, download prior outputs, and restore earlier configurations."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-arrow-counter-clockwise"></i></span><h3>Pipeline Versioning</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">Review history, download prior outputs, and restore earlier configurations.</p></article>
@@ -70,14 +71,14 @@
     <section class="dna-stage" aria-label="Reproducible pipelines">
       <div class="dna-stage__top">
         <p class="dna-stage__label"><i aria-hidden="true"></i>Reproducible science, made visual</p>
-        <div class="dna-stage__copy"><p>Welcome to GenXflo.<br>Your data and your results are our highest priority.<br>Our platform brings visual design, AI validation and one-click export together so research teams can build Nextflow pipelines with confidence &mdash; every connection, parameter and container checked before a single run.</p></div>
+        <div class="dna-stage__copy"><p>Welcome to GenXflo.<br>Your data and your results are our highest priority.<br>Our platform brings visual design, AI validation and one-click export together so research teams can build Nextflow pipelines with confidence, every connection, parameter and container checked before a single run.</p></div>
       </div>
       <div class="dna-marquee" aria-hidden="true"><div class="dna-marquee__track"><div class="dna-marquee__group"><span>BIOINFORMATICS PIPELINES</span><span>BIOINFORMATICS PIPELINES</span><span>BIOINFORMATICS PIPELINES</span><span>BIOINFORMATICS PIPELINES</span></div><div class="dna-marquee__group"><span>BIOINFORMATICS PIPELINES</span><span>BIOINFORMATICS PIPELINES</span><span>BIOINFORMATICS PIPELINES</span><span>BIOINFORMATICS PIPELINES</span></div></div></div>
       <div id="dna-capsule" class="dna-stage__host max-[820px]:hidden" data-dna data-src="dna_vr_interactive_animation.glb" aria-hidden="true"></div>
     </section>
 
     <section class="dark-zone overflow-hidden py-28 max-[600px]:py-16" id="ai-workflow" aria-labelledby="ai-orbit-title">
-      <div class="mx-auto w-[min(1500px,calc(100%-60px))] max-[600px]:w-[calc(100%-32px)]">
+      <div class="ai-sticky mx-auto w-[min(1500px,calc(100%-60px))] max-[600px]:w-[calc(100%-32px)]">
         <div class="ai-layout" data-ai-steps>
           <div class="ai-ballwrap">
             <div id="ai-ball" class="ai-ball" data-crystal-ball aria-hidden="true"></div>
@@ -97,7 +98,7 @@
             </div>
           </div>
         </div>
-        <p class="m-0 mt-14 text-center"><a class="group/b inline-flex max-w-full items-center gap-3 rounded-md bg-[#4ce3a3] py-2 pl-5 pr-2 text-left font-sans font-bold text-[#06170f] no-underline shadow-[0_10px_28px_rgba(6,160,101,.28)] transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-[#24bd7d] hover:shadow-[0_14px_34px_rgba(76,227,163,.35)]" href="pages/ai-features.html">Explore AI-powered features <span class="grid size-8 shrink-0 place-items-center rounded-md bg-white text-[1rem] leading-none text-[#06170f] transition-transform duration-200 group-hover/b:-translate-y-0.5 group-hover/b:translate-x-0.5" aria-hidden="true"><i class="ph-bold ph-arrow-up-right text-[1.1rem]"></i></span></a></p>
+        <p class="ai-cta m-0 mt-14 text-center"><a class="group/b inline-flex max-w-full items-center gap-3 rounded-md bg-[#4ce3a3] py-2 pl-5 pr-2 text-left font-sans font-bold text-[#06170f] no-underline shadow-[0_10px_28px_rgba(6,160,101,.28)] transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-[#24bd7d] hover:shadow-[0_14px_34px_rgba(76,227,163,.35)]" href="pages/ai-features.html">Explore AI-powered features <span class="grid size-8 shrink-0 place-items-center rounded-md bg-white text-[1rem] leading-none text-[#06170f] transition-transform duration-200 group-hover/b:-translate-y-0.5 group-hover/b:translate-x-0.5" aria-hidden="true"><i class="ph-bold ph-arrow-up-right text-[1.1rem]"></i></span></a></p>
       </div>
     </section>
 
