@@ -1201,3 +1201,8 @@ body.bg-solid-f4 #contact > div { background-image: radial-gradient(ellipse 65% 
   #hero-gemini { height: auto !important; }
   .mbs-lid { position: relative; left: auto; top: auto; width: 100%; height: auto; aspect-ratio: 1918 / 902; padding: 0; overflow: hidden; border-radius: .5rem; background: #1d1d38; transform: none !important; transform-style: flat; box-shadow: 0 18px 40px rgba(2, 40, 28, .22) !important; }
 }
+
+/* DNA section: smaller capsule and a smaller marquee so they no longer fill the whole section */
+.dna-stage .dna-stage__host { width: min(46vw, 500px); height: min(40vw, 460px); }
+.dna-marquee__group span { font-size: clamp(3.5rem, 11vw, 11rem); }
+@media (max-width: 820px) { .dna-marquee__group span { font-size: 4rem; } }

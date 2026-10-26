@@ -141,7 +141,7 @@
     var S = root.offsetWidth ? root.getBoundingClientRect().width / root.offsetWidth : 1;   // the CSS scale on the root
     var FULL = isMobile ? 1 : Math.max(1.5, Math.min(1.75, (window.innerWidth * 0.92) / (512 * S), (window.innerHeight - 200) / (240.8 * S)));
     var sx = tx(p, [0, 0.3], [1.1, FULL]);   // original starts at 1.2; 1.1 keeps the screen inside the laptop frame
-    var sy = tx(p, [0, 0.3], [0.57, FULL]);
+    var sy = tx(p, [0, 0.3], [0.535, FULL]);
     // original: translateY [0, 1] -> [0, 1500]. Here the screen follows the page for a while once it is open (p 0.3 -> 0.5)
     // so the whole video can be looked at before it scrolls away and the next section arrives.
     var A = 0.3, B = 0.5;
