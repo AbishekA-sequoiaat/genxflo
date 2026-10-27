@@ -56,7 +56,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Design, validate, and export bioinformatics workflows with GenXflo.">
   <title>GenXflo – Visual Nextflow Pipeline Builder for Bioinformatics</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=170"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=183"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <script src="perf.js" defer></script>
   <script src="vendor/lenis.min.js" defer></script>
   <script src="smooth-scroll.js" defer></script>
@@ -64,13 +64,14 @@
   <script src="menu-nav.js?v=2" defer></script>
   <script src="gradient-ascii.js" defer></script>
   <script src="team-graph.js" defer></script>
-  <script src="ai-scroll.js" defer></script>
+  <!-- pinned scroll animation for the AI section switched off for now: <script src="ai-scroll.js" defer></script> -->
   <script src="whats-new-dnd.js?v=2" defer></script>
   <!-- <script src="ghost-fibers.js" defer></script> -->
   <!-- <link rel="modulepreload" href="vendor/three/three.module.min.js"> -->
   <script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js"}}</script>
   <!-- <script type="module" src="lanyard.js?v=10"></script> -->
-  <script src="macbook-scroll.js?v=30" defer></script>
+  <!-- <script src="macbook-scroll.js?v=30" defer></script> -->
+  <script src="product-demo.js?v=1" defer></script>
   <script src="lazy-modules.js" defer></script>
 </head>
 <body class="home-page theme-light bg-solid-f4 relative isolate m-0 block min-h-screen bg-home-canvas bg-[radial-gradient(ellipse_52%_34%_at_78%_4%,rgba(6,160,101,.14),transparent_76%),radial-gradient(ellipse_36%_26%_at_12%_34%,rgba(6,160,101,.07),transparent_78%)] p-[18px] font-sans text-home-ink leading-[1.65] max-[900px]:p-0">
@@ -214,10 +215,11 @@
       <!-- lanyard tag video section (commented for now; replaced by the MacBook scroll below)
       <div id="hero-tunnel" class="hero-v1__box"><div id="hero-lanyard" class="hero-v1__lanyard max-[820px]:hidden" data-lanyard data-video="hero-video"></div><figure class="hero-v1__video"><video id="hero-video" class="hero-v1__vid" aria-label="GenXflo workflow builder overview" autoplay muted loop playsinline preload="metadata" poster="images/Connect.webp"><source src="Genxflo-video.mp4" type="video/mp4">Your browser does not support the video tag.</video><button class="video-toggle absolute bottom-3 right-3 grid size-10 cursor-pointer place-items-center rounded-md border border-white/20 bg-black/60 text-white backdrop-blur transition-colors hover:border-[#4ce3a3] hover:text-[#4ce3a3]" type="button" aria-label="Pause video" aria-pressed="false"><i class="ph-bold ph-pause"></i></button><button class="video-fullscreen absolute bottom-3 right-16 grid size-10 cursor-pointer place-items-center rounded-md border border-white/20 bg-black/60 text-white backdrop-blur transition-colors hover:border-[#4ce3a3] hover:text-[#4ce3a3]" type="button" aria-label="View video in full screen"><i class="ph-bold ph-corners-out"></i></button></figure></div>
       -->
+      <div class="pf-frame"><p class="pf-hint">Try it: drag a tool onto the canvas, connect the nodes, then press Validate.</p><div id="hero-dash" data-logo="genxflo-logo.svg"></div></div>
+      <!-- MacBook scroll animation (commented for now; a live product demo will replace it)
       <div class="mbs-outer">
         <div class="mbs" data-mbs>
-          <!-- <h2 class="mbs-title" data-mbs-title>Optional title (fades up while scrolling)</h2> -->
-          <div class="mbs-lidwrap">
+                    <div class="mbs-lidwrap">
             <div class="mbs-lidback" aria-hidden="true"><div><img src="genxflo-x.svg" alt=""></div></div>
             <div class="mbs-lid" data-mbs-lid><div class="mbs-lid-bg"></div><video id="hero-video" class="hero-v1__vid" aria-label="GenXflo workflow builder overview" autoplay muted loop playsinline preload="metadata" poster="images/Connect.webp"><source src="Genxflo-video.mp4" type="video/mp4">Your browser does not support the video tag.</video></div>
           </div>
@@ -230,6 +232,7 @@
           </div>
         </div>
       </div>
+      -->
     </section>
 
     
@@ -275,6 +278,7 @@
           </div>
           <div class="ai-side">
             <h3 class="ai-side__title">Create Visual Nextflow Pipelines in 3 Easy Steps</h3>
+            <p class="ai-hint"><i class="ph-bold ph-cursor-click" aria-hidden="true"></i>Hover or tap a step to preview it</p>
             <div role="tablist" aria-label="Create a Nextflow pipeline in 3 steps" class="ai-tabs">
           <button type="button" role="tab" id="ai-tab-0" aria-controls="ai-panel-0" aria-selected="true" tabindex="0" data-ai-tab class="ai-tab is-active"><span class="ai-tab__num">01</span><span class="ai-tab__text"><b>Design Visually</b><small>Drag-and-drop workflow canvas</small></span></button>
           <button type="button" role="tab" id="ai-tab-1" aria-controls="ai-panel-1" aria-selected="false" tabindex="-1" data-ai-tab class="ai-tab"><span class="ai-tab__num">02</span><span class="ai-tab__text"><b>Configure Parameters</b><small>Smart, guided parameter forms</small></span></button>
@@ -438,9 +442,6 @@
       wide.addEventListener('change', sync);
       sync();
     }
-
-    var dashEl = document.getElementById('hero-dash');
-    if (dashEl && window.DashboardDemo) window.DashboardDemo(dashEl);
 
     var fibersEl = document.getElementById('hero-fibers');
     if (fibersEl && window.GhostFibers) {

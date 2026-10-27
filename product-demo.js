@@ -1,8 +1,8 @@
 /*
- * DashboardDemo — an interactive replica of the GenXflo workflow builder.
+ * ProductDemo — an interactive replica of the GenXflo workflow builder.
  * Drag a tool from the list onto the canvas, move nodes, and connect them by
  * dragging from an output port to an input port. Click a line to remove it.
- *   const d = DashboardDemo(containerElement);  d.reset();  d.destroy();
+ *   const d = ProductDemo(containerElement);  d.reset();  d.destroy();
  */
 (function () {
   'use strict';
@@ -38,11 +38,17 @@
       zout: '<circle cx="11" cy="11" r="6.5"/><path d="m16 16 5 5M8 11h6"/>',
       box: '<rect x="5" y="5" width="14" height="14" rx="2"/>'
     };
-    return '<svg class="dd-ic' + (on ? ' dd-on' : '') + '" style="' + pos + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + paths[name] + '</svg>';
+    return '<svg class="pf-ic' + (on ? ' pf-on' : '') + '" style="' + pos + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + paths[name] + '</svg>';
   }
 
   var RAIL = icon('undo', 'top:7px') + icon('nodes', 'top:51px', true) + icon('tool', 'top:94px') + icon('down', 'top:137px') + icon('folder', 'top:180px') +
     icon('zin', 'bottom:82px') + icon('zout', 'bottom:48px') + icon('box', 'bottom:14px');
+
+  var MODAL = '<div class="pf-modal" role="dialog" aria-label="Pipeline submitted"><div class="pf-card">' +
+    '<h5>Pipeline submitted successfully</h5>' +
+    '<svg class="pf-art" viewBox="0 0 160 100" aria-hidden="true"><path d="M38 34 100 14l22 44-62 20z" fill="#f2d36b"/><path d="M60 40l36-10" stroke="#b9902a" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/><path d="M20 80c8-18 20-32 40-40l6 12c-12 6-18 16-24 30z" fill="#f3c9a0" stroke="#8a5a3a" stroke-width="1.5"/><path d="M142 76c-6-16-14-28-34-34l-6 12c10 4 14 14 20 26z" fill="#f3c9a0" stroke="#8a5a3a" stroke-width="1.5"/><circle cx="112" cy="34" r="9" fill="none" stroke="#8a5a3a" stroke-width="1.5"/></svg>' +
+    '<b>Stitching in progress.</b><p>Meanwhile, Go to dashboard to track the progress</p>' +
+    '<button type="button" class="pf-go" data-act="close">Go to Dashboard</button></div></div>';
 
   function el(tag, cls, html) {
     var node = document.createElement(tag);
@@ -51,35 +57,37 @@
     return node;
   }
 
-  function DashboardDemo(container) {
-    var logo = container.getAttribute('data-logo') || '../genxflo-logo.svg';
+  function ProductDemo(container) {
+    var logo = container.getAttribute('data-logo') || 'genxflo-logo.svg';
     var state = initial();
     var seq = 10;
     var scale = 1;
 
-    container.classList.add('dd-host');
+    container.classList.add('pf-host');
     container.innerHTML =
-      '<div class="dd-sizer"><div class="dd-stage">' +
-      '<div class="dd-top"><img class="dd-logo" src="' + logo + '" alt="GenXflo"><span class="dd-back"><i class="ph-bold ph-squares-four"></i>Back to Dashboard</span>' +
-      '<span class="dd-top-links"><span>Home</span><span>Documentation</span><span class="dd-avatar">S</span></span></div>' +
-      '<div class="dd-rail">' + RAIL + '</div>' +
-      '<div class="dd-list"></div>' +
-      '<div class="dd-canvas"><svg class="dd-edges" width="' + (W - 227) + '" height="' + (H - 64) + '"><defs><marker id="dd-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#aeb3d1"/></marker></defs></svg>' +
-      '<div class="dd-nodes"></div><div class="dd-tray"><button type="button" class="dd-btn" data-act="reset">Reset</button><button type="button" class="dd-btn" data-act="validate">Validate</button></div><div class="dd-toast" role="status"></div></div>' +
+      '<div class="pf-sizer"><div class="pf-stage">' +
+      '<div class="pf-top"><img class="pf-logo" src="' + logo + '" alt="GenXflo"><span class="pf-back"><i class="ph-bold ph-squares-four"></i>Back to Dashboard</span>' +
+      '<span class="pf-top-links"><span>Home</span><span>Documentation</span><span class="pf-avatar">S</span></span></div>' +
+      '<div class="pf-rail">' + RAIL + '</div>' +
+      '<div class="pf-list"></div>' +
+      '<div class="pf-canvas"><svg class="pf-edges" width="' + (W - 227) + '" height="' + (H - 64) + '"><defs><marker id="pf-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#aeb3d1"/></marker></defs></svg>' +
+      '<div class="pf-nodes"></div><div class="pf-tray"><button type="button" class="pf-btn" data-act="reset">Reset</button><button type="button" class="pf-btn" data-act="validate">Validate</button></div><div class="pf-toast" role="status"></div></div>' +
+      MODAL +
       '</div></div>';
 
-    var sizer = container.querySelector('.dd-sizer');
-    var stage = container.querySelector('.dd-stage');
-    var list = container.querySelector('.dd-list');
-    var canvas = container.querySelector('.dd-canvas');
-    var svg = container.querySelector('.dd-edges');
-    var layer = container.querySelector('.dd-nodes');
-    var toast = container.querySelector('.dd-toast');
+    var sizer = container.querySelector('.pf-sizer');
+    var stage = container.querySelector('.pf-stage');
+    var list = container.querySelector('.pf-list');
+    var canvas = container.querySelector('.pf-canvas');
+    var svg = container.querySelector('.pf-edges');
+    var layer = container.querySelector('.pf-nodes');
+    var toast = container.querySelector('.pf-toast');
+    var modal = container.querySelector('.pf-modal');
     var ghost = null;
     var toastTimer = 0;
 
     TOOLS.forEach(function (name) {
-      var item = el('div', 'dd-tool', name);
+      var item = el('div', 'pf-tool', name);
       item.setAttribute('data-tool', name);
       list.appendChild(item);
     });
@@ -111,18 +119,18 @@
     }
 
     function drawEdges() {
-      svg.querySelectorAll('.dd-edge, .dd-hit').forEach(function (p) { p.remove(); });
+      svg.querySelectorAll('.pf-edge, .pf-hit').forEach(function (p) { p.remove(); });
       state.edges.forEach(function (edge, index) {
         var from = find(edge[0]);
         var to = find(edge[1]);
         if (!from || !to) return;
         var d = pathFor(outPoint(from), inPoint(to));
         var line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        line.setAttribute('class', 'dd-edge');
+        line.setAttribute('class', 'pf-edge');
         line.setAttribute('d', d);
-        line.setAttribute('marker-end', 'url(#dd-arrow)');
+        line.setAttribute('marker-end', 'url(#pf-arrow)');
         var hit = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        hit.setAttribute('class', 'dd-hit');
+        hit.setAttribute('class', 'pf-hit');
         hit.setAttribute('d', d);
         hit.addEventListener('click', function () { state.edges.splice(index, 1); drawEdges(); });
         svg.appendChild(line);
@@ -132,18 +140,18 @@
 
     function nodeHtml(n) {
       if (n.type === 'io') {
-        return '<h4>Inputs and Outputs</h4><p>Inputs:<br>/home/sat_msi/data/input/files/*_{R1,R2}.fastq.gz</p><p>Outputs: /home/sat_msi/data/output/</p><span class="dd-edit">Edit</span><i class="dd-port dd-out" data-id="' + n.id + '"></i>';
+        return '<h4>Inputs and Outputs</h4><p>Inputs:<br>/home/sat_msi/data/input/files/*_{R1,R2}.fastq.gz</p><p>Outputs: /home/sat_msi/data/output/</p><span class="pf-edit">Edit</span><i class="pf-port pf-out" data-id="' + n.id + '"></i>';
       }
       if (n.type === 'ref') {
-        return '<h4>References</h4><p>1. /home/data/output/ref.fa</p><span class="dd-edit">Edit</span><i class="dd-port dd-out" data-id="' + n.id + '"></i>';
+        return '<h4>References</h4><p>1. /home/data/output/ref.fa</p><span class="pf-edit">Edit</span><i class="pf-port pf-out" data-id="' + n.id + '"></i>';
       }
-      return '<div class="dd-select"><span>' + n.label + '</span><i class="ph-bold ph-caret-down"></i></div><i class="dd-port dd-in" data-id="' + n.id + '"></i><i class="dd-port dd-out" data-id="' + n.id + '"></i><button type="button" class="dd-del" aria-label="Remove ' + n.label + '">&times;</button>';
+      return '<div class="pf-select"><span>' + n.label + '</span><i class="ph-bold ph-caret-down"></i></div><i class="pf-port pf-in" data-id="' + n.id + '"></i><i class="pf-port pf-out" data-id="' + n.id + '"></i><button type="button" class="pf-del" aria-label="Remove ' + n.label + '">&times;</button>';
     }
 
     function renderNodes() {
       layer.innerHTML = '';
       state.nodes.forEach(function (n) {
-        var node = el('div', 'dd-node dd-' + n.type, nodeHtml(n));
+        var node = el('div', 'pf-node pf-' + n.type, nodeHtml(n));
         node.setAttribute('data-id', n.id);
         node.style.left = n.x + 'px';
         node.style.top = n.y + 'px';
@@ -155,9 +163,9 @@
 
     function notify(text, ok) {
       toast.textContent = text;
-      toast.className = 'dd-toast dd-show' + (ok ? ' dd-ok' : '');
+      toast.className = 'pf-toast pf-show' + (ok ? ' pf-ok' : '');
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(function () { toast.className = 'dd-toast'; }, 2200);
+      toastTimer = setTimeout(function () { toast.className = 'pf-toast'; }, 2200);
     }
 
     function validate() {
@@ -167,7 +175,7 @@
       });
       if (!procs.length) return notify('Add at least one tool to the canvas', false);
       if (loose.length) return notify(loose.length + (loose.length === 1 ? ' tool has' : ' tools have') + ' no input connected', false);
-      notify('Valid pipeline', true);
+      modal.classList.add('pf-open');
     }
 
     function reset() {
@@ -183,19 +191,19 @@
 
     // ---- drag a tool from the list onto the canvas
     function onToolDown(event) {
-      var tool = event.target.closest('.dd-tool');
+      var tool = event.target.closest('.pf-tool');
       if (!tool || event.button > 0) return;
       event.preventDefault();
       var name = tool.getAttribute('data-tool');
-      ghost = el('div', 'dd-ghost', name);
+      ghost = el('div', 'pf-ghost', name);
       document.body.appendChild(ghost);
       moveGhost(event);
-      tool.classList.add('dd-active');
+      tool.classList.add('pf-active');
       function move(e) { moveGhost(e); }
       function up(e) {
         window.removeEventListener('pointermove', move);
         window.removeEventListener('pointerup', up);
-        tool.classList.remove('dd-active');
+        tool.classList.remove('pf-active');
         if (ghost) { ghost.remove(); ghost = null; }
         var rect = canvas.getBoundingClientRect();
         if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
@@ -206,6 +214,8 @@
             y: Math.max(8, Math.min(H - 64 - PROC_H - 8, p.y - PROC_H / 2))
           });
           renderNodes();
+          var added = layer.querySelector('[data-id="n' + seq + '"]');
+          if (added) { added.classList.add('pf-new'); setTimeout(function () { added.classList.remove('pf-new'); }, 2600); }
         }
       }
       window.addEventListener('pointermove', move);
@@ -219,18 +229,18 @@
     // ---- move nodes / draw connections
     function onCanvasDown(event) {
       if (event.button > 0) return;
-      var del = event.target.closest('.dd-del');
+      var del = event.target.closest('.pf-del');
       if (del) {
-        var gone = del.closest('.dd-node').getAttribute('data-id');
+        var gone = del.closest('.pf-node').getAttribute('data-id');
         state.nodes = state.nodes.filter(function (n) { return n.id !== gone; });
         state.edges = state.edges.filter(function (e) { return e[0] !== gone && e[1] !== gone; });
         renderNodes();
         return;
       }
-      var port = event.target.closest('.dd-out');
-      var nodeEl = event.target.closest('.dd-node');
+      var port = event.target.closest('.pf-out');
+      var nodeEl = event.target.closest('.pf-node');
       if (port) { startConnect(event, port.getAttribute('data-id')); return; }
-      if (nodeEl && !event.target.closest('.dd-edit')) startMove(event, nodeEl);
+      if (nodeEl && !event.target.closest('.pf-edit')) startMove(event, nodeEl);
     }
 
     function startMove(event, nodeEl) {
@@ -239,7 +249,7 @@
       var ox = n.x;
       var oy = n.y;
       var s = size(n);
-      nodeEl.classList.add('dd-lift');
+      nodeEl.classList.add('pf-lift');
       function move(e) {
         var p = toLocal(e);
         n.x = Math.max(0, Math.min(W - 227 - s.w, ox + p.x - start.x));
@@ -249,7 +259,7 @@
         drawEdges();
       }
       function up() {
-        nodeEl.classList.remove('dd-lift');
+        nodeEl.classList.remove('pf-lift');
         window.removeEventListener('pointermove', move);
         window.removeEventListener('pointerup', up);
       }
@@ -262,7 +272,7 @@
       var from = find(fromId);
       var a = outPoint(from);
       var temp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      temp.setAttribute('class', 'dd-edge dd-temp');
+      temp.setAttribute('class', 'pf-edge pf-temp');
       svg.appendChild(temp);
       function move(e) { temp.setAttribute('d', pathFor(a, toLocal(e))); }
       function up(e) {
@@ -270,7 +280,7 @@
         window.removeEventListener('pointerup', up);
         temp.remove();
         var hit = document.elementFromPoint(e.clientX, e.clientY);
-        var target = hit && hit.closest('.dd-node.dd-proc');
+        var target = hit && hit.closest('.pf-node.pf-proc');
         if (!target) return;
         var toId = target.getAttribute('data-id');
         if (toId === fromId) return;
@@ -283,15 +293,17 @@
     }
 
     function onClick(event) {
-      var btn = event.target.closest('.dd-btn');
+      var btn = event.target.closest('.pf-btn');
       if (!btn) return;
-      if (btn.getAttribute('data-act') === 'reset') reset();
+      if (btn.getAttribute('data-act') === 'close') modal.classList.remove('pf-open');
+      else if (btn.getAttribute('data-act') === 'reset') reset();
       else validate();
     }
 
     list.addEventListener('pointerdown', onToolDown);
     canvas.addEventListener('pointerdown', onCanvasDown);
-    canvas.addEventListener('click', onClick);
+    container.addEventListener('click', onClick);
+    modal.addEventListener('click', function (e) { if (e.target === modal) modal.classList.remove('pf-open'); });
     var ro = new ResizeObserver(fit);
     ro.observe(container);
     fit();
@@ -303,10 +315,12 @@
         ro.disconnect();
         if (ghost) ghost.remove();
         container.innerHTML = '';
-        container.classList.remove('dd-host');
+        container.classList.remove('pf-host');
       }
     };
   }
 
-  window.DashboardDemo = DashboardDemo;
+  window.ProductDemo = ProductDemo;
+  var slot = document.getElementById('hero-dash');
+  if (slot) ProductDemo(slot);
 })();
