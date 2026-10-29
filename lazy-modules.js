@@ -8,7 +8,7 @@
   'use strict';
   var jobs = [
     ['[data-dna]', 'dna.js?v=2'],
-    ['#why-genxflo', 'why-cube.js'],
+    ['[data-cube]', 'why-cube.js'],
     ['[data-crystal-ball]', 'crystal-ball.js']
   ];
   function load(src) {

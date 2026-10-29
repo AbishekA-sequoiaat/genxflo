@@ -22,8 +22,6 @@
   [].forEach.call(rail.children, function (el) {
     if (el.matches('details.nav-group')) {
       var label = el.querySelector('summary').textContent.trim();
-      // Home group (Default / Version 1-3) hidden for now; delete this line to bring it back
-      if (label === 'Home') return;
       var links = [].map.call(el.querySelectorAll('.nav-submenu a'), function (a) { return [a.textContent.trim(), a.getAttribute('href')]; });
       columns.push({ label: label, links: links });
     } else if (el.matches('a') && el.textContent.trim() && el.textContent.trim() !== 'Login') {

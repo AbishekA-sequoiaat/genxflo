@@ -165,7 +165,7 @@ function mount(host) {
   if ('ResizeObserver' in window) new ResizeObserver(resize).observe(host);
 
   // scroll progress: measured over the column of cards beside the cube
-  var track = host.closest('.wy-layout') ? host.closest('.wy-layout').querySelector('.wy-right') : host.parentNode;
+  var track = host.closest('.wy-layout') ? host.closest('.wy-layout').querySelector('.wy-right') : (host.closest('.wg-wrap') || host.parentNode);
   function progress() {
     var r = track.getBoundingClientRect();
     var vh = window.innerHeight;
