@@ -22,7 +22,7 @@
   }
 
   // floating dust
-  var dust = hx.querySelector('.hx-dust');
+  var dust = null;
   var count = window.GX_LOW ? 14 : 30;
   if (dust && !reduce) {
     var frag = document.createDocumentFragment();

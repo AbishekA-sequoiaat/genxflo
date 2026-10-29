@@ -79,16 +79,30 @@
     ];
     var pt = [].slice.call(ph.querySelectorAll('[data-phn-tab]'));
     var pi = [].slice.call(ph.querySelectorAll('[data-phn-img]'));
-    pt.forEach(function (tb) {
-      tb.addEventListener('click', function () {
-        var i = +tb.getAttribute('data-phn-tab');
-        pt.forEach(function (x) { var on = x === tb; x.classList.toggle('is-on', on); x.setAttribute('aria-selected', String(on)); });
-        pi.forEach(function (im) { im.classList.toggle('is-on', +im.getAttribute('data-phn-img') === i); });
-        ph.querySelector('[data-phn-k]').textContent = views[i].k;
-        ph.querySelector('[data-phn-val]').textContent = views[i].v;
-        ph.querySelector('[data-phn-unit]').textContent = views[i].u;
-      });
-    });
+    var pcur = 1, ptimer = 0, phover = false, pvisible = false;
+    function pshow(i) {
+      pcur = (i + pt.length) % pt.length;
+      pt.forEach(function (x, k2) { var on = k2 === pcur; x.classList.toggle('is-on', on); x.setAttribute('aria-selected', String(on)); });
+      pi.forEach(function (im) { im.classList.toggle('is-on', +im.getAttribute('data-phn-img') === pcur); });
+      ph.querySelector('[data-phn-k]').textContent = views[pcur].k;
+      ph.querySelector('[data-phn-val]').textContent = views[pcur].v;
+      ph.querySelector('[data-phn-unit]').textContent = views[pcur].u;
+      pplan();
+    }
+    // the tabs change by themselves, in a loop (paused while hovered, focused or off screen)
+    function pplan() {
+      clearTimeout(ptimer);
+      if (reduce || phover || !pvisible) return;
+      ptimer = setTimeout(function () { pshow(pcur + 1); }, 3800);
+    }
+    pt.forEach(function (tb) { tb.addEventListener('click', function () { pshow(+tb.getAttribute('data-phn-tab')); }); });
+    ph.addEventListener('pointerenter', function () { phover = true; clearTimeout(ptimer); });
+    ph.addEventListener('pointerleave', function () { phover = false; pplan(); });
+    ph.addEventListener('focusin', function () { phover = true; clearTimeout(ptimer); });
+    ph.addEventListener('focusout', function () { phover = false; pplan(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) { pvisible = e[0].isIntersecting; if (pvisible) pplan(); else clearTimeout(ptimer); }, { threshold: 0.3 }).observe(ph);
+    }
   }
 
   // ---- Why GenXflo (cube section): feature explorer
