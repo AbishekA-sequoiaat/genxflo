@@ -2644,3 +2644,60 @@ body.home-page > main > section#overview .grid > p { padding: 1.1rem 1.3rem; bor
 /* research orbit: icon boxes without borders */
 .ro-ico, .ro-node:hover .ro-ico, .ro-node.is-on .ro-ico { border: 0; }
 .ro-arrow { border-radius: 4px; }
+
+/* tighter rhythm from "idea to pipeline" down to the FAQs */
+body.home-page main > section#why-steps, body.home-page main > section.dna-stage, body.home-page main > section#research-teams, body.home-page main > section#faqs { margin-top: clamp(1.5rem, 3.2vw, 3rem) !important; }
+body.home-page main > section#why-steps { padding-block: clamp(1.5rem, 3vw, 2.5rem); }
+body.home-page main > section.dna-stage { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
+body.home-page main > section#faqs { padding-block: clamp(1rem, 2vw, 2rem); }
+/* the hero video plays on its own: no play button */
+.hx-tilt .vs-play { display: none; }
+
+/* slightly tighter gaps between the remaining home sections */
+body.home-page main > section#why-genxflo, body.home-page main > section#ai-workflow, body.home-page main > section#lineup, body.home-page main > section.hero-v1--after, body.home-page main > section#get-started, body.home-page main > section#contact { margin-top: clamp(2.5rem, 5vw, 4.5rem) !important; }
+
+/* DNA section: full-width grey background, a heading, and lines above and below the marquee */
+body.home-page main > section.dna-stage { margin-inline: calc(50% - 50vw); background: #e6e6e4; padding-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+.dna-stage__title { position: relative; z-index: 3; margin: 0 0 clamp(1.2rem, 2.4vw, 2rem); text-align: center; font-family: var(--font-display, "Manrope", sans-serif); font-weight: 600; font-size: clamp(2rem, 3.4vw, 3rem); line-height: 1.1; letter-spacing: -.02em; color: #0a0d0c; }
+.dna-marquee { border-top: 1px solid rgba(13, 26, 20, .35); border-bottom: 1px solid rgba(13, 26, 20, .35); }
+.dna-stage .dna-stage__top { width: min(1500px, calc(100% - 96px)); }
+
+/* section headings in capitals */
+.dna-stage__title { text-transform: uppercase; letter-spacing: .02em; margin-bottom: clamp(2rem, 3.6vw, 3.2rem); font-size: clamp(1.7rem, 2.8vw, 2.4rem); }
+.phn-title { margin: 0 0 clamp(1.6rem, 3vw, 2.6rem); text-align: center; text-transform: uppercase; font-family: var(--font-display, "Manrope", sans-serif); font-weight: 600; font-size: clamp(1.7rem, 2.8vw, 2.4rem); line-height: 1.1; letter-spacing: .02em; color: #0a0d0c; }
+.phn-head { display: block; }
+.phn-title { padding-top: clamp(1.4rem, 2.6vw, 2.2rem); }
+.wg-top { text-transform: uppercase; letter-spacing: .02em; font-size: clamp(1.7rem, 2.8vw, 2.4rem); }
+.ro-title, #faqs h2 { text-transform: uppercase; letter-spacing: .02em; font-size: clamp(1.7rem, 2.8vw, 2.4rem); }
+
+/* hero (desktop): a little less space under the navbar, between the heading and the video */
+@media (min-width: 901px) {
+  .hx-stage { aspect-ratio: 1440 / 1010; }
+  .hx-copy { top: calc(var(--u) * 126); }
+  .hx-side { top: calc(var(--u) * 168); }
+  .hx-tilt { top: calc(var(--u) * 390); }
+  .hx-c1 { top: calc(var(--u) * 400); } .hx-c2 { top: calc(var(--u) * 450); }
+  .hx-c3 { top: calc(var(--u) * 595); } .hx-c4 { top: calc(var(--u) * 605); }
+  .hx-k1 { top: calc(var(--u) * 770); } .hx-k2 { top: calc(var(--u) * 760); } .hx-k3 { top: calc(var(--u) * 550); }
+}
+
+/* lineup: the grey background runs the full page width */
+body.home-page main > section#lineup { margin-inline: calc(50% - 50vw); padding-block: 0; }
+#lineup .ln-frame { width: 100%; border-radius: 0; }
+#lineup .ln-frame { padding-inline: 18px; box-sizing: border-box; }
+
+/* lineup: heading in capitals at the top centre; it sits directly under the AI section */
+.ln-title { text-transform: uppercase; letter-spacing: .02em; font-weight: 600; }
+@media (min-width: 901px) {
+  .ln-title { left: calc(50cqw - 2.6cqw); top: 2.8cqw; transform: translateX(-50%); width: max-content; font-size: clamp(1.7rem, 2.8vw, 2.4rem); }
+}
+body.home-page main > section#lineup { margin-top: 0 !important; }
+.ln-title { z-index: 3; padding: .1em .5em; background: #e6e6e4; }
+.hx-tilt .vs-screen { padding: 6px; }
+.phn-bullet { color: #0a0d0c; }
+body.home-page main > section#contact { margin-top: 0 !important; }
+body.home-page main > section#get-started { padding-bottom: clamp(.5rem, 1.2vw, 1rem); }
+body.home-page main > section#contact { margin-top: 1rem !important; }
+/* the navbar keeps a small gap from the top edge while scrolling */
+#site-header.mn-host { top: 12px; }
+@media (max-width: 900px) { #site-header.mn-host { top: 8px; } }

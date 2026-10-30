@@ -57,7 +57,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Design, validate, and export bioinformatics workflows with GenXflo.">
   <title>GenXflo – Visual Nextflow Pipeline Builder for Bioinformatics</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=324"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=342"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <script src="perf.js" defer></script>
   <script src="site.js?v=3" defer></script>
   <script src="menu-nav.js?v=3" defer></script>
@@ -91,18 +91,18 @@
       });
       var dev = document.querySelector('[data-vs-video]');
       if (!dev) return;
-      var v = dev.querySelector('video'), btn = dev.querySelector('.vs-play');
-      btn.addEventListener('click', function () {
-        dev.classList.add('is-playing');
-        v.controls = true;
-        var p = v.play();
-        // if the browser refuses sound, play it muted instead (the controls let the viewer unmute)
-        if (p && p.catch) p.catch(function () { v.muted = true; var q = v.play(); if (q && q.catch) q.catch(function () { dev.classList.remove('is-playing'); v.controls = false; }); });
-      });
-      v.addEventListener('ended', function () { dev.classList.remove('is-playing'); v.controls = false; });
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (entries) { entries.forEach(function (e) { if (!e.isIntersecting && !v.paused) v.pause(); }); }, { threshold: 0.05 }).observe(v);
+      var v = dev.querySelector('video');
+      // the product video plays by itself (muted, looping) while it is on screen and pauses when it is not
+      var reduceMo = mm('(prefers-reduced-motion: reduce)'), saver = navigator.connection && navigator.connection.saveData;
+      if (reduceMo || saver) { v.controls = true; return; }
+      var inView = false, ready = document.readyState === 'complete';
+      function sync() {
+        if (ready && inView) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause();
       }
+      if (!ready) window.addEventListener('load', function () { ready = true; sync(); });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) { entries.forEach(function (e) { inView = e.isIntersecting; sync(); }); }, { threshold: 0.15 }).observe(v);
+      } else { inView = true; sync(); }
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
   })();
@@ -262,8 +262,7 @@
         <div class="hx-tilt" data-hx-tilt>
           <figure class="vs-device" data-vs-video>
             <div class="vs-screen">
-              <video aria-label="GenXflo workflow builder overview" playsinline preload="none" poster="images/Connect.webp"><source src="Genxflo-video.mp4" type="video/mp4">Your browser does not support the video tag.</video>
-              <button type="button" class="vs-play" aria-label="Play the product video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+              <video aria-label="GenXflo workflow builder overview" muted loop playsinline preload="metadata" poster="images/Connect.webp"><source src="Genxflo-video.mp4" type="video/mp4">Your browser does not support the video tag.</video>
             </div>
           </figure>
         </div>
@@ -451,10 +450,10 @@
     <!-- Section B: from idea to pipeline (headline + wires, phone-style card, two notes) -->
     <section class="phn" id="why-steps" aria-labelledby="phn-title" data-phn>
       <div class="phn-wrap">
+        <h2 class="phn-title">From idea to pipeline</h2>
         <div class="phn-grid">
           <div class="phn-left">
-            <p class="phn-kicker">From idea to pipeline</p>
-            <h2 class="phn-head" id="phn-title">Your analysis could go from idea to a validated pipeline in minutes. Let&rsquo;s make it reproducible!</h2>
+            <p class="phn-head" id="phn-title">Your analysis could go from idea to a validated pipeline in minutes. Let&rsquo;s make it reproducible!</p>
             <div class="phn-lw" aria-hidden="true">
               <svg viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false"><path d="M24 0V58H100"/></svg>
               <i style="top:58%"></i>
@@ -477,13 +476,15 @@
           </div>
           <ul class="phn-notes">
             <li><span class="phn-bullet" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 12.5 4 4 8-9"/></svg></span><p>Describe a workflow to your AI client and the GenXflo MCP server drafts and validates the pipeline for you.</p></li>
-            <li><span class="phn-bullet" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 12.5 4 4 8-9"/></svg></span><p>Every change is versioned, so you can review history and restore an earlier pipeline with one click. Add your own tools too.</p></li>
+            <li><span class="phn-bullet" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 12.5 4 4 8-9"/></svg></span><p>Every change is versioned, so you can review history and restore an earlier pipeline with one click.</p></li>
+            <li><span class="phn-bullet" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 12.5 4 4 8-9"/></svg></span><p>Bring your own tools: add a custom component with its command and inputs, and it joins the palette next to the built-in ones.</p></li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="dna-stage" aria-label="Reproducible pipelines">
+    <section class="dna-stage" aria-labelledby="dna-title">
+      <h2 class="dna-stage__title" id="dna-title">Reproducible by design</h2>
       <div class="dna-stage__top">
         <p class="dna-stage__label"><i aria-hidden="true"></i>Reproducible science, made visual</p>
         <div class="dna-stage__copy"><p>Your data and your results are our highest priority.<br>Our platform brings visual design, AI validation and one-click export together so research teams can build Nextflow pipelines with confidence, every connection, parameter and container checked before a single run.</p></div>
