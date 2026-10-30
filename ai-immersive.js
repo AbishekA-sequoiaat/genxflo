@@ -19,6 +19,13 @@
   var views = [].slice.call(root.querySelectorAll('[data-ax-v]'));
   var q = function (s) { return root.querySelector(s); };
   var linesEl = q('[data-ax-lines]');
+  var narrow = window.matchMedia('(max-width: 1000px)');
+  var logEl = q('.ax-log'), stepsEl = q('.ax-steps');
+  // phones and tablets: the steps become an accordion and the AI card opens right under the chosen step
+  function place() {
+    if (narrow.matches) stepsEl.insertBefore(logEl, tabs[cur].nextSibling);
+    else stepsEl.parentNode.appendChild(logEl);
+  }
   var cur = 0, timer = 0, typer = [], hovering = false, visible = false;
 
   function type(lines) {
@@ -41,7 +48,7 @@
   function plan() {
     clearTimeout(timer);
     root.classList.toggle('is-paused', hovering || !visible || reduce);
-    if (reduce || hovering || !visible) return;
+    if (reduce || hovering || !visible || narrow.matches) return;
     timer = setTimeout(function () { show(cur + 1); }, DURATION);
   }
   function show(i, focus) {
@@ -59,6 +66,7 @@
     q('[data-ax-desc]').textContent = STEPS[cur].d;
     root.classList.remove('is-swap'); void root.offsetWidth; root.classList.add('is-swap');
     type(STEPS[cur].log);
+    place();
     plan();
   }
   tabs.forEach(function (t, k) {
@@ -75,6 +83,7 @@
     new IntersectionObserver(function (e) { visible = e[0].isIntersecting; root.classList.toggle('is-off', !visible); if (visible) { plan(); } else clearTimeout(timer); }, { threshold: 0.25 }).observe(root);
   } else visible = true;
   show(0);
+  (narrow.addEventListener ? narrow.addEventListener('change', function () { place(); plan(); }) : 0);
 
   // pointer: spotlight + depth parallax
   if (reduce || !fine) return;

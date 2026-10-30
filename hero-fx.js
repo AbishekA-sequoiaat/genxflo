@@ -14,9 +14,9 @@
 
   // headline and layers appear after the loading screen opens
   function start() { hx.classList.add('is-in'); }
-  if (!root.classList.contains('is-loading')) start();
+  if (!root.classList.contains('is-loading') || root.classList.contains('is-revealed')) start();
   else {
-    var mo = new MutationObserver(function () { if (!root.classList.contains('is-loading')) { mo.disconnect(); start(); } });
+    var mo = new MutationObserver(function () { if (!root.classList.contains('is-loading') || root.classList.contains('is-revealed')) { mo.disconnect(); start(); } });
     mo.observe(root, { attributes: true, attributeFilter: ['class'] });
     setTimeout(start, 9000);
   }
@@ -43,17 +43,12 @@
   if (reduce || !fine || !wide) return;
 
   // pointer: spotlight, tilt, parallax (one rAF per frame at most)
-  var tilt = hx.querySelector('[data-hx-tilt] .vs-device');
   var layers = [].slice.call(hx.querySelectorAll('[data-depth]'));
   var nx = 0, ny = 0, px = 0.5, py = 0.4, queued = false;
   function paint() {
     queued = false;
     hx.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
     hx.style.setProperty('--my', (py * 100).toFixed(1) + '%');
-    if (tilt) {
-      tilt.style.setProperty('--ry', (nx * 5).toFixed(2) + 'deg');
-      tilt.style.setProperty('--rx', (-ny * 4).toFixed(2) + 'deg');
-    }
     layers.forEach(function (l) {
       var k = +l.getAttribute('data-depth');
       l.style.translate = (nx * k).toFixed(1) + 'px ' + (ny * k * 0.7).toFixed(1) + 'px';

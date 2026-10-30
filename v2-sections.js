@@ -112,27 +112,27 @@
       { t: 'Visual builder', link: 'pages/product-overview.html#steps',
         d: [['Interface', 'Drag-and-drop canvas'], ['Syntax', 'None to write by hand'], ['Output', 'Nextflow pipeline'], ['Start from', 'Ready-made templates']],
         st: [['1', 'canvas for every pipeline step', 'Visual builder'], ['0', 'lines of pipeline syntax by hand', 'No code'], ['4', 'steps: drag, connect, validate, export', 'Workflow']],
-        n: ['Build workflows on a canvas, not in boilerplate.', 'Connect processes and configure analyses visually, without writing pipeline syntax by hand.'] },
+        n: ['Build workflows on a canvas, not in boilerplate.', ''] },
       { t: 'Speed', link: 'pages/product-overview.html',
         d: [['Manual build', '40h'], ['With GenXflo', '4h'], ['Saved', '36 hours per pipeline'], ['Start with', 'Templates']],
         st: [['10\u00d7', 'less time building', 'Speed'], ['40h\u21924h', 'time to build a pipeline', 'Manual vs GenXflo'], ['36h', 'saved per pipeline', 'Time saved']],
-        n: ['Less time building.', 'Start with templates and focus on the science.'] },
+        n: ['Less time building.', ''] },
       { t: 'Bioinformatics tools', link: 'pages/integrations.html',
         d: [['Covers', 'QC, alignment, transcriptomics'], ['QC', 'FastQC, MultiQC'], ['Alignment', 'STAR, Hisat2, BWA'], ['Analysis', 'Salmon, DESeq2, Samtools']],
         st: [['8', 'popular tools one drag away', 'Tool library'], ['QC', 'alignment, transcriptomics and more', 'Coverage'], ['STAR', 'Salmon, DESeq2, MultiQC and more', 'Popular tools']],
-        n: ['Tools scientists use.', 'QC, alignment, transcriptomics, and more.'] },
+        n: ['Tools scientists use.', ''] },
       { t: 'Nextflow', link: 'pages/workflow-export.html',
         d: [['Runs on', 'Local, HPC or cloud'], ['Command', 'nextflow run main.nf'], ['Containers', 'Docker ready'], ['Portable', 'By design']],
         st: [['3', 'places to run: local, HPC or cloud', 'Portability'], ['v24.04', 'Docker container ready', 'Containers'], ['1', 'command: nextflow run main.nf', 'Launch']],
-        n: ['Portable by design.', 'Run locally, on HPC, or in the cloud.'] },
+        n: ['Portable by design.', ''] },
       { t: 'Reproducible runs', link: 'pages/product-overview.html',
         d: [['Versioned', 'Every output'], ['Latest', 'RNA-seq run v3'], ['History', 'v2 and v1 kept'], ['Result', 'Consistent analyses']],
         st: [['v3', 'latest RNA-seq run', 'Versioned outputs'], ['3', 'versions kept: v1, v2 and v3', 'History'], ['#a3f9c', 'run ID you can trace', 'Run trace']],
-        n: ['Trace every run.', 'Versioned outputs keep analyses consistent.'] },
+        n: ['Trace every run.', ''] },
       { t: 'Collaboration', link: 'pages/product-overview.html',
         d: [['Share', 'Templates and snapshots'], ['Compare', 'Run comparison'], ['Team', 'One shared canvas'], ['Flow', 'Reads to report']],
         st: [['+3', 'teammates on one canvas', 'Team'], ['v2', 'template shared with the team', 'Templates'], ['1', 'canvas from reads to report', 'Workflow']],
-        n: ['Keep teams aligned.', 'Share templates and snapshots with ease, then go from reads to a report in one canvas.'] }
+        n: ['Keep teams aligned.', ''] }
     ];
     var wq = function (s) { return wg.querySelector(s); };
     var wtabs = [].slice.call(wg.querySelectorAll('[data-wg-tab]'));

@@ -31,6 +31,9 @@
       if (!s) return; e.preventDefault(); show(cur + s, true);
     });
   });
+  var pv = root.querySelector('[data-ro-prev]'), nx = root.querySelector('[data-ro-next]');
+  if (pv) pv.addEventListener('click', function () { show(cur - 1); });
+  if (nx) nx.addEventListener('click', function () { show(cur + 1); });
   root.addEventListener('pointerenter', function () { hold = true; clearTimeout(timer); });
   root.addEventListener('pointerleave', function () { hold = false; plan(); });
   root.addEventListener('focusin', function () { hold = true; clearTimeout(timer); });

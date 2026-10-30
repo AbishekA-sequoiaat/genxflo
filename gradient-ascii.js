@@ -475,6 +475,7 @@ void main() {
       scrambleRadius: clamp(o.scrambleRadius, 0.02, 0.4),
       clickEffect: CLICK_EFFECTS[o.clickEffect] != null ? CLICK_EFFECTS[o.clickEffect] : 1,
       intro: !!o.intro,
+      introSeconds: +o.introSeconds > 0 ? +o.introSeconds : 0,
       lightMode: !!o.lightMode,
       fontFamily: o.fontFamily || DEFAULT_FONT,
       dpr: o.dpr
@@ -712,7 +713,7 @@ void main() {
         time += dt * s.speed * 0.5;
         glyphTime += dt * Math.max(s.speed, 0.15);
       }
-      if (introClock < 1) introClock = Math.min(1, introClock + dt / INTRO_SECONDS);
+      if (introClock < 1) introClock = Math.min(1, introClock + dt / (settings.introSeconds || INTRO_SECONDS));
       grainClock += dt;
       if (!reduce && grainClock > 1 / 24) {
         grainClock = 0;
