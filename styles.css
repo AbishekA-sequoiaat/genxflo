@@ -1503,7 +1503,7 @@ main:has(.pl) { counter-reset: pl-n; }
 }
 /* band: a soft tinted band with a large section number */
 .pl-band { background: linear-gradient(180deg, rgba(6, 160, 101, .07), rgba(6, 160, 101, .02)); border-block: 1px solid rgba(6, 160, 101, .16); }
-.pl-band::after, .pl-index::after { content: counter(pl-n, decimal-leading-zero); position: absolute; right: max(2rem, 4vw); top: .5rem; font: 700 clamp(5rem, 12vw, 10rem)/1 "Manrope", sans-serif; letter-spacing: -.04em; color: rgba(6, 160, 101, .08); pointer-events: none; }
+.pl-band::after, .pl-index::after { content: none; /* numbering removed */ position: absolute; right: max(2rem, 4vw); top: .5rem; font: 700 clamp(5rem, 12vw, 10rem)/1 "Manrope", sans-serif; letter-spacing: -.04em; color: rgba(6, 160, 101, .08); pointer-events: none; }
 .pl-band .pl-box { border-top-color: rgba(6, 160, 101, .32); }
 /* rail: a vertical timeline with a dot per block */
 .pl-rail .pl-body { padding-left: 3.2rem; }
@@ -1513,7 +1513,10 @@ main:has(.pl) { counter-reset: pl-n; }
 /* index: centred heading and numbered items */
 .pl-index .pl-head { flex-direction: column; align-items: center; gap: .9rem; text-align: center; }
 .pl-index .pl-body { counter-reset: pl-b; }
-.pl-index .grid > .pl-box:not(.pl-note)::before { counter-increment: pl-b; content: counter(pl-b, decimal-leading-zero); display: block; margin-bottom: .5rem; font: 700 .8rem/1 "Manrope", sans-serif; letter-spacing: .14em; color: #07895a; }
+.pl-index .grid > .pl-box:not(.pl-note)::before { content: none; display: block; margin-bottom: .5rem; font: 700 .8rem/1 "Manrope", sans-serif; letter-spacing: .14em; color: #07895a; }
+/* sections that should carry no numbering (PDF review notes) */
+.pl-index.pl-nonum::after { content: none; }
+.pl-index.pl-nonum .grid > .pl-box:not(.pl-note)::before { content: none; }
 @media (max-width: 999px) {
   .pl-rail .pl-body { padding-left: 2.2rem; }
   .pl-rail .pl-body::before { left: .55rem; }
@@ -1532,7 +1535,7 @@ main:has(.pl) { counter-reset: pl-n; }
 .po-applications .po-cards { counter-reset: po-i; column-gap: clamp(1.5rem, 3vw, 3rem); row-gap: 1.8rem; }
 .po-applications .po-card { counter-increment: po-i; }
 .po-applications .po-card > span[aria-hidden] { display: none; }
-.po-applications .po-card::before { content: counter(po-i, decimal-leading-zero); font: 700 .8rem/1 "Manrope", sans-serif; letter-spacing: .14em; color: #07895a; }
+.po-applications .po-card::before { content: none; font: 700 .8rem/1 "Manrope", sans-serif; letter-spacing: .14em; color: #07895a; }
 @media (min-width: 1000px) {
   .po-why > div { display: grid; grid-template-columns: minmax(240px, .32fr) minmax(0, 1fr); column-gap: clamp(2rem, 5vw, 5rem); align-items: start; }
   .po-why > div > * { grid-column: 2; }
@@ -1579,8 +1582,7 @@ main:has(.pl) { counter-reset: pl-n; }
 @property --sp { syntax: '<number>'; inherits: false; initial-value: 0; }
 .fx-bar { position: fixed; left: 0; top: 0; z-index: 60; width: 100%; height: 3px; transform: scaleX(0); transform-origin: 0 50%; background: linear-gradient(90deg, #4ce3a3, #06a065); box-shadow: 0 0 12px rgba(76, 227, 163, .7); pointer-events: none; }
 /* scroll reveal */
-.fx-r { opacity: 0; transform: translateY(26px); transition: opacity .75s cubic-bezier(.2, .7, .2, 1), transform .75s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--d, 0ms); }
-.fx-r.fx-in { opacity: 1; transform: none; }
+.fx-r { opacity: 1; transform: none; }
 /* hero: a small animated pipeline either side of the centred heading */
 .fx-host { position: relative; }
 .fx-host > *:not(.fx-deco) { position: relative; z-index: 1; }
@@ -1605,7 +1607,6 @@ main:has(.pl) { counter-reset: pl-n; }
 .fx .pl-head h2, .fx .pl-head h3 { position: relative; }
 .fx .pl-head h2::after, .fx .pl-head h3::after { content: ""; display: block; width: 64px; height: 3px; margin-top: .7rem; border-radius: 2px; background: linear-gradient(90deg, #4ce3a3, #06a065); transition: width .9s cubic-bezier(.2, .7, .2, 1) .25s; }
 .fx .pl-index .pl-head h2::after, .fx .pl-index .pl-head h3::after { margin-inline: auto; }
-.fx .pl-head.fx-r:not(.fx-in) h2::after, .fx .pl-head.fx-r:not(.fx-in) h3::after { width: 0; }
 .fx .pl-head > span.grid { animation: fx-bob 5.5s ease-in-out infinite; box-shadow: 0 10px 26px rgba(6, 160, 101, .32); }
 /* blocks: a green spotlight follows the cursor, the hairline lights up */
 .fx .pl .pl-box:not(.pl-note), .fx .po .po-card, .fx .pl .pl-faq { --sp: 0; transition: --sp .35s ease, border-color .3s ease; }

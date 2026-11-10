@@ -119,11 +119,11 @@
         n: ['Less time building.', ''] },
       { t: 'Bioinformatics tools', link: 'pages/integrations.html',
         d: [['Covers', 'QC, alignment, transcriptomics'], ['QC', 'FastQC, MultiQC'], ['Alignment', 'STAR, Hisat2, BWA'], ['Analysis', 'Salmon, DESeq2, Samtools']],
-        st: [['8', 'popular tools one drag away', 'Tool library'], ['QC', 'alignment, transcriptomics and more', 'Coverage'], ['STAR', 'Salmon, DESeq2, MultiQC and more', 'Popular tools']],
+        st: [['17', 'supported tools one drag away', 'Tool library'], ['QC', 'alignment, transcriptomics and more', 'Coverage'], ['STAR', 'Salmon, DESeq2, MultiQC and more', 'Popular tools']],
         n: ['Tools scientists use.', ''] },
-      { t: 'Nextflow', link: 'pages/workflow-export.html',
-        d: [['Runs on', 'Local, HPC or cloud'], ['Command', 'nextflow run main.nf'], ['Containers', 'Docker ready'], ['Portable', 'By design']],
-        st: [['3', 'places to run: local, HPC or cloud', 'Portability'], ['v24.04', 'Docker container ready', 'Containers'], ['1', 'command: nextflow run main.nf', 'Launch']],
+      { t: 'Environment', link: 'pages/workflow-export.html',
+        d: [['Runs on', 'Local, HPC or cloud'], ['Command', 'make run'], ['Containers', 'Docker ready'], ['Portable', 'By design']],
+        st: [['3', 'places to run: local, HPC or cloud', 'Portability'], ['Docker', 'container ready', 'Containers'], ['1', 'command: make run', 'Launch']],
         n: ['Portable by design.', ''] },
       { t: 'Reproducible runs', link: 'pages/product-overview.html',
         d: [['Versioned', 'Every output'], ['Latest', 'RNA-seq run v3'], ['History', 'v2 and v1 kept'], ['Result', 'Consistent analyses']],
@@ -131,7 +131,7 @@
         n: ['Trace every run.', ''] },
       { t: 'Collaboration', link: 'pages/product-overview.html',
         d: [['Share', 'Templates and snapshots'], ['Compare', 'Run comparison'], ['Team', 'One shared canvas'], ['Flow', 'Reads to report']],
-        st: [['+3', 'teammates on one canvas', 'Team'], ['v2', 'template shared with the team', 'Templates'], ['1', 'canvas from reads to report', 'Workflow']],
+        st: [['+3', 'teammates on canvas', 'Team'], ['v2', 'template shared with the team', 'Templates'], ['1', 'canvas from reads to report', 'Workflow']],
         n: ['Keep teams aligned.', ''] }
     ];
     var wq = function (s) { return wg.querySelector(s); };

@@ -10,8 +10,8 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
   var STEPS = [
-    { t: 'Design Visually', d: 'Build and connect processes effortlessly using our visual workflow builder. Create complete bioinformatics workflows in minutes through an intuitive drag-and-drop interface.', log: ['Reading your canvas\u2026', 'FastQC \u2192 STAR \u2192 Salmon linked', 'Inputs and outputs matched', 'Draft pipeline ready'] },
-    { t: 'Configure Parameters', d: 'Easily set input files, adjust tool parameters, and manage compute resources using smart, guided forms. Simplifies bioinformatics workflow automation by handling syntax for you.', log: ['Suggesting defaults for STAR', 'Reference set to GRCh38', 'Threads: 8, paired-end on', 'All parameters validated'] },
+    { t: 'Design Visually', d: 'Build and connect tools effortlessly using our visual workflow builder. Create complete bioinformatics workflows in minutes through an intuitive drag-and-drop interface.', log: ['Reading your canvas\u2026', 'FastQC \u2192 STAR \u2192 Salmon linked', 'Inputs and outputs matched', 'Draft pipeline ready'] },
+    { t: 'Configure Parameters', d: 'Set up input files easily, adjust tool parameters, and manage compute resources using smart, guided forms. Simplifies bioinformatics workflow automation by handling syntax for you.', log: ['Suggesting defaults for STAR', 'Reference set to GRCh38', 'Threads: 8, paired-end on', 'All parameters validated'] },
     { t: 'Generate & Deploy', d: 'Export clean, production-ready bioinformatics pipelines and run them anywhere: locally, on HPC, or in the cloud. Ensure your workflow stays reproducible, scalable, and easy to maintain.', log: ['Generating Nextflow code\u2026', 'Containers pinned and documented', 'Targets ready: local, HPC, cloud', 'Pipeline exported \u2713'] }
   ];
   var DURATION = 7500;

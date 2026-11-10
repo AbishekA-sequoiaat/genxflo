@@ -57,9 +57,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Design, validate, and export bioinformatics workflows with GenXflo.">
   <title>GenXflo – Visual Nextflow Pipeline Builder for Bioinformatics</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=342"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=347"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <script src="perf.js" defer></script>
-  <script src="site.js?v=4" defer></script>
+  <script src="site.js?v=6" defer></script>
   <script src="menu-nav.js?v=3" defer></script>
   <!-- pinned scroll animation for the AI section switched off for now: <script src="ai-scroll.js" defer></script> -->
   <script src="whats-new-dnd.js?v=2" defer></script>
@@ -108,12 +108,12 @@
   })();
   </script>
   <script src="lazy-modules.js" defer></script>
-  <script src="v2-sections.js?v=7" defer></script>
+  <script src="v2-sections.js?v=8" defer></script>
   <script src="v2-lineup.js?v=2" defer></script>
   <script src="gradient-ascii.js?v=2" defer></script>
   <script src="hero-fx.js?v=4" defer></script>
   <script src="research-teams.js?v=4" defer></script>
-  <script src="ai-immersive.js?v=3" defer></script>
+  <script src="ai-immersive.js?v=4" defer></script>
 </head>
 <body class="home-page theme-light bg-solid-f4 relative isolate m-0 block min-h-screen bg-home-canvas bg-[radial-gradient(ellipse_52%_34%_at_78%_4%,rgba(6,160,101,.14),transparent_76%),radial-gradient(ellipse_36%_26%_at_12%_34%,rgba(6,160,101,.07),transparent_78%)] p-[18px] font-sans text-home-ink leading-[1.65] max-[900px]:p-0">
   <div id="gx-loader" role="status" aria-live="polite" aria-label="Loading GenXflo">
@@ -253,7 +253,7 @@
         </div>
 
         <div class="hx-side">
-          <p>Design, validate and export reproducible Nextflow pipelines on a visual canvas, with no pipeline syntax to write.</p>
+          <p>Design, validate and export reproducible Nextflow pipelines using a visual builder, not code.</p>
           <p class="hx-cta"><a class="hx-btn" href="https://genxflo.com/app/register">Start Building <span class="hx-arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span></a><a class="hx-ghost" href="pages/product-overview.html">Learn About GenXflo</a></p>
         </div>
 
@@ -262,7 +262,7 @@
         <div class="hx-tilt" data-hx-tilt>
           <figure class="vs-device" data-vs-video>
             <div class="vs-screen">
-              <video aria-label="GenXflo workflow builder overview" muted loop playsinline preload="metadata" poster="images/Connect.webp"><source src="Genxflo-video.mp4" type="video/mp4">Your browser does not support the video tag.</video>
+              <video aria-label="GenXflo workflow builder overview" muted loop playsinline preload="metadata" poster="images/Connect.webp"><source src="Genxflo-video-new.mp4" type="video/mp4">Your browser does not support the video tag.</video>
             </div>
           </figure>
         </div>
@@ -286,7 +286,7 @@
           <button type="button" role="tab" class="is-on" aria-selected="true" data-wg-tab="0"><i></i>Visual builder</button>
           <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="1"><i></i>Speed</button>
           <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="2"><i></i>Bioinformatics</button>
-          <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="3"><i></i>Nextflow</button>
+          <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="3"><i></i>Environment</button>
           <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="4"><i></i>Reproducible</button>
           <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="5"><i></i>Collaboration</button>
         </nav>
@@ -303,9 +303,9 @@
             <div class="wg-v is-on" data-wg-v="0"><div class="wv-tools"><span class="wv-chip">FastQC</span><span class="wv-chip">FastP</span><span class="wv-chip">STAR</span><span class="wv-chip">Samtools</span></div><div class="pv-chain"><span>Samples</span><i></i><span>FastP</span><i></i><span>STAR</span></div><p class="pv-foot"><b></b>Drag, connect and configure on one canvas</p></div>
             <div class="wg-v" data-wg-v="1"><div class="wv-bars"><div><span>Manual</span><i style="--w:100%"><b>40h</b></i></div><div><span>GenXflo</span><i class="wv-on" style="--w:10%"><b>4h</b></i></div></div><p class="wv-big">10&times; <small>less time building</small></p></div>
             <div class="wg-v" data-wg-v="2"><div class="wv-tools wv-tools--grid"><span class="wv-chip">FastQC</span><span class="wv-chip">STAR</span><span class="wv-chip">Salmon</span><span class="wv-chip">DESeq2</span><span class="wv-chip">MultiQC</span><span class="wv-chip">Hisat2</span><span class="wv-chip">BWA</span><span class="wv-chip">Samtools</span></div><p class="pv-foot"><b></b>QC, alignment, transcriptomics and more</p></div>
-            <div class="wg-v" data-wg-v="3"><div class="wv-term"><p><u>$</u> nextflow run main.nf -profile cloud</p><p class="wv-ok">&#10003; docker &middot; v24.04 ready</p></div><div class="wv-tools"><span class="wv-chip">Local</span><span class="wv-chip">HPC</span><span class="wv-chip">Cloud</span></div></div>
+            <div class="wg-v" data-wg-v="3"><div class="wv-term"><p><u>$</u> make run</p><p class="wv-ok">&#10003; docker &middot; container ready</p></div><div class="wv-tools"><span class="wv-chip">Local</span><span class="wv-chip">HPC</span><span class="wv-chip">Cloud</span></div></div>
             <div class="wg-v" data-wg-v="4"><ul class="pv-ver"><li class="is-cur"><b>#a3f9c</b><span>RNA-seq run</span><em>v3</em></li><li><b>#7be21</b><span>RNA-seq run</span><em>v2</em></li><li><b>#1d04b</b><span>QC only</span><em>v1</em></li></ul></div>
-            <div class="wg-v" data-wg-v="5"><div class="wv-team"><span>AK</span><span>MS</span><span>JR</span><span class="wv-more">+3</span></div><ul class="pv-ver"><li class="is-cur"><b>Shared</b><span>Template v2</span><em>Now</em></li><li><b>Compared</b><span>RNA-seq runs</span><em>Today</em></li></ul></div>
+            <div class="wg-v" data-wg-v="5"><div class="wv-team"><span>AK</span><span>MS</span><span>JR</span><span class="wv-more">+3</span></div><p class="pv-foot"><b></b>+3 teammates on canvas</p><ul class="pv-ver"><li class="is-cur"><b>Shared</b><span>Template v2</span><em>Now</em></li><li><b>Compared</b><span>RNA-seq runs</span><em>Today</em></li></ul></div>
           </div>
           <div class="wg-exec">
             <p><span>Details</span><a class="wg-go" href="pages/product-overview.html" data-wg-link>Explore</a></p>
@@ -341,7 +341,7 @@
           <div class="ax-core" data-ax-core>
             <svg class="ax-rings" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><circle class="ax-r1" cx="300" cy="300" r="280"/><circle class="ax-r2" cx="300" cy="300" r="215"/><circle class="ax-r3" cx="300" cy="300" r="150"/><circle class="ax-o1" r="6" cx="300" cy="20"/><circle class="ax-o2" r="5" cx="515" cy="300"/></svg>
             <div id="ai-ball" class="ax-orb" data-crystal-ball aria-hidden="true"></div>
-            <h2 id="ai-orbit-title" class="ax-title">We integrated AI to ease the workflow</h2>
+            <h2 id="ai-orbit-title" class="ax-title">We integrated AI to ease building the workflow</h2>
             <span class="ax-pulse" aria-hidden="true"></span>
             
             
@@ -431,18 +431,15 @@
       <!-- <div class="hero-v1__tools" aria-label="Bioinformatics tools supported"><span><i class="ph-bold ph-dna"></i>FastQC</span><span><i class="ph-bold ph-flask"></i>STAR</span><span><i class="ph-bold ph-test-tube"></i>Salmon</span><span><i class="ph-bold ph-chart-bar"></i>MultiQC</span><span><i class="ph-bold ph-graph"></i>DESeq2</span><span><i class="ph-bold ph-package"></i>Hisat2</span><span><i class="ph-bold ph-gear"></i>BWA</span><span><i class="ph-bold ph-plugs-connected"></i>Samtools</span></div> -->
       <div class="hero-v1__news"><aside class="group relative m-0 flex min-h-0 min-w-0 flex-col justify-start border-0 bg-transparent p-0 shadow-none ">
           <div class="news-head mb-5 flex items-center justify-center"><h2 class="m-0 text-center font-display text-[clamp(1.9rem,3vw,2.6rem)] font-semibold leading-tight text-[#f1f1f1] uppercase tracking-normal">What's New in GenXflo</h2></div>
-          <div class="dd" data-dd data-edges="0-1,0-2,1-3,2-3,3-4,3-5,3-6">
+          <div class="dd" data-dd data-edges="0-1,1-2,1-3">
             <!-- interactive board (hint + Reset) switched off for now:
             <div class="dd-bar"><span class="dd-hint"><i class="ph-bold ph-arrows-left-right" aria-hidden="true"></i>Drag the nodes, the connections follow</span><button class="dd-reset" type="button" data-dd-reset><i class="ph-bold ph-arrow-counter-clockwise" aria-hidden="true"></i>Reset</button></div>
             -->
             <svg class="dd-lines" aria-hidden="true"></svg>
           <article class="dd-node" data-dd-node data-x="2" data-y="235" tabindex="0" aria-label="MCP Server: Generate and validate pipelines programmatically, without a browser."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-target"></i></span><h3>MCP Server</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">Generate and validate pipelines programmatically, without a browser.</p></article>
-          <article class="dd-node" data-dd-node data-x="26" data-y="72" tabindex="0" aria-label="Pipeline Versioning: Review history, download prior outputs, and restore earlier configurations."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-arrow-counter-clockwise"></i></span><h3>Pipeline Versioning</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">Review history, download prior outputs, and restore earlier configurations.</p></article>
-          <article class="dd-node" data-dd-node data-x="26" data-y="400" tabindex="0" aria-label="API Keys: Tiered personal keys for scripted pipeline submission and downloads."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-lightning"></i></span><h3>API Keys</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">Tiered personal keys for scripted pipeline submission and downloads.</p></article>
-          <article class="dd-node" data-dd-node data-x="50" data-y="235" tabindex="0" aria-label="Keycloak Auth: Centralized authentication plus a download ownership guard."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-circle-dashed"></i></span><h3>Keycloak Auth</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">Centralized authentication plus a download ownership guard.</p></article>
-          <article class="dd-node" data-dd-node data-x="76" data-y="58" tabindex="0" aria-label="AI Validation: DAG structure and biological logic checked before you stitch a pipeline."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-sparkle"></i></span><h3>AI Validation</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">DAG structure and biological logic checked before you stitch a pipeline.</p></article>
-          <article class="dd-node" data-dd-node data-x="76" data-y="236" tabindex="0" aria-label="Custom Components: AI-generated tool configs and Dockerfiles for your own bioinformatics tools."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-package"></i></span><h3>Custom Components</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">AI-generated tool configs and Dockerfiles for your own bioinformatics tools.</p></article>
-          <article class="dd-node" data-dd-node data-x="76" data-y="414" tabindex="0" aria-label="SMTP Service: Centralized transactional email delivery through Microsoft Graph."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-envelope-simple"></i></span><h3>SMTP Service</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">Centralized transactional email delivery through Microsoft Graph.</p></article>
+          <article class="dd-node" data-dd-node data-x="34" data-y="235" tabindex="0" aria-label="Pipeline Versioning: Review history, download prior outputs, and restore earlier configurations."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-arrow-counter-clockwise"></i></span><h3>Pipeline Versioning</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">Review history, download prior outputs, and restore earlier configurations.</p></article>
+          <article class="dd-node" data-dd-node data-x="68" data-y="110" tabindex="0" aria-label="AI Validation: DAG structure and tool logic checked before you stitch a pipeline."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-sparkle"></i></span><h3>AI Validation</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">DAG structure and tool logic checked before you stitch a pipeline.</p></article>
+          <article class="dd-node" data-dd-node data-x="68" data-y="360" tabindex="0" aria-label="Custom Components: AI-generated tool configs and Dockerfiles for your own bioinformatics tools."><span class="dd-port dd-port--in" aria-hidden="true"></span><span class="dd-port dd-port--out" aria-hidden="true"></span><div class="dd-head"><span class="dd-ico" aria-hidden="true"><i class="ph-bold ph-package"></i></span><h3>Custom Components</h3><span class="dd-grip" aria-hidden="true"></span></div><p class="dd-label">Overview</p><p class="dd-text">AI-generated tool configs and Dockerfiles for your own bioinformatics tools.</p></article>
           </div>
         </aside></div>
     </section>
@@ -487,7 +484,7 @@
       <h2 class="dna-stage__title" id="dna-title">Reproducible by design</h2>
       <div class="dna-stage__top">
         <p class="dna-stage__label"><i aria-hidden="true"></i>Reproducible science, made visual</p>
-        <div class="dna-stage__copy"><p>Your data and your results are our highest priority.<br>Our platform brings visual design, AI validation and one-click export together so research teams can build Nextflow pipelines with confidence, every connection, parameter and container checked before a single run.</p></div>
+        <div class="dna-stage__copy"><p>Your data and your results are our highest priority.<br>Our platform brings visual design, AI validation and one-click export together so research teams can build Nextflow pipelines with confidence.</p></div>
       </div>
       <div class="dna-marquee" aria-hidden="true"><div class="dna-marquee__track"><div class="dna-marquee__group"><span>BIOINFORMATICS PIPELINES</span><span>BIOINFORMATICS PIPELINES</span><span>BIOINFORMATICS PIPELINES</span><span>BIOINFORMATICS PIPELINES</span></div><div class="dna-marquee__group"><span>BIOINFORMATICS PIPELINES</span><span>BIOINFORMATICS PIPELINES</span><span>BIOINFORMATICS PIPELINES</span><span>BIOINFORMATICS PIPELINES</span></div></div></div>
       <div id="dna-capsule" class="dna-stage__host max-[820px]:hidden" data-dna data-src="dna_vr_interactive_animation.glb" aria-hidden="true"></div>
@@ -507,16 +504,16 @@
             <button type="button" role="tab" id="ro-tab-1" aria-selected="false" tabindex="-1" aria-controls="ro-p1" class="ro-node" data-ro-tab="1" style="--x:82.04;--y:31.50"><span class="ro-ico"><i class="ph-bold ph-test-tube"></i></span><span class="ro-lab">Clinical Diagnostics</span></button>
             <button type="button" role="tab" id="ro-tab-2" aria-selected="false" tabindex="-1" aria-controls="ro-p2" class="ro-node" data-ro-tab="2" style="--x:82.04;--y:68.50"><span class="ro-ico"><i class="ph-bold ph-pill"></i></span><span class="ro-lab">Pharma R&amp;D</span></button>
             <button type="button" role="tab" id="ro-tab-3" aria-selected="false" tabindex="-1" aria-controls="ro-p3" class="ro-node" data-ro-tab="3" style="--x:50.00;--y:87.00"><span class="ro-ico"><i class="ph-bold ph-graduation-cap"></i></span><span class="ro-lab">Academic Research</span></button>
-            <button type="button" role="tab" id="ro-tab-4" aria-selected="false" tabindex="-1" aria-controls="ro-p4" class="ro-node" data-ro-tab="4" style="--x:17.96;--y:68.50"><span class="ro-ico"><i class="ph-bold ph-dna"></i></span><span class="ro-lab">Bioinformatics Teams</span></button>
+            <button type="button" role="tab" id="ro-tab-4" aria-selected="false" tabindex="-1" aria-controls="ro-p4" class="ro-node" data-ro-tab="4" style="--x:17.96;--y:68.50"><span class="ro-ico"><i class="ph-bold ph-dna"></i></span><span class="ro-lab">Core facility</span></button>
             <button type="button" role="tab" id="ro-tab-5" aria-selected="false" tabindex="-1" aria-controls="ro-p5" class="ro-node" data-ro-tab="5" style="--x:17.96;--y:31.50"><span class="ro-ico"><i class="ph-bold ph-first-aid"></i></span><span class="ro-lab">Public Health</span></button>
           </div>
           <div class="ro-detail">
             <div class="ro-nav"><button type="button" class="ro-arrow" data-ro-prev aria-label="Previous team"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><button type="button" class="ro-arrow" data-ro-next aria-label="Next team"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
             <article class="ro-panel is-on" id="ro-p0" role="tabpanel" aria-labelledby="ro-tab-0" data-ro-p="0"><div class="ro-top"><span class="ro-pico"><i class="ph-bold ph-flask"></i></span><h3>Genomics Labs</h3><span class="tg-badge">Use case</span></div><p class="ro-sub">NGS · QC · Variant calling</p><p class="ro-text">Automate high-throughput sequencing, from raw reads and QC to alignment, variant calling and reporting, with standardized, repeatable pipelines.</p><a class="ro-link" href="pages/use-cases.html#genomics-labs">View use case <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a></article>
             <article class="ro-panel" id="ro-p1" role="tabpanel" aria-labelledby="ro-tab-1" data-ro-p="1"><div class="ro-top"><span class="ro-pico"><i class="ph-bold ph-test-tube"></i></span><h3>Clinical Diagnostics</h3><span class="tg-badge">Use case</span></div><p class="ro-sub">Audit-ready · Versioned</p><p class="ro-text">Audit-ready, deterministic pipelines for gene panels and molecular diagnostics, with locked parameters, versioned snapshots and full provenance.</p><a class="ro-link" href="pages/use-cases.html#clinical-diagnostics">View use case <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a></article>
-            <article class="ro-panel" id="ro-p2" role="tabpanel" aria-labelledby="ro-tab-2" data-ro-p="2"><div class="ro-top"><span class="ro-pico"><i class="ph-bold ph-pill"></i></span><h3>Pharma R&amp;D</h3><span class="tg-badge">Use case</span></div><p class="ro-sub">Multi-omics · AI assisted</p><p class="ro-text">Build modular, reproducible workflows across genomics, proteomics and cheminformatics, and prototype new components faster with AI assistance.</p><a class="ro-link" href="pages/use-cases.html#pharma-rd">View use case <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a></article>
+            <article class="ro-panel" id="ro-p2" role="tabpanel" aria-labelledby="ro-tab-2" data-ro-p="2"><div class="ro-top"><span class="ro-pico"><i class="ph-bold ph-pill"></i></span><h3>Pharma R&amp;D</h3><span class="tg-badge">Use case</span></div><p class="ro-sub">Multi-omics · AI assisted</p><p class="ro-text">Build modular, extensible, reproducible workflows and prototype new components faster with AI assistance.</p><a class="ro-link" href="pages/use-cases.html#pharma-rd">View use case <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a></article>
             <article class="ro-panel" id="ro-p3" role="tabpanel" aria-labelledby="ro-tab-3" data-ro-p="3"><div class="ro-top"><span class="ro-pico"><i class="ph-bold ph-graduation-cap"></i></span><h3>Academic Research</h3><span class="tg-badge">Use case</span></div><p class="ro-sub">Reproducible · Shareable</p><p class="ro-text">Design, share and publish reproducible analyses, and teach pipeline concepts visually, then export the full Nextflow code alongside your paper.</p><a class="ro-link" href="pages/use-cases.html#academic-research">View use case <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a></article>
-            <article class="ro-panel" id="ro-p4" role="tabpanel" aria-labelledby="ro-tab-4" data-ro-p="4"><div class="ro-top"><span class="ro-pico"><i class="ph-bold ph-dna"></i></span><h3>Bioinformatics Teams</h3><span class="tg-badge">Use case</span></div><p class="ro-sub">Vetted modules · CI-validated</p><p class="ro-text">Centralize vetted module libraries, onboard faster with visual templates, and keep every project consistent with CI-validated, version-pinned pipelines.</p><a class="ro-link" href="pages/use-cases.html#bioinformatics-teams">View use case <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a></article>
+            <article class="ro-panel" id="ro-p4" role="tabpanel" aria-labelledby="ro-tab-4" data-ro-p="4"><div class="ro-top"><span class="ro-pico"><i class="ph-bold ph-dna"></i></span><h3>Core facility</h3><span class="tg-badge">Use case</span></div><p class="ro-sub">Vetted modules · CI-validated</p><p class="ro-text">Centralize vetted module libraries, onboard faster with visual templates, and keep every project consistent with CI-validated, version-pinned pipelines.</p><a class="ro-link" href="pages/use-cases.html#bioinformatics-teams">View use case <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a></article>
             <article class="ro-panel" id="ro-p5" role="tabpanel" aria-labelledby="ro-tab-5" data-ro-p="5"><div class="ro-top"><span class="ro-pico"><i class="ph-bold ph-first-aid"></i></span><h3>Public Health</h3><span class="tg-badge">Use case</span></div><p class="ro-sub">Surveillance · Rapid response</p><p class="ro-text">Run standardized pathogen genomics and surveillance pipelines at scale, with locked parameters and versioned outputs so results stay comparable across labs and over time.</p><a class="ro-link" href="pages/use-cases.html">View use case <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a></article>
             <p class="ro-count"><b data-ro-i>01</b> / 06</p>
           </div>
@@ -554,7 +551,7 @@
         </h2>
 
         <div class="cta-side">
-          <p><i aria-hidden="true">}</i>Design, validate and export reproducible Nextflow pipelines on a visual canvas, with no pipeline syntax to write.</p>
+          <p><i aria-hidden="true">}</i>Design, validate and export reproducible Nextflow pipelines using a visual builder, not code.</p>
           <a class="cta-btn group/b" href="#contact">Get in touch <span class="cta-arrow" aria-hidden="true"><i class="ph-bold ph-arrow-up-right"></i></span></a>
         </div>
         </div>
