@@ -57,7 +57,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Design, validate, and export bioinformatics workflows with GenXflo.">
   <title>GenXflo – Visual Nextflow Pipeline Builder for Bioinformatics</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=347"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"></noscript><link rel="stylesheet" href="tailwind.css?v=348"><link rel="stylesheet" href="vendor/phosphor/phosphor-bold.css"><link rel="preload" href="vendor/phosphor/Phosphor-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <script src="perf.js" defer></script>
   <script src="site.js?v=6" defer></script>
   <script src="menu-nav.js?v=3" defer></script>
@@ -108,7 +108,7 @@
   })();
   </script>
   <script src="lazy-modules.js" defer></script>
-  <script src="v2-sections.js?v=8" defer></script>
+  <script src="v2-sections.js?v=9" defer></script>
   <script src="v2-lineup.js?v=2" defer></script>
   <script src="gradient-ascii.js?v=2" defer></script>
   <script src="hero-fx.js?v=4" defer></script>
@@ -267,8 +267,6 @@
           </figure>
         </div>
 
-        <div class="hx-card hx-k1" data-depth="18"><strong>36h</strong><span>Saved per pipeline</span></div>
-        <div class="hx-card hx-k2" data-depth="26"><strong>10&times;</strong><span>Less time building</span></div>
         <div class="hx-card hx-k3" data-depth="30"><b></b><span>AI-validated before it runs</span></div>
         <div class="hx-scroll" aria-hidden="true"><i></i>Scroll</div>
       </div>
@@ -284,28 +282,26 @@
       <div class="wg-wrap">
         <nav class="wg-nav" role="tablist" aria-label="Why GenXflo">
           <button type="button" role="tab" class="is-on" aria-selected="true" data-wg-tab="0"><i></i>Visual builder</button>
-          <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="1"><i></i>Speed</button>
-          <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="2"><i></i>Bioinformatics</button>
-          <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="3"><i></i>Environment</button>
-          <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="4"><i></i>Reproducible</button>
-          <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="5"><i></i>Collaboration</button>
+          <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="1"><i></i>Bioinformatics</button>
+          <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="2"><i></i>Environment</button>
+          <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="3"><i></i>Reproducible</button>
+          <button type="button" role="tab" tabindex="-1" aria-selected="false" data-wg-tab="4"><i></i>Collaboration</button>
         </nav>
 
         <div class="wg-text">
           <h2 class="wg-head" id="why-title"><span>No code.</span><span>No syntax.</span>Just science.</h2>
           <p class="wg-lead">Design, configure, and deploy bioinformatics workflows visually. Move from an idea to a reproducible Nextflow pipeline without getting buried in boilerplate.</p>
-          <p class="wg-count"><strong data-wg-i>01</strong><span>&mdash; 06</span></p>
+          <p class="wg-count"><strong data-wg-i>01</strong><span>&mdash; 05</span></p>
         </div>
 
         <article class="wg-card">
-          <header><h3 data-wg-title>Visual builder</h3><p class="wg-pos"><b data-wg-pos>01</b> / 06</p></header>
+          <header><h3 data-wg-title>Visual builder</h3><p class="wg-pos"><b data-wg-pos>01</b> / 05</p></header>
           <div class="wg-art">
             <div class="wg-v is-on" data-wg-v="0"><div class="wv-tools"><span class="wv-chip">FastQC</span><span class="wv-chip">FastP</span><span class="wv-chip">STAR</span><span class="wv-chip">Samtools</span></div><div class="pv-chain"><span>Samples</span><i></i><span>FastP</span><i></i><span>STAR</span></div><p class="pv-foot"><b></b>Drag, connect and configure on one canvas</p></div>
-            <div class="wg-v" data-wg-v="1"><div class="wv-bars"><div><span>Manual</span><i style="--w:100%"><b>40h</b></i></div><div><span>GenXflo</span><i class="wv-on" style="--w:10%"><b>4h</b></i></div></div><p class="wv-big">10&times; <small>less time building</small></p></div>
-            <div class="wg-v" data-wg-v="2"><div class="wv-tools wv-tools--grid"><span class="wv-chip">FastQC</span><span class="wv-chip">STAR</span><span class="wv-chip">Salmon</span><span class="wv-chip">DESeq2</span><span class="wv-chip">MultiQC</span><span class="wv-chip">Hisat2</span><span class="wv-chip">BWA</span><span class="wv-chip">Samtools</span></div><p class="pv-foot"><b></b>QC, alignment, transcriptomics and more</p></div>
-            <div class="wg-v" data-wg-v="3"><div class="wv-term"><p><u>$</u> make run</p><p class="wv-ok">&#10003; docker &middot; container ready</p></div><div class="wv-tools"><span class="wv-chip">Local</span><span class="wv-chip">HPC</span><span class="wv-chip">Cloud</span></div></div>
-            <div class="wg-v" data-wg-v="4"><ul class="pv-ver"><li class="is-cur"><b>#a3f9c</b><span>RNA-seq run</span><em>v3</em></li><li><b>#7be21</b><span>RNA-seq run</span><em>v2</em></li><li><b>#1d04b</b><span>QC only</span><em>v1</em></li></ul></div>
-            <div class="wg-v" data-wg-v="5"><div class="wv-team"><span>AK</span><span>MS</span><span>JR</span><span class="wv-more">+3</span></div><p class="pv-foot"><b></b>+3 teammates on canvas</p><ul class="pv-ver"><li class="is-cur"><b>Shared</b><span>Template v2</span><em>Now</em></li><li><b>Compared</b><span>RNA-seq runs</span><em>Today</em></li></ul></div>
+            <div class="wg-v" data-wg-v="1"><div class="wv-tools wv-tools--grid"><span class="wv-chip">FastQC</span><span class="wv-chip">STAR</span><span class="wv-chip">Salmon</span><span class="wv-chip">DESeq2</span><span class="wv-chip">MultiQC</span><span class="wv-chip">Hisat2</span><span class="wv-chip">BWA</span><span class="wv-chip">Samtools</span></div><p class="pv-foot"><b></b>QC, alignment, transcriptomics and more</p></div>
+            <div class="wg-v" data-wg-v="2"><div class="wv-term"><p><u>$</u> make run</p><p class="wv-ok">&#10003; docker &middot; container ready</p></div><div class="wv-tools"><span class="wv-chip">Local</span><span class="wv-chip">HPC</span><span class="wv-chip">Cloud</span></div></div>
+            <div class="wg-v" data-wg-v="3"><ul class="pv-ver"><li class="is-cur"><b>#a3f9c</b><span>RNA-seq run</span><em>v3</em></li><li><b>#7be21</b><span>RNA-seq run</span><em>v2</em></li><li><b>#1d04b</b><span>QC only</span><em>v1</em></li></ul></div>
+            <div class="wg-v" data-wg-v="4"><div class="wv-team"><span>AK</span><span>MS</span><span>JR</span><span class="wv-more">+3</span></div><p class="pv-foot"><b></b>+3 teammates on canvas</p><ul class="pv-ver"><li class="is-cur"><b>Shared</b><span>Template v2</span><em>Now</em></li><li><b>Compared</b><span>RNA-seq runs</span><em>Today</em></li></ul></div>
           </div>
           <div class="wg-exec">
             <p><span>Details</span><a class="wg-go" href="pages/product-overview.html" data-wg-link>Explore</a></p>
@@ -558,8 +554,8 @@
         <svg class="cta-orbit" viewBox="0 0 926 650" preserveAspectRatio="none" aria-hidden="true" focusable="false"><ellipse cx="463" cy="330" rx="700" ry="300"/></svg>
 
         <div class="cta-card cta-c0"><strong>0</strong><span>Lines of syntax to write</span></div>
-        <div class="cta-card cta-c1"><strong>36h</strong><span>Saved per pipeline</span></div>
-        <div class="cta-card cta-c2"><strong>10&times;</strong><span>Less time building</span></div>
+        <div class="cta-card cta-c1"><strong>17</strong><span>Supported tools, one drag away</span></div>
+        <div class="cta-card cta-c2"><strong>3</strong><span>Steps from canvas to pipeline</span></div>
         <div class="cta-card cta-c3" aria-hidden="true"></div>
         <div class="cta-card cta-c4" aria-hidden="true"></div>
         <i class="cta-line" aria-hidden="true"></i>

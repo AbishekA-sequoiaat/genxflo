@@ -1,0 +1,769 @@
+GENXFLO - CONTENT CHANGE LOG (default version)
+Generated 2026-11-10
+Each entry: "-" = text BEFORE, "+" = text AFTER. Lines shown around a change give its location on the page (in reading order).
+Based on: Changes_new_website.pdf (content changes only)
+
+======================================================================
+PAGE: index.html
+======================================================================
+@@ -10,5 +10,5 @@ Shift to dynamic,
+ AI-validated
+ pipelines
+-Design, validate and export reproducible Nextflow pipelines on a visual canvas, with no pipeline syntax to write.
++Design, validate and export reproducible Nextflow pipelines using a visual builder, not code.
+ Start Building
+ Learn About GenXflo
+@@ -24,5 +24,5 @@ Visual builder
+ Speed
+ Bioinformatics
+-Nextflow
++Environment
+ Reproducible
+ Collaboration
+@@ -60,6 +60,6 @@ Samtools
+ QC, alignment, transcriptomics and more
+ $
+-nextflow run main.nf -profile cloud
+-✓ docker · v24.04 ready
++make run
++✓ docker · container ready
+ Local
+ HPC
+@@ -78,4 +78,5 @@ MS
+ JR
+ +3
+++3 teammates on canvas
+ Shared
+ Template v2
+@@ -97,5 +98,5 @@ Smart, guided parameter forms
+ Generate & Deploy
+ Production-ready pipeline export
+-We integrated AI to ease the workflow
++We integrated AI to ease building the workflow
+ AI assistant
+ Step 1
+@@ -152,19 +153,10 @@ Pipeline Versioning
+ Overview
+ Review history, download prior outputs, and restore earlier configurations.
+-API Keys
+-Overview
+-Tiered personal keys for scripted pipeline submission and downloads.
+-Keycloak Auth
+-Overview
+-Centralized authentication plus a download ownership guard.
+ AI Validation
+ Overview
+-DAG structure and biological logic checked before you stitch a pipeline.
++DAG structure and tool logic checked before you stitch a pipeline.
+ Custom Components
+ Overview
+ AI-generated tool configs and Dockerfiles for your own bioinformatics tools.
+-SMTP Service
+-Overview
+-Centralized transactional email delivery through Microsoft Graph.
+ From idea to pipeline
+ Your analysis could go from idea to a validated pipeline in minutes. Let&rsquo;s make it reproducible!
+@@ -207,5 +199,5 @@ Reproducible by design
+ Reproducible science, made visual
+ Your data and your results are our highest priority.
+-Our platform brings visual design, AI validation and one-click export together so research teams can build Nextflow pipelines with confidence, every connection, parameter and container checked before a single run.
++Our platform brings visual design, AI validation and one-click export together so research teams can build Nextflow pipelines with confidence.
+ BIOINFORMATICS PIPELINES
+ BIOINFORMATICS PIPELINES
+@@ -222,5 +214,5 @@ Clinical Diagnostics
+ Pharma R&D
+ Academic Research
+-Bioinformatics Teams
++Core facility
+ Public Health
+ Genomics Labs
+@@ -237,5 +229,5 @@ Pharma R&D
+ Use case
+ Multi-omics · AI assisted
+-Build modular, reproducible workflows across genomics, proteomics and cheminformatics, and prototype new components faster with AI assistance.
++Build modular, extensible, reproducible workflows and prototype new components faster with AI assistance.
+ View use case
+ Academic Research
+@@ -244,5 +236,5 @@ Reproducible · Shareable
+ Design, share and publish reproducible analyses, and teach pipeline concepts visually, then export the full Nextflow code alongside your paper.
+ View use case
+-Bioinformatics Teams
++Core facility
+ Use case
+ Vetted modules · CI-validated
+@@ -286,5 +278,5 @@ build reproducible
+ pipelines
+ }
+-Design, validate and export reproducible Nextflow pipelines on a visual canvas, with no pipeline syntax to write.
++Design, validate and export reproducible Nextflow pipelines using a visual builder, not code.
+ Get in touch
+ 0
+
+======================================================================
+PAGE: pages/use-cases.html
+======================================================================
+@@ -2,22 +2,22 @@ GenXflo Use Cases for Genomics, Clinical & Pharma Workflows
+ GenXflo
+ Use Cases
+-GenXflo is a low/no-code visual platform that allows scientists and bioinformaticians to build complete pipelines in any Workflow Language quickly and accurately. It supports diverse research and industry environments by converting visual workflows into the chosen Workflow Language.
++GenXflo is a pipeline engineering platform that transforms workflow design into a streamlined, visual experience, enabling rapid creation of reproducible bioinformatics pipelines without the complexity of workflow programming. Designed for both research and industry settings, it transforms workflow designs into production-ready Nextflow language implementations.
+ Genomics Labs
+ Clinical Diagnostics
+ Pharma R&D
+ Academic Research
+-Bioinformatics Teams
++Core facility
+ Industrial and Collaborative Research
+ Educational and Training Centers
+ Conclusion
+ Genomics Labs
+-High-throughput sequencing, sample processing automation, and routine variant calling simplified with GenXflo.
++High-throughput sequencing analysis, NGS data processing, and routine variant calling simplified with GenXflo.
+ Genomics laboratories, whether in core facilities, agricultural research stations, or specialized sequencing centers, face constant pressure to increase throughput, reduce variability, and ensure robust, reproducible workflows.
+-GenXflo allows researchers to visually create laboratory workflows and then export them into any Workflow Language. In typical genomics labs, recurring workflows include:
++GenXflo allows researchers to visually create laboratory workflows and then export them into Workflow language. In typical genomics labs, recurring workflows include:
+ Primary processing of raw reads (QC, trimming)
+ Alignment to reference genomes
+-Mark-duplication and sorting
+ Variant calling, annotation, and reporting
+-Using GenXflo's canvas, lab staff can drag and drop modules (e.g., FastQC, TrimGalore, BWA, GATK, VEP), connect them visually, and set runtime parameters, all without writing code.
++DEG analysis
++Using GenXflo's canvas, bioinformaticians can drag and drop tools (e.g., FastQC, TrimGalore, BWA, GATK, VEP), connect them visually, and set runtime parameters, all without writing code.
+ Key Benefits:
+ Standardization:
+@@ -40,5 +40,5 @@ Parameter locking:
+ Standard operating procedure (SOP) parameters can be fixed in config files for consistent testing.
+ Automated validation:
+-Automated AI validation will ensure if each tool has all the required parameters, input files are in correct format, and workflow structure is correct (i.e) it'll check if each tool's output is compatible with the next tool's input.
++Automated AI validation will ensure if each tool has all the required parameters, input files are in correct format, and workflow structure is correct, ensuring every tool's output is compatible as the input for the next tool.
+ By automating provenance and reproducible exports, GenXflo helps diagnostic labs achieve compliance while reducing documentation overhead.
+ 3. Pharmaceutical R&D
+@@ -57,5 +57,5 @@ Rapidly prototype new components through AI-assisted module generation and valid
+ GenXflo helps pharma teams create transparent, shareable, and validated computational frameworks that accelerate candidate evaluation and biomarker discovery.
+ 4. Academic Research
+-For academic researchers and educators, GenXflo supports reproducible discovery and training through simple, shareable visual workflows. It helps labs and classrooms convert conceptual pipeline designs into any Workflow Language ready for integration, reuse and publication.
++For academic researchers and educators, GenXflo supports reproducible discovery and training through simple, shareable visual workflows. It helps labs and classrooms convert conceptual pipeline designs into Workflow language ready for integration, reuse and publication.
+ Key use cases
+ Collaborative design:
+@@ -70,5 +70,5 @@ Core facilities:
+ Shared teams provide standardized pipeline templates for consistent analysis.
+ GenXflo empowers academia to practice open, transparent, and reproducible science by effectively utilising different containerization technologies.
+-5. Bioinformatics Teams
++5. Core facility
+ Central bioinformatics groups manage multiple projects across departments. GenXflo centralizes and streamlines these operations with standardized module libraries, continuous integration, and AI-assisted component creation.
+ Advantages
+@@ -80,5 +80,5 @@ Onboarding:
+ Visual templates speed up training and enforce best practices.
+ CI/CD integration:
+-Automated tests validate exported Workflows nightly to ensure stability.
++Automated tests validate exported Workflows to ensure stability.
+ Reproducibility & auditing:
+ Since GenXflo uses fixed tool version for inbuilt tools, and docker containerisation technology, the generated pipeline will be reproducible.
+@@ -89,5 +89,5 @@ The "Auto-Fill with AI" and "Generate Dockerfile with AI" features let teams def
+ With these capabilities, GenXflo enables organizations to scale operations efficiently while maintaining full transparency and reproducibility.
+ 6. Industrial and Collaborative Research
+-Collaborative research networks spanning biotech, agriculture, and environmental science require unified, shareable pipelines. GenXflo facilitates this by combining different Workflow Languages with containerization technologies to ensure consistent results across distributed teams.
++Collaborative research networks spanning biotech, agriculture, and environmental science require unified, shareable pipelines. GenXflo facilitates this by combining Workflow Language with containerization technologies to ensure consistent results across distributed teams.
+ Key features
+ Secure sharing of validated workflow templates across partner institutions.
+
+======================================================================
+PAGE: pages/learn.html
+======================================================================
+@@ -4,8 +4,6 @@ GenXflo
+ Nextflow
+ Visual Nextflow Builder
+-Reproducible pipeline
+-nf-core modules
++Export visual Pipeline to Code
+ MCP Integration
+-Export generated Pipeline to Code
+ General FAQs
+ 01 / Nextflow
+@@ -29,14 +27,19 @@ Execute workflows on different infrastructures without modification
+ How Nextflow Works
+ Nextflow is built on a domain-specific language (DSL) derived from Groovy, making it powerful yet accessible. It organizes workflows into processes and channels, providing a clean separation between data handling and computational logic.
++Processes
+ Processes represent each computational step in a workflow
+-Running FastQC for quality control
+-Using HISAT2 or STAR for alignment
+-Applying FeatureCounts or Salmon for quantification
+-Each process defines:
++Each process defines
+ Command or script to run
+ Input and output files
+ Resource requirements (CPU, memory)
+-Channels act as data streams that connect processes together.
+-For example:
++Examples of processes
++Running FastQC for quality control
++Using HISAT2 or STAR for alignment
++Applying FeatureCounts or Salmon for quantification
++Channels
++Channels act as data streams that connect processes together
++Example of channels
++FastP (read trimming)
++HISAT2 (alignment)
+ The output of FastP (read trimming) feeds directly into HISAT2 (alignment).
+ This model makes workflows modular and flexible, allowing processes to be reused across different analyses. Nextflow's declarative design also ensures clear data flow and prevents human errors common in manual scripting.
+@@ -57,5 +60,5 @@ Conda
+ With these, every step of a workflow runs in an isolated, consistent environment.
+ Example:
+-A pipeline using HISAT2 inside a Docker container produces identical results regardless of where it's executed local, cluster, or cloud.
++A pipeline using HISAT2 inside a Docker container produces identical results regardless of where it's executed - local, cluster, or cloud.
+ Benefits of this approach:
+ Guaranteed reproducibility of results
+@@ -71,9 +74,9 @@ On institutional HPC clusters (via SLURM, PBS, or SGE)
+ On cloud platforms (AWS Batch, Google Cloud Life Sciences, or Azure Batch)
+ Scalability highlights:
+-Same pipeline can run anywhere no code changes required
++Same pipeline can run anywhere - no code changes required
+ Automatic task scheduling and parallelism
+ Efficient use of CPU, memory, and I/O resources
+ Suitable for both prototyping and production-scale pipelines
+-This flexibility empowers researchers to develop locally and deploy globally, making Nextflow a scalable workflow engine trusted across academic, clinical, and industrial bioinformatics settings.
++This flexibility empowers bioinformatics teams to develop locally and deploy globally, making Nextflow a scalable workflow engine trusted across academic, clinical, and industrial bioinformatics settings.
+ 05
+ Integration with nf-core
+@@ -92,5 +95,5 @@ Together, Nextflow and nf-core have built an ecosystem where reproducibility and
+ 06
+ Why Nextflow Matters:
+-In today's data-driven biology, workflow automation is no longer optional it's essential. Nextflow brings order, consistency, and efficiency to this process.
++In today's data-driven biology, workflow automation is no longer optional, it's essential. Nextflow brings order, consistency, and efficiency to this process.
+ Why it stands out:
+ Reproducible:
+@@ -160,21 +163,20 @@ The Visual Nextflow Builder supports a wide range of bioinformatics applications
+ Examples of supported tools include:
+ Quality control:
+-FastQC, FastP
++FastQC
+ Read trimming:
+-BBduk
++BBduk, FastP, Cutadapt
+ Sequence alignment:
+-HISAT2, STAR, Bowtie2
++BWA, HISAT2, STAR, Bowtie2
+ File manipulation:
+ Samtools
+-Quantification:
+-Salmon, FeatureCounts
++Quantification & DEG:
++Salmon, FeatureCounts, StringTie, PyDESeq2
+ Variant analysis:
+-FreeBayes, Dedup
+-Transcript assembly:
+-StringTie
+-Genome assembly and annotation:
++FreeBayes, GATK
++Assembly and annotation:
+ SPAdes, Prokka
+ Each tool comes pre-configured with:
+ Default parameters
++Pinned versions
+ Example command templates
+ Recommended container images
+@@ -230,306 +232,6 @@ Export, share, and deploy pipelines anywhere, whether locally or in the cloud
+ Save time, eliminate coding errors, and enhance reproducibility
+ By combining intuitive design with Nextflow's computational rigor, the Visual Builder bridges the gap between scientific innovation and technical automation, empowering researchers to build smarter, faster, and more reproducible bioinformatics pipelines.
+-03 / Reproducible pipeline
+-Reproducible Pipelines
+-In modern computational biology, reproducibility is the cornerstone of credible science. A reproducible pipeline ensures that an analysis can be rerun, verified, and shared—producing identical results every time, regardless of where or when it's executed.
+-With the explosion of high-throughput data in genomics, transcriptomics, and proteomics, the need for reproducible bioinformatics workflows has never been greater. Tools like Nextflow and platforms such as GenXflo make this possible by automating and standardizing every stage of the computational process.
+-01
+-Why Reproducibility Matters in Bioinformatics
+-Reproducibility goes beyond technical precision; it is the foundation of scientific integrity. In bioinformatics, even small changes in tool versions, parameters, or environments can lead to different results.
+-Reproducible pipelines solve this by providing structured, versioned, and environment-controlled workflows that guarantee consistent results across systems and users.
+-Why reproducibility is essential:
+-Scientific trust:
+-Others can verify your findings
+-Collaboration:
+-Teams can share and rerun analyses seamlessly
+-Longevity:
+-Future researchers can reproduce studies years later
+-Efficiency:
+-Saves time by eliminating repeated troubleshooting
+-Without reproducibility, computational analyses become fragile and difficult to trust. With it, research becomes transparent, verifiable, and sustainable.
+-02
+-What Is a Pipeline in Bioinformatics?
+-A pipeline is a chain of computational processes that transform raw biological data into interpretable results. Each step consumes input, performs an operation, and produces an output for the next stage.
+-Example: A typical RNA-seq pipeline includes:
+-Quality Control (QC):
+-Checking raw FASTQ files using FastQC
+-Trimming:
+-Removing adapters and low-quality reads using FastP or BBduk
+-Alignment:
+-Mapping reads to a reference genome with HISAT2 or STAR
+-Quantification:
+-Counting reads per gene using FeatureCounts or Salmon
+-Differential Expression:
+-Identifying significant gene expression changes
+-Each of these steps can use different tools, dependencies, and parameters, making consistency difficult without proper workflow management.
+-A reproducible pipeline formalizes these steps in a way that ensures every rerun produces the same outputs under the same conditions.
+-03
+-The Core Principles of Reproducible Pipelines
+-Creating a reproducible bioinformatics workflow requires combining multiple best practices. These principles ensure that analyses remain reliable, portable, and easy to verify.
+-1. Version Control
+-All pipeline scripts, configurations, and parameter files should be versioned
+-Use GitHub to track changes over time
+-Each update can be tagged or branched, allowing you to revert or compare runs
+-Nextflow integrates natively with Git, ensuring full traceability
+-2. Environment Standardization
+-Differences in software environments often cause irreproducibility
+-Use Docker or Singularity containers to encapsulate dependencies
+-Define all packages in a Conda environment for lightweight reproducibility
+-Each container acts as a self-contained, portable environment
+-3. Parameter and Input Tracking
+-All inputs and settings should be recorded
+-Maintain a configuration file (e.g., nextflow.config, params.yaml)
+-Include tool versions, input paths, and runtime parameters
+-Any change creates a traceable record of analysis conditions
+-4. Data Provenance
+-Provenance means tracking where each result came from
+-Nextflow automatically logs input-output relationships
+-Execution reports show which tools produced which outputs
+-This traceability guarantees transparency across every step
+-5. Workflow Automation
+-Manual execution introduces human error
+-Automate all steps using workflow managers like Nextflow
+-Each process runs in a defined order with consistent logic
+-Automation removes guesswork and improves reliability
+-Together, these principles ensure that workflows remain consistent, transparent, and verifiable, the three pillars of reproducible research.
+-04
+-Tools and Frameworks for Reproducible Pipelines
+-Over the past decade, several workflow management systems have emerged to promote reproducibility in computational science. Among them, Nextflow is one of the most widely adopted in bioinformatics.
+-Key frameworks supporting reproducible pipelines:
+-Nextflow:
+-Modular, scalable, and portable, integrates seamlessly with Docker, Singularity, and Git
+-Snakemake:
+-A Python-based system using Makefile-like syntax
+-CWL (Common Workflow Language):
+-A standard for workflow interoperability
+-nf-core:
+-A community of best-practice Nextflow pipelines for genomics, proteomics, and metagenomics
+-Why Nextflow stands out:
+-Uses DSL2, allowing modular subworkflows
+-Integrates tightly with container environments
+-Tracks every run's configuration and execution history
+-Runs identically on local, cluster, or cloud infrastructure
+-These frameworks form the backbone of modern reproducible research and GenXflo builds on this foundation by making reproducibility visual and effortless.
+-05
+-How GenXflo Enables Reproducible Pipelines
+-GenXflo brings reproducibility to life through automation, standardization, and visualization. It removes the complexity of scripting while preserving every scientific control point that ensures consistency.
+-1. Automated Code Generation
+-Every workflow created in GenXflo's visual interface is converted into clean, standardized Nextflow DSL2 code.
+-Code generation eliminates syntax errors
+-Each workflow follows consistent structural rules
+-Generated pipelines can be re-run anywhere Nextflow is supported
+-2. Container Integration
+-Each tool used in GenXflo can be linked to a Docker or Singularity container.
+-Guarantees that every user runs the same version of the software
+-Removes dependency mismatches
+-Makes results identical across machines and institutions
+-3. Config File Management
+-GenXflo automatically generates a configuration file that stores all parameters, resources, and environment settings.
+-Serves as a permanent record of how the workflow was executed
+-Ensures traceability for future re-runs or audits
+-4. Version Traceability
+-Nextflow's built-in logging and run history features record every execution.
+-Researchers can track how each pipeline evolved
+-Older pipeline versions can be reproduced exactly
+-5. Easy Sharing
+-Exported pipelines can be shared as a set of files or versioned via Git.
+-Collaborators can run the same pipeline without extra setup
+-Enables distributed teams to work with unified, reproducible codebases
+-In essence, GenXflo makes reproducibility effortless—the platform handles validation, configuration, and version tracking automatically, freeing scientists to focus on analysis.
+-With MCP-aware workflow orchestration, teams can standardize how AI-assisted requests are translated into validated pipeline structures, improving consistency across collaborators and environments.
+-06
+-Common Pitfalls That Break Reproducibility
+-Even with modern tools, certain practices can compromise reproducibility. Avoiding these mistakes ensures that your workflows remain robust and repeatable.
+-Common pitfalls include:
+-Forgetting to record software or parameter versions
+-Editing scripts manually between runs
+-Using inconsistent local and absolute file paths
+-Running tools outside containerized environments
+-Storing untracked datasets that change over time
+-To prevent these issues:
+-Always use version control for both code and data
+-Automate environment setup with containers or Conda
+-Keep documentation and configuration files in sync
+-Validate workflows before execution to catch missing inputs
+-Following these best practices transforms your pipeline from a one-time script into a reliable, reproducible research asset.
+-07
+-The Future of Reproducible Pipelines
+-As data continues to grow exponentially, reproducibility will remain a core pillar of computational research. The next generation of tools will make it even easier to capture, share, and audit entire workflows.
+-Emerging trends include:
+-Provenance tracking systems:
+-Automatically link results to raw data and methods
+-FAIR data standards:
+-Ensure data and pipelines are Findable, Accessible, Interoperable, and Reusable
+-AI-assisted workflow builders:
+-Automatically recommend optimal pipeline designs
+-Cloud-native bioinformatics:
+-Reproducibility across global computing environments
+-Tools like GenXflo and Nextflow DSL2 are already shaping this future, making reproducible pipelines a standard, not an exception. They enable any researcher to build complex analyses that are portable, scalable, and verifiable.
+-Summary
+-Reproducible pipelines are essential for trustworthy, transparent, and sustainable science. They ensure that results are consistent no matter who runs the workflow or where it's executed.
+-A reproducible pipeline combines:
+-Version-controlled code and parameters
+-Standardized environments via containers
+-Documented data provenance
+-Full automation of workflow steps
+-In short: reproducibility is the foundation of scientific reliability.
+-Platforms like Nextflow provide the framework, while GenXflo makes it visual and effortless, empowering scientists to design, share, and execute reproducible bioinformatics workflows with confidence.
+-By uniting automation with transparency, reproducible pipelines are redefining how modern research is conducted, making science more efficient, collaborative, and dependable for the long term.
+-04 / nf-core modules
+-What Are nf-core Modules?
+-Modern bioinformatics pipelines are often complex, involving multiple tools, parameters, and dependencies. Managing these components consistently can be challenging—especially when workflows need to be shared, reproduced, or scaled. That's where nf-core modules come in.
+-nf-core modules are standardized, reusable building blocks that simplify how Nextflow pipelines are developed, tested, and maintained. They bring modularity, reproducibility, and collaboration to bioinformatics workflows—ensuring that scientists can build reliable and shareable pipelines without reinventing common steps.
+-01
+-Background: nf-core and Nextflow
+-To understand nf-core modules, it's important to look at the ecosystem they belong to.
+-Nextflow: The Workflow Engine
+-Nextflow is an open-source workflow management system that automates complex computational analyses. It focuses on reproducibility, scalability, and portability, allowing workflows to run identically across local systems, clusters, and cloud platforms.
+-nf-core: The Community
+-Built on top of Nextflow, nf-core is a community-driven initiative that creates best-practice bioinformatics pipelines. Each nf-core pipeline is:
+-Peer-reviewed and version-controlled
+-Fully containerized (Docker, Singularity, or Conda)
+-Regularly tested and updated
+-The nf-core community maintains pipelines for major biological analyses such as:
+-RNA-seq (nf-core/rnaseq)
+-Whole-genome sequencing (nf-core/sarek)
+-Metagenomics (nf-core/mag)
+-Single-cell RNA-seq (nf-core/scrnaseq)
+-Variant calling, assembly, and annotation
+-These pipelines follow strict development guidelines to ensure consistency and scientific reliability. However, as nf-core expanded, developers realized that many workflows reused the same steps—like FastQC, read trimming, and alignment. To make development faster and cleaner, nf-core introduced modules.
+-02
+-What Are nf-core Modules?
+-An nf-core module is a self-contained piece of Nextflow code that performs a specific bioinformatics task. Each module acts like a plug-and-play component—it can be imported into any Nextflow pipeline and reused wherever that functionality is needed.
+-Examples of nf-core modules include:
+-FastQC:
+-Performs quality control on sequencing reads
+-BWA:
+-Aligns reads to a reference genome
+-FeatureCounts:
+-Quantifies read counts per gene
+-MultiQC:
+-Summarizes pipeline outputs into a single report
+-Every nf-core module comes with:
+-A defined Nextflow process (inputs, outputs, and commands)
+-Environment details (Docker, Singularity, or Conda)
+-Version information and authorship metadata
+-Automated tests to ensure it works independently
+-This modular architecture lets developers assemble complex workflows quickly while maintaining high reproducibility and clarity.
+-03
+-Why nf-core Modules Are Important
+-nf-core modules make pipeline development faster, more organized, and scientifically consistent. They embody the best principles of reproducible research and collaborative coding.
+-Key Advantages:
+-1. Reusability
+-The same module (e.g., FastQC) can be used in multiple pipelines
+-Reduces redundant coding and promotes consistency
+-2. Standardization
+-All modules follow nf-core coding guidelines
+-Input/output formats, naming conventions, and testing standards are unified
+-3. Reproducibility
+-Each module defines the exact software version and container it uses
+-Ensures consistent behavior across environments and reruns
+-4. Collaboration
+-Different contributors can develop or update modules independently
+-Encourages global collaboration across institutions and teams
+-5. Maintainability
+-Updating a tool requires changing only one module
+-All pipelines using that module automatically benefit from the update
+-In short, nf-core modules make pipelines scalable, reproducible, and easier to maintain—aligning with the FAIR principles (Findable, Accessible, Interoperable, Reusable).
+-04
+-Structure of an nf-core Module
+-Each nf-core module follows a standardized folder structure to ensure consistency and ease of integration.
+-Typical Module Components:
+-main.nf:
+-Defines the Nextflow process (the executable step)
+-meta.yml:
+-Contains metadata (tool name, authors, version)
+-environment.yml / Dockerfile:
+-Specifies dependencies
+-tests:
+-Includes automated test datasets and expected outputs
+-Example (simplified FastQC module):
+-Copy
+-process FASTQC {
+-tag "$sample_id"
+-container "quay.io/biocontainers/fastqc:0.11.9--0"
+-input:
+-tuple val(sample_id), path(reads)
+-output:
+-path "*.zip", emit: qc_zip
+-path "*.html", emit: qc_html
+-script:
+-"""
+-fastqc $reads
+-"""
+-}
+-This module specifies:
+-The container to use
+-The expected inputs (FASTQ files)
+-The outputs (ZIP + HTML reports)
+-The exact command execution
+-Such clarity makes modules predictable and easy to integrate into any workflow.
+-05
+-How nf-core Modules Are Used in Nextflow Pipelines
+-Using nf-core modules is simple and efficient. Developers don't need to write code from scratch—they can import modules directly into their pipelines.
+-Example:
+-Copy
+-nf-core modules install fastqc
+-This command downloads the FastQC module and installs it into your project directory.
+-You can then include it in your pipeline script:
+-Copy
+-include { FASTQC } from './modules/nf-core/fastqc/main.nf'
+-workflow {
+-FASTQC(reads)
+-}
+-That's it—your pipeline now includes a tested, containerized, and version-controlled FastQC step.
+-Maintenance is equally simple:
+-Copy
+-nf-core modules update fastqc
+-This command pulls the latest module version, ensuring your pipeline stays up to date with minimal effort. This plug-and-play approach transforms pipeline building into a modular, maintainable process.
+-06
+-How nf-core Modules Improve Reproducibility and Collaboration
+-nf-core modules are central to building reproducible bioinformatics workflows.
+-Reproducibility:
+-Each module specifies exact tool versions and environments
+-Automated testing ensures identical behavior across platforms
+-Centralized repositories prevent code drift or untracked edits
+-Collaboration:
+-The global nf-core community contributes new modules continuously
+-Developers can focus on adding features rather than rewriting steps
+-Teams can share pipelines with full transparency and trust
+-For example: If multiple research groups use the same FastQC module, all analyses using that module are guaranteed to run identically—fostering standardization across the scientific community.
+-07
+-How GenXflo Reflects the nf-core Module Philosophy
+-While GenXflo is an independent platform, it follows the same modular principles as nf-core—but in a visual, no-code format.
+-In GenXflo:
+-Each tool you drag onto the canvas acts as a module
+-Each connection (arrow) defines a data channel between modules
+-The visual workflow automatically generates Nextflow DSL2 code
+-Configurations, container paths, and versions are stored for reproducibility
+-This means GenXflo users benefit from the same modularity and reproducibility that nf-core modules provide—but through a graphical workflow builder rather than manual coding.
+-As GenXflo evolves, it can even integrate directly with nf-core's repository—combining visual design with nf-core's rigorously tested components.
+-Summary
+-nf-core modules represent a major advancement in workflow reproducibility and reusability. They turn complex, multi-step bioinformatics analyses into standardized, modular pipelines that anyone can use, share, or improve.
+-In summary, nf-core modules offer:
+-Modular and reusable building blocks for pipelines
+-Built-in version control and automated testing
+-Consistent environment and software management
+-Community-driven maintenance and updates
+-Compatibility with tools like GenXflo and Nextflow DSL2
+-By embracing nf-core modules, researchers can build scalable, transparent, and reproducible pipelines that accelerate discovery and ensure scientific reliability.
+-And with platforms like GenXflo, the power of nf-core's modular system becomes accessible to every scientist.
+-05 / MCP Integration
+-MCP Integration in GenXflo
+-MCP (Model Context Protocol) allows AI clients to interact with GenXflo in a structured way, helping users design and orchestrate pipelines using natural language.
+-01
+-How MCP fits into workflow learning
+-In the same way you learn to design visual workflows step by step, MCP supports a guided lifecycle: discover capabilities, validate pipeline graphs, save, dispatch, monitor, and download outputs.
+-Practical MCP capabilities
+-Context-aware discovery of supported tools and schema
+-Validation of generated workflow structure before pipeline creation
+-Pipeline creation, dispatch, and real-time status tracking
+-Download of final output artifacts for downstream analysis
+-This makes MCP a strong companion to the visual builder, improving consistency, automation, and reproducibility for research teams.
+ 06 / Export generated Pipeline to Code
+-How to Export Generated Pipeline (Created in Canvas) to Code?
++How to Export Visual Pipeline (Created in Canvas) to Code?
+ One of GenXflo's most powerful capabilities is its ability to automatically convert visually designed workflows into fully functional Nextflow pipelines. This feature, known as pipeline export, bridges the gap between an intuitive drag-and-drop interface and real, executable code.
+ It allows scientists to design workflows without coding expertise, while still generating professional-grade, reproducible Nextflow DSL2 scripts ready for deployment on any system, whether local, HPC, or cloud
+@@ -728,4 +430,16 @@ Validate, package, and share workflows effortlessly
+ Maintain reproducibility across all computing platforms
+ By integrating automation, validation, and containerization, GenXflo ensures that every exported pipeline is ready for scalable, reproducible, and collaborative research—empowering scientists to move from design to discovery faster than ever.
++05 / MCP Integration
++MCP Integration in GenXflo
++MCP (Model Context Protocol) allows AI clients to interact with GenXflo in a structured way, helping users design and orchestrate pipelines using natural language.
++01
++How MCP fits into workflow learning
++In the same way you learn to design visual workflows step by step, MCP supports a guided lifecycle: discover capabilities, validate pipeline graphs, save, dispatch, monitor, and download outputs.
++Practical MCP capabilities
++Context-aware discovery of supported tools and schema
++Validation of generated workflow structure before pipeline creation
++Pipeline creation, dispatch, and real-time status tracking
++Download of final output artifacts for downstream analysis
++This makes MCP a strong companion to the visual builder, improving consistency, automation, and reproducibility for research teams.
+ Frequently Asked Questions
+ Do I need to learn Nextflow DSL2 to build pipelines, or can GenXflo handle it?
+
+======================================================================
+PAGE: pages/documentation.html
+======================================================================
+@@ -2,33 +2,33 @@ GenXflo Documentation | Guides, MCP, FAQ
+ How can we
+ help you?
+-01
++1
+ Generating pipelines
+ Explore step-by-step instructions to build your custom pipeline efficiently.
+ Read guide
+-02
++2
+ Running pipelines
+ Explore step-by-step instructions to run your custom pipeline efficiently.
+ Read guide
+-03
++3
+ Creating Custom Tools
+ Explore step-by-step instructions to run your custom pipeline efficiently.
+ Read guide
+-04
++4
+ Monitoring pipelines
+ Explore our guide to efficiently manage and navigate your dashboard.
+ Read guide
+-05
++5
+ System requirements
+ Explore our guide to understand the system requirements.
+ Read guide
+-06
++6
+ MCP Documentation
+ Learn MCP capabilities for AI-assisted pipeline design, validation, orchestration, and artifact retrieval.
+ Read guide
+-07
++7
+ Terminologies
+ Familiarize yourself with the key terminologies used in our system.
+ Read guide
+-08
++8
+ FAQ Section
+ Find answers to common questions about our services and features.
+@@ -52,5 +52,5 @@ to proceed to the workspace and start building your pipeline on the canvas.
+ 3
+ Built-in workflows to get started
+-Use the built-in workflows to quickly get started with common workflows such as RNA-Seq and WGS.
++Use the built-in workflows to quickly get started with common workflows such as RNA-Seq, WGS variant calling, GATK Somatic Variant Calling(Tumor-Only).
+ Select a workflow to load it onto the canvas and customize the tools, inputs, and parameters as per your requirements.
+ 4
+
+======================================================================
+PAGE: pages/workflow-export.html
+======================================================================
+@@ -21,7 +21,7 @@ DSL2 Module Composition
+ Validation and Linting
+ Reproducible Pipelines: What GenXflo Guarantees
++Reproducibility Through Containers and Metadata
+ Importing and Exporting Pipelines and Components
+ Advanced Export Settings
+-Reproducibility Through Containers and Metadata
+ FAQ
+ Graph Normalization
+@@ -71,4 +71,11 @@ Re-run identical analyses across HPC, cloud, or CI systems.
+ Maintain consistent execution behavior regardless of infrastructure.
+ This ensures your exported workflows meet the highest standards of reproducible pipelines in computational research.
++Reproducibility Through Containers and Metadata
++GenXflo automatically handles dependencies by embedding container references into every exported process. Each workflow uses containerization technology preloaded with the correct tool versions, guaranteeing consistent results on any system.
++Reproducibility highlights:
++Pinned container tags for every tool.
++Environment metadata embedded into configuration files.
++Provenance tracking to verify data and software lineage.
++These mechanisms ensure that every exported Nextflow workflow can be rerun and audited without deviation, the foundation of modern reproducible pipelines.
+ Importing and Exporting Pipelines and Components
+ GenXflo supports seamless import and export for both complete pipelines and individual workflow components. These capabilities enable efficient collaboration and reuse across research teams.
+@@ -94,11 +101,4 @@ Include optional deployment files such as Makefiles or container build scripts.
+ Choose between multiple WML outputs (Nextflow, Snakemake, WDL).
+ These settings give users flexibility to control how workflows are structured, stored, and shared after export.
+-Reproducibility Through Containers and Metadata
+-GenXflo automatically handles dependencies by embedding container references into every exported process. Each workflow uses containerization technology preloaded with the correct tool versions, guaranteeing consistent results on any system.
+-Reproducibility highlights:
+-Pinned container tags for every tool.
+-Environment metadata embedded into configuration files.
+-Provenance tracking to verify data and software lineage.
+-These mechanisms ensure that every exported Nextflow workflow can be rerun and audited without deviation, the foundation of modern reproducible pipelines.
+ Frequently Asked Questions
+ How do I export a bioinformatics workflow to Nextflow, WDL, or Snakemake?
+
+======================================================================
+PAGE: pages/ai-features.html
+======================================================================
+(no visible text change)
+
+======================================================================
+PAGE: pages/product-overview.html
+======================================================================
+@@ -10,8 +10,6 @@ Submit and Validate
+ .
+ Your browser does not support the video tag.
+-GenXflo is a next-generation, no-code bioinformatics workflow builder that empowers scientists to design, validate, and export fully functional data analysis pipelines — all through an intuitive visual interface.
+-Built for researchers who want to focus on science instead of syntax, GenXflo transforms the complex process of pipeline creation into a simple, four-step journey: Drag → Connect → Validate → Export.
+-Whether you're running RNA-seq, variant calling, or genome annotation workflows, GenXflo helps you go from idea to executable workflow in minutes, no programming required.
+-GenXflo now includes MCP support to improve interoperability with AI clients, helping teams transform natural-language workflow intent into validated pipeline designs more efficiently.
++GenXflo is a no-code bioinformatics workflow builder. Scientists design, validate and export ready-to-run pipelines on a visual canvas, going from idea to executable workflow in minutes without writing code.
++Every pipeline follows four steps (Drag → Connect → Validate → Export), whether it is RNA-seq, variant calling or genome annotation. MCP support also lets AI clients turn natural-language workflow intent into validated pipeline designs.
+ Steps to build pipeline
+ Adding Custom Components
+@@ -94,4 +92,11 @@ Supporting metadata for reproducibility
+ You can now run the workflow on your preferred platform (Nextflow, and in the future Snakemake or WDL), share it with collaborators, or archive it for future use.
+ These files are fully executable on any system that supports the respective workflow language — from local machines to HPC clusters to cloud platforms.
++Pipeline Versioning
++Every change to a pipeline is saved as a new version, so you can review its history at any time.
++From the version history you can:
++Review earlier versions of the pipeline
++Download the outputs of a prior version
++Restore an earlier configuration
++This makes it easy to compare runs, recover from a mistake, and keep a clear record of how your pipeline evolved.
+ Why exporting matters
+ Exporting your workflow gives you:
+
+======================================================================
+PAGE: pages/integrations.html
+======================================================================
+@@ -12,5 +12,5 @@ This interoperability guarantees that workflows remain reproducible and portable
+ Key Integration Features
+ Containerized execution:
+-Run workflows inside Docker, Singularity, or Conda environments for consistent, reproducible results.
++Run workflows inside Docker or Conda environments for consistent, reproducible results.
+ Cross-platform compatibility:
+ Fully supports Windows, macOS, and Linux (including native WSL 2 for Windows).
+@@ -33,15 +33,15 @@ Modular DSL2 process definitions
+ Channel-based data flow and dependency management
+ Resource directives (CPUs, memory, storage)
+-Linked Docker or Singularity container references
++Linked Docker container references
+ By aligning visual design with the underlying Nextflow syntax, GenXflo ensures that pipelines run seamlessly in any Nextflow Docker or cloud environment, maintaining both scientific rigor and technical reproducibility.
+ Benefits of Nextflow Integration
+ Full compatibility with Nextflow's modular architecture
+ Automatic syntax and dependency validation before export
+-Ready-to-run Docker or Singularity containers for each process
++Ready-to-run Docker containers for each process
+ Execution across HPC, cloud, or hybrid computing environments
+ Guaranteed reproducible behavior for every pipeline run
+ These capabilities make GenXflo a powerful companion for teams standardizing their infrastructure on Nextflow while embracing visual, no-code design.
+ Docker & Containerized Execution
+-Containerization lies at the core of Nextflow integrations, ensuring that every pipeline step runs within a consistent, isolated environment. GenXflo fully supports Nextflow Docker and Singularity execution, embedding container references directly into exported workflow files.
++Containerization lies at the core of Nextflow integrations, ensuring that every pipeline step runs within a consistent, isolated environment. GenXflo fully supports Nextflow Docker execution, embedding container references directly into exported workflow files.
+ Why Containerization Matters
+ Eliminates dependency conflicts between software tools
+@@ -52,6 +52,4 @@ Supported Container Options
+ Docker:
+ Default option for both local and cloud execution.
+-Singularity:
+-Ideal for HPC clusters or environments where Docker is restricted.
+ Conda:
+ Lightweight alternative for environments without container support.
+
+======================================================================
+PAGE: pages/comparison.html
+======================================================================
+(no visible text change)
+
+======================================================================
+HOMEPAGE TEXT IN TABS / AI SECTION (same homepage, shown after the above)
+======================================================================
+Why GenXflo section, tab 'Nextflow' -> renamed 'Environment'
+- Command: nextflow run main.nf   -> make run
+- Container stat: v24.04 / Docker container ready   -> Docker / container ready
+- Launch stat: command: nextflow run main.nf   -> command: make run
+Why GenXflo section, Visual builder tab
+- 8 popular tools one drag away   -> 17 supported tools one drag away
+Why GenXflo section, Collaboration tab
+- teammates on one canvas   -> teammates on canvas
+AI section, step 1 (Design Visually)
+- Build and connect processes effortlessly...   -> Build and connect tools effortlessly...
+AI section, step 2 (Configure Parameters)
+- Easily set input files, adjust tool parameters...   -> Set up input files easily, adjust tool parameters...

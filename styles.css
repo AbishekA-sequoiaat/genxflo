@@ -2078,13 +2078,13 @@ main:has(.pl) { counter-reset: pl-n; }
 .cta-card { position: absolute; z-index: 2; background: #1d1f1d; border-radius: calc(var(--u) * 9); box-shadow: 0 0 0 calc(var(--u) * 3) #2a2d2a; }
 .cta-c0 { left: calc(var(--u) * -30); top: calc(var(--u) * 418); width: calc(var(--u) * 206); height: calc(var(--u) * 240); background: #1d1f1d; }
 .cta-c1 { left: calc(var(--u) * 178); top: calc(var(--u) * 451); width: calc(var(--u) * 326); height: calc(var(--u) * 172); padding: calc(var(--u) * 32) calc(var(--u) * 40); background: #1d1f1d; }
-.cta-c2 { z-index: 3; left: calc(var(--u) * 506); top: calc(var(--u) * 382); width: calc(var(--u) * 288); height: calc(var(--u) * 135); padding: calc(var(--u) * 28) calc(var(--u) * 88); text-align: center; }
+.cta-c2 { z-index: 3; left: calc(var(--u) * 506); top: calc(var(--u) * 382); width: calc(var(--u) * 288); height: calc(var(--u) * 135); padding: calc(var(--u) * 28) calc(var(--u) * 12); text-align: center; }
 .cta-c3 { left: calc(var(--u) * 506); top: calc(var(--u) * 520); width: calc(var(--u) * 288); height: calc(var(--u) * 140); }
 .cta-c4 { left: calc(var(--u) * 796); top: calc(var(--u) * 402); width: calc(var(--u) * 150); height: calc(var(--u) * 258); background: #1d1f1d; }
 .cta-card strong { display: block; font-family: var(--font-display, "Manrope", sans-serif); font-weight: 500; font-size: calc(var(--u) * 86); line-height: .95; letter-spacing: -.04em; color: var(--mint); }
 .cta-c2 strong { font-size: calc(var(--u) * 80); }
 .cta-card span { display: block; margin-top: calc(var(--u) * 14); font-size: calc(var(--u) * 11); color: rgba(255, 255, 255, .82); }
-.cta-c2 span { margin-top: calc(var(--u) * 6); }
+.cta-c2 span { margin-top: calc(var(--u) * 6); white-space: nowrap; }
 .cta-line { position: absolute; z-index: 3; left: calc(var(--u) * 98); top: calc(var(--u) * 547); width: calc(var(--u) * 80); height: 0; border-top: 1px solid var(--mint); opacity: .8; }
 .cta-dot { position: absolute; z-index: 4; width: calc(var(--u) * 6); height: calc(var(--u) * 6); margin: calc(var(--u) * -3) 0 0 calc(var(--u) * -3); border-radius: 50%; background: var(--mint); }
 .cta-d0 { left: calc(var(--u) * 98); top: calc(var(--u) * 547); } .cta-d1 { left: calc(var(--u) * 544); top: calc(var(--u) * 518); } .cta-d2 { left: calc(var(--u) * 727); top: calc(var(--u) * 518); }
